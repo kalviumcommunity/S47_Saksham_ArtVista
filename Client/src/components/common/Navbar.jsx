@@ -10,6 +10,9 @@ function Navbar() {
             <Link to="/search">Search</Link>
             <Link to="/create">Create</Link>
         </div>
+        <div>
+            <Link to="/user">Login/Signup</Link>
+        </div>
     </div>
     </>
   )
