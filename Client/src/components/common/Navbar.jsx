@@ -12,7 +12,7 @@ function Navbar() {
             <Link className={navcss.links} to="/create">Create</Link>
         </div>
         <div className={navcss.loginsignupdiv}>
-            <Link className={navcss.loginsignup} to="/user">Login/Signup</Link>
+            <Link className={navcss.loginsignup} to="/auth">Login/Signup</Link>
         </div>
     </div>
     </>

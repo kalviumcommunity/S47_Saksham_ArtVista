@@ -1,13 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-
-function LoginSignup() {
+import { Link } from 'react-router-dom'
+function loginsignup() {
   return (
-    <>
-    <Link to="/">Back</Link>
-    <div>LoginSignup</div>
-    </>
+    <div>
+        <div>
+            <Link to="/auth/login">Login here</Link>
+        </div>
+        <div>
+            <h3>You new here ?</h3>
+            <Link to="/auth/signup">Signup here</Link>
+        </div>
+    </div>
   )
 }
 
-export default LoginSignup;
+export default loginsignup
