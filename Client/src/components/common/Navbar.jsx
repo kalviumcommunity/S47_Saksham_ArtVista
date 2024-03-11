@@ -6,13 +6,13 @@ function Navbar() {
     <>
     <div className={navcss.navbar}>
         <img src="" alt="lol" />
-        <div className="">
-            <Link className={navcss.links} to="/">Home</Link>
-            <Link className={navcss.links} to="/search">Search</Link>
-            <Link className={navcss.links} to="/create">Create</Link>
+        <div className={navcss.linksdiv}>
+            <Link className={navcss.links} to="/"><p>Home</p></Link>
+            <Link className={navcss.links} to="/search"><p>Search</p></Link>
+            <Link className={navcss.links} to="/create"><p>Create</p></Link>
         </div>
         <div className={navcss.loginsignupdiv}>
-            <Link className={navcss.loginsignup} to="/auth">Login/Signup</Link>
+            <Link className={navcss.loginsignup} to="/auth/login">Login/Signup</Link>
         </div>
     </div>
     </>
