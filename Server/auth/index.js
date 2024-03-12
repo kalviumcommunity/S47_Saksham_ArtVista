@@ -5,8 +5,8 @@ const router = require('./routes/user')
 
 dotenv.config()
 
-
 const app = express()
+
 app.use(express.json())
 Mongoose.connect(process.env.MONGO_URL)
 
