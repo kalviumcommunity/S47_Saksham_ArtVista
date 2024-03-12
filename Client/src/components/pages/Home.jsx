@@ -16,6 +16,7 @@ function Home() {
   return (
     <>
     <Navbar />
+    <br /><br /><br /><br /><br />  
     <div className={homecss.container}>
     <div className={homecss.postscont}>
         {posts.map(post => (
