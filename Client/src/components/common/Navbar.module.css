@@ -26,7 +26,7 @@
     transition: 100ms;
 } .links :hover {
     color: red  ;
-    margin: -7px;
+    margin: -7.2px;
     font-size: 25px;
     visibility: visible;
     transition: 100ms;
@@ -39,14 +39,14 @@
     text-decoration: none;
     padding: 10px;
     border-radius: 20px;
-    transition: 100ms;
+    transition: 250ms;
 } .loginsignupdiv{
     margin: 10px;
 } .loginsignupdiv :hover {
     background-color: rgb(255, 0, 0);   
     padding: 15px;
-    transition: 100ms;
-    margin: -10px;
+    transition: 250ms;
+    margin: -11px;
     border-radius: 30px;
     font-size: 18px;
 }
