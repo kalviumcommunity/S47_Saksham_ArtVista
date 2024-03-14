@@ -3,10 +3,11 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* padding: 20px; */
-} .searchflex{
-    padding: 20px;
+} 
+.searchflextt {
+    margin: 10px;
 }
+
 
 .fullflex{
     display: flex;
@@ -16,12 +17,24 @@
 }
 
 .container{
-    width: 70%;
+    width: 60%;
     height: 100px;
     margin: 20px;
-    border-radius: 20px;
-    /* border: 2px solid grey; */
-    background-color: whitesmoke;
+    border-radius: 20px; 
 }
 
 /* input css  */
+.searchinput{
+    width: 120%;
+    border-radius: 20px;
+    border: 2px solid gray;
+    padding: 5px;
+    background-color: white;
+}
+
+/* search button css  */
+.searchbtn{
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+}

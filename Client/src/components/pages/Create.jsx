@@ -7,13 +7,12 @@ function Create() {
   return (
     <>
       <Navbar />
-      <div>
-        <br /><br /><br /><br /><br />
-        <h1>Create area</h1>
+      <br /><br /><br /><br /><br />
+      <div className={`${Createcss.container}`}>
           
-        <form action="">
+        <form className={`${Createcss.formconts}`} action="">
             <div>
-              <label  htmlFor="title">Title: </label>
+              <p  htmlFor="title">Title: </p>
               <input
               type='text' 
               placeholder='test'
@@ -22,17 +21,17 @@ function Create() {
             </div>
             
             <div>
-              <label htmlFor="image">File upload</label>
+              <p htmlFor="image">File upload</p>
               <input
               type='file'
               name='file' 
               placeholder='******'
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setFile(e.target.value)}
               />
             </div>
 
             <div>
-              <label  htmlFor="description">Description: </label>
+              <p  htmlFor="description">Description: </p>
               <input
               type='text' 
               placeholder='test'
@@ -40,6 +39,10 @@ function Create() {
               />
             </div>
         </form>
+
+        <div className={`${Createcss.pastcreatedposts}    `}>
+
+        </div>
         
       </div>
       <Footer />
