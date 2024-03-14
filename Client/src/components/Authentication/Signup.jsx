@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import lscss from './LoginSignup.module.css'
+import lscss from './loginsignup.module.css'
 
 
 function LoginSignup() {

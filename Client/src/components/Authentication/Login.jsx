@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import lscss from './LoginSignup.module.css'
+import lscss from './loginsignup.module.css'
 
 function Login() {
   return (
