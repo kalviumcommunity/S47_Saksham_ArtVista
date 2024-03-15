@@ -26,7 +26,7 @@
     transition: 100ms;
 } .links :hover {
     color: red  ;
-    margin: -7.2px;
+    margin: -10px;
     font-size: 25px;
     visibility: visible;
     transition: 100ms;
