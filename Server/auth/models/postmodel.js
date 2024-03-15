@@ -14,11 +14,11 @@ const postSchema = new Schema({
     },
     likes: {
         type: Number,
-        default: 0
+        default: []
     },
     dislikes: {
         type: Number,
-        default: 0
+        default: []
     },
     user: {
         type: Schema.Types.ObjectId,

@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../common/Navbar'
 import Footer from '../common/Footer'
-import Searchcss from './Search.module.css'
+import Searchcss from './css/Search.module.css'
 
 function Search() {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../common/Navbar'
 import Footer from '../common/Footer'
-import Createcss from './Create.module.css'
+import Createcss from './css/Create.module.css'
 
 function Create() {
 
