@@ -31,7 +31,7 @@ function Create() {
   return (
     <>
       <Navbar />
-      <br /><br /><br /><br />
+      <br /><br /><br /><br /><br />
       <div className={`${Createcss.container}`}>
           
         <div  className={`${Createcss.formconts}`}  >
@@ -67,8 +67,8 @@ function Create() {
               <button type='submit' onChange={handleSubmit}>Submit</button>
           </form>
         </div>
+
         <div className={`${Createcss.imgdispdiv}`}>
-          <div className={`${Createcss.imgdisppost}`}>
             <img 
             src={file} 
             alt='Img could not be displayed'
@@ -77,8 +77,8 @@ function Create() {
             />
             <h2>{title}</h2>
             <p>{description}</p>
-          </div>
         </div>
+
       </div>
       <Footer />
     </>

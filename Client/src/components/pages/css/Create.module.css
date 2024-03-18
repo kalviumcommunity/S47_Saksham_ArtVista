@@ -1,7 +1,7 @@
 /* Create.module.css */
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     height: 400px;
 }
@@ -14,14 +14,21 @@
 /* image css */
 .imgdispdiv {
     margin: 20px;
-    width: 50%;
-    height: 300px;
+    width: 500px;
+    background-color: wheat;
+    height: 500px;
+    margin-top: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-  
+
 .imgdisplay {
-    max-width: 100%;
-    height: auto;
+    width: 80%;
 }
+
 
 .textareatitle, .imglink , .textareadesc{
     margin: 20px;
@@ -35,4 +42,6 @@
     padding: 5px;
 } .textareadesc input {
     height: 160px;
+    resize: vertical;
+    overflow-y: scroll;
 }
