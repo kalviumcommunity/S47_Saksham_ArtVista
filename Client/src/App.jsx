@@ -6,6 +6,7 @@ import Create from './components/pages/Create'
 import Search from './components/pages/Search'
 import Login from './components/Authentication/Login'
 import Signup from './components/Authentication/Signup'
+import MyProfile from './components/pages/MyProfile'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/profile" element={<MyProfile />} />
 
           <Route path='/auth/login' element={<Login />} />
           <Route path='/auth/signup' element={<Signup />} />

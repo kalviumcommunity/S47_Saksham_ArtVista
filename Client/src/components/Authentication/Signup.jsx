@@ -26,8 +26,16 @@ function LoginSignup() {
 
   return (
     <>
+    <div className={`${lscss.fullpage}`}>
     <Link to="/"><button className={`${lscss.Backbtn}`}>Back</button></Link>
+    <br /><br /><br />
     <div className={`${lscss.container}`}>
+      <div className={`${lscss.welcome}`}>
+        <h1>Welcome to the ArtVista !</h1>
+        <p>The One and only Enthusiastic platform to browse and share your talent</p>
+        <p>Get Started by filling this form and create your account</p>
+        <p>Already have an account? <Link to="/auth/login">Login</Link></p>
+      </div>
     <div className={`${lscss.signup}`}>
         <h2>SignUp</h2>
         <form className={`${lscss.form}`} onSubmit={handleSubmit}>
@@ -63,6 +71,7 @@ function LoginSignup() {
             <Link to="/auth/login"><button className={`${lscss.sidebtn}`}>Already a user ?</button></Link>
             </div>
         </form>
+    </div>
     </div>
     </div>
     </>
