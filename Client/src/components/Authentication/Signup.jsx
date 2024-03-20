@@ -9,6 +9,7 @@ function LoginSignup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [copassword, setCoPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,12 +24,20 @@ function LoginSignup() {
     })
   }
 
+  const handleCoPasswordChange = (e) => {
+    if (e.target.value === password) {
+      setCoPassword(e.target.value);
+    } else {
+      return alert('Passwords do not match');
+    }
+  }
+
 
   return (
     <>
     <div className={`${lscss.fullpage}`}>
     <Link to="/"><button className={`${lscss.Backbtn}`}>Back</button></Link>
-    <br /><br /><br />
+    <br /><br />
     <div className={`${lscss.container}`}>
       <div className={`${lscss.welcome}`}>
         <h1>Welcome to the ArtVista !</h1>
@@ -64,6 +73,15 @@ function LoginSignup() {
               type='text' 
               placeholder='******' 
               onChange={(e) => setPassword(e.target.value)}/>
+            </div>
+
+            <div className={`${lscss.formdiv}`}>
+              <label className={`${lscss.labeltxt}`} htmlFor="password">Confirm Password:</label>
+              <input
+              className={`${lscss.inputbox}`} 
+              type='text' 
+              placeholder='******' 
+              onChange={handleCoPasswordChange}/>
             </div>
 
             <div>

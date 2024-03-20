@@ -21,7 +21,7 @@ function Login() {
     <br /><br /><br /><br /><br />
     <div className={`${lscss.container}`}>
     <div className={`${lscss.welcome}`}>
-        <h1>Hello {username || 'User'}</h1>
+        <h1>Hello {username || 'User'} !</h1>
         <p>You're on the only Enthusiastic platform to browse and share your talent</p>
         <p>Get Started by filling this form and login quickly</p>
         <p>Not already registered ? <Link to="/auth/signup">Signup</Link></p>

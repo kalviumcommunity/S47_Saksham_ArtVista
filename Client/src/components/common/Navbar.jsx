@@ -10,6 +10,7 @@ function Navbar() {
             <Link className={navcss.links} to="/"><p>Home</p></Link>
             <Link className={navcss.links} to="/search"><p>Search</p></Link>
             <Link className={navcss.links} to="/create"><p>Create</p></Link>
+            <Link className={navcss.links} to="/myprofile"><p>My Profile</p></Link>
         </div>
         <div className={navcss.loginsignupdiv}>
             <Link className={navcss.loginsignup} to="/auth/login">Login/Signup</Link>
