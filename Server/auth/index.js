@@ -6,8 +6,10 @@ const userRoutes = require('./routes/userroutes');
 const postRoutes = require('./routes/postroutes');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
-const app = express();
 
+
+const app = express();
+app.use(cors());
 // crypto
 const crypto = require('crypto');
 const generateSecretKey = () => {

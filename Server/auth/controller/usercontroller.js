@@ -6,7 +6,7 @@ const { validateUser } = require('../validators/uservalidator');
 const crypto = require('crypto');
 const secretKey = crypto.randomBytes(64).toString('hex');
 
-exports.createUser = async (req, res) => {
+exports.signUp = async (req, res) => {
     try {
         const { username, email, password } = req.body;
         const { error } = validateUser({ username, email, password });
@@ -30,32 +30,43 @@ exports.createUser = async (req, res) => {
     }
 };
 
-// exports.getUserDetails = async (req, res) => {
+// exports.logIn = async (req, res) => {
 //     try {
-//         const token = req.headers.authorization.split(' ')[1]; 
-//         const decoded = jwt.verify(token, secretKey, { expiresIn: '1h' });
-//         const userDetails = decoded;
-//         res.status(200).json(userDetails);
+//         const { email, password } = req.body;
+//         const user = await User.findOne({ email });
+//         if (!user) {
+//             return res.status(404).json({ message: 'User not found' });
+//         }
+//         const isMatch = await bcrypt.compare(password, user.password);
+//         if (!isMatch) {
+//             return res.status(401).json({ message: 'Invalid credentials' });
+//         }
+//         const token = jwt.sign({ id: user._id }, secretKey, { expiresIn: '1h' });
+//         res.status(200).json({ message: 'Login successful', token });
 //     } catch (error) {
 //         res.status(400).json({ message: error.message });
 //     }
-// };
+// }
 
-exports.getUserDetails = async (req, res) => {
+exports.logIn = async (req, res) => {
     try {
-        const authHeader = req.headers.authorization;
-        if (!authHeader) {
-            return res.status(401).json({ message: 'Authorization token is missing' });
+        const { username, password } = req.body;
+        const user = await User.findOne({ username }); 
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
         }
-
-        const token = authHeader.split(' ')[1]; 
-        const decoded = jwt.verify(token, secretKey, { expiresIn: '1h' });
-        const userDetails = decoded;
-        res.status(200).json(userDetails);
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+        const token = jwt.sign({ id: user._id }, secretKey, { expiresIn: '1h' });
+        res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
+
+
 
 exports.updateUserDetails = async (req, res) => {
     try {

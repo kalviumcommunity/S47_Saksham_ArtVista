@@ -15,7 +15,7 @@ function LoginSignup() {
     e.preventDefault();
 
     // Send a POST request to the server
-    Axios.post('http://localhost:3000/', {
+    Axios.post('http://localhost:3000/api/signup', {
       username, email, password
     }) .then((response) => {
       console.log(response);
@@ -24,13 +24,9 @@ function LoginSignup() {
     })
   }
 
-  const handleCoPasswordChange = (e) => {
-    if (e.target.value === password) {
-      setCoPassword(e.target.value);
-    } else {
-      return alert('Passwords do not match');
-    }
-  }
+  // const handleCoPasswordChange = (e) => {
+  //   setCoPassword(e.target.value);
+  // }
 
 
   return (
@@ -75,14 +71,14 @@ function LoginSignup() {
               onChange={(e) => setPassword(e.target.value)}/>
             </div>
 
-            <div className={`${lscss.formdiv}`}>
+            {/* <div className={`${lscss.formdiv}`}>
               <label className={`${lscss.labeltxt}`} htmlFor="password">Confirm Password:</label>
               <input
               className={`${lscss.inputbox}`} 
               type='text' 
               placeholder='******' 
               onChange={handleCoPasswordChange}/>
-            </div>
+            </div> */}
 
             <div>
             <button className={`${lscss.submitbtn}`} type='submit'>Sign up</button>

@@ -1,17 +1,36 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import lscss from './loginsignup.module.css'
+import Axios from 'axios';
 
 function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  function submitLogin(e) {
+    e.preventDefault();
+
+    Axios.post('http://localhost:3000/api/login', {
+      username,
+      password,
+    })
+      .then((response) => {
+        console.log(response);
+        console.log('Login success');
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log('Login failed');
+      });
+  }
+  
+
   function handleUsernameChange(e) {
-    setUsername(e.target.value);
+    setUsername(e.target.value)
   }
   function handlePasswordChange(e) {
-    setPassword(e.target.value);
+    setPassword(e.target.value)
   }
 
   return (
@@ -50,7 +69,7 @@ function Login() {
             </div>
 
             <div>
-            <button className={`${lscss.submitbtn}`} type='submit'>Login</button>
+            <button  onClick={submitLogin}  className={`${lscss.submitbtn}`} type='submit'>Login</button>
             <Link to="/auth/signup"><button className={`${lscss.sidebtn}`}>Not Registered yet ?</button></Link>
             </div>
         </form>
