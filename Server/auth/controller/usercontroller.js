@@ -60,12 +60,21 @@ exports.logIn = async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
         const token = jwt.sign({ id: user._id }, secretKey, { expiresIn: '1h' });
+        res.cookie('sessionToken', token, { maxAge: 3600000, httpOnly: true });
         res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
 
+exports.logout = async (req, res) => {
+    try {
+        res.clearCookie('sessionToken');
+        res.status(200).json({ message: 'Logout successful' });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
 
 
 exports.updateUserDetails = async (req, res) => {
