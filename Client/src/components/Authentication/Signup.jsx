@@ -9,7 +9,7 @@ function LoginSignup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [copassword, setCoPassword] = useState('');
+  // const [copassword, setCoPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
