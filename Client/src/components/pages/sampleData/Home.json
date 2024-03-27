@@ -1,0 +1,85 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "First Post",
+        "author": "John Doe",
+        "content": "This is the content of the first post.",
+        "timestamp": "2024-03-11T08:00:00Z"
+      },
+      {
+        "id": 2,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Second Post",
+        "author": "Jane Smith",
+        "content": "This is the content of the second post.",
+        "timestamp": "2024-03-10T14:30:00Z"
+      },
+      {
+        "id": 3,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Third Post",
+        "author": "Chris Johnson",
+        "content": "This is the content of the third post.",
+        "timestamp": "2024-03-09T09:45:00Z"
+      },
+      {
+        "id": 4,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Fourth Post",
+        "author": "Emily Brown",
+        "content": "This is the content of the fourth post.",
+        "timestamp": "2024-03-08T17:20:00Z"
+      },
+      {
+        "id": 5,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Fifth Post",
+        "author": "Michael Wilson",
+        "content": "This is the content of the fifth post.",
+        "timestamp": "2024-03-07T11:10:00Z"
+      },
+      {
+        "id": 6,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Sixth Post",
+        "author": "Jessica Lee",
+        "content": "This is the content of the sixth post.",
+        "timestamp": "2024-03-06T15:55:00Z"
+      },
+      {
+        "id": 7,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Seventh Post",
+        "author": "David Martinez",
+        "content": "This is the content of the seventh post.",
+        "timestamp": "2024-03-05T20:25:00Z"
+      },
+      {
+        "id": 8,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Eighth Post",
+        "author": "Sarah Thompson",
+        "content": "This is the content of the eighth post.",
+        "timestamp": "2024-03-04T12:40:00Z"
+      },
+      {
+        "id": 9,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Ninth Post",
+        "author": "James Anderson",
+        "content": "This is the content of the ninth post.",
+        "timestamp": "2024-03-03T08:15:00Z"
+      },
+      {
+        "id": 10,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYscfUBUbqwGd_DHVhG-ZjCOD7MUpxp4uhNe7toUg4ug&s",
+        "title": "Tenth Post",
+        "author": "Olivia Garcia",
+        "content": "This is the content of the tenth post.",
+        "timestamp": "2024-03-02T16:50:00Z"
+      }
+    ]
+  }
+  
