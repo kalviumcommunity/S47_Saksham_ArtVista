@@ -5,20 +5,20 @@ import Createcss from './css/Create.module.css';
 import Axios from 'axios';
 
 function Create() {
-  const [file, setFile] = useState();
+  const [image, setImage] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
 
   function handleSubmit(e) {
     e.preventDefault();
     Axios.post('http://localhost:3000/api/posts', {
-      file, title, description
+      image, title, description
     }) .then((response) => {
       console.log(response);
     }) .catch((error) => {
       console.log(error);
     })
-    // console.log(file, title, description);
+    // console.log(image, title, description);
   }
 
   return (
@@ -41,9 +41,9 @@ function Create() {
               <p htmlFor="image">Image Link</p>
               <input
                 type='url'
-                name='file'
+                name='image'
                 placeholder='******'
-                onChange={(e) => setFile(e.target.value)}
+                onChange={(e) => setImage(e.target.value)}
               />
             </div>
 
@@ -62,7 +62,7 @@ function Create() {
 
         <div className={`${Createcss.imgdispdiv}`}>
           <img
-            src={file}
+            src={image}
             alt='Img could not be displayed'
             className={`${Createcss.imgdisplay}`}
           />
