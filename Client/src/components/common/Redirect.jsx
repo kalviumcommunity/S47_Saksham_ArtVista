@@ -56,7 +56,7 @@ const Redirect = ({ isLoggedIn }) => {
       ) : (
         <button onClick={handleLogin}>Login</button>
       )}
-      <button onClick={handleProfileClick}>Profile</button>
+      {/* <button onClick={handleProfileClick}>Profile</button> */}
     </div>
   );
 };

@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
 import Navbar from '../common/Navbar';
-import Footer from '../common/Footer';
+// import Footer from '../common/Footer';
 import Createcss from './css/Create.module.css';
+import Axios from 'axios';
 
 function Create() {
   const [file, setFile] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
 
-  function handleFileChange(e) {
-    setFile(e.target.files[0]);
-  }
-
-  function handleTitleChange(e) {
-    setTitle(e.target.value);
-  }
-
-  function handleDescriptionChange(e) {
-    setDescription(e.target.value);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(file, title, description);
+    Axios.post('http://localhost:3000/api/posts', {
+      file, title, description
+    }) .then((response) => {
+      console.log(response);
+    }) .catch((error) => {
+      console.log(error);
+    })
+    // console.log(file, title, description);
   }
 
   return (
@@ -37,7 +33,7 @@ function Create() {
               <input
                 type='text'
                 placeholder='title'
-                onChange={handleTitleChange}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
@@ -55,7 +51,7 @@ function Create() {
               <p htmlFor="description">Description: </p>
               <textarea
                 placeholder='Describe about your post here'
-                onChange={handleDescriptionChange}
+                onChange={(e) => setDescription(e.target.value)}
                 className={`${Createcss.textareadesc}`}
                 wrap="soft" 
               />
@@ -68,7 +64,6 @@ function Create() {
           <img
             src={file}
             alt='Img could not be displayed'
-            onChange={handleFileChange}
             className={`${Createcss.imgdisplay}`}
           />
           <div>
@@ -77,7 +72,7 @@ function Create() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

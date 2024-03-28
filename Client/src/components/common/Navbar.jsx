@@ -14,7 +14,8 @@ function Navbar() {
             {/* <Link className={navcss.links} to="/myprofile"><p>My Profile</p></Link> */}
         </div>
         <div className={navcss.loginsignupdiv}>
-            <Redirect />
+            {/* <Redirect /> */}
+            <Link className={navcss.loginsignup} to="/auth/login">Login</Link>
         </div>
     </div>
     </>
