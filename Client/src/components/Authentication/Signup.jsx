@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import lscss from './loginsignup.module.css'
+// import useNavigate from 'react-router-dom'
 
 
 function LoginSignup() {
@@ -9,6 +10,7 @@ function LoginSignup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const navigateTo = useNavigate();
   // const [copassword, setCoPassword] = useState('');
 
   const handleSubmit = (e) => {
@@ -18,7 +20,8 @@ function LoginSignup() {
     Axios.post('http://localhost:3000/api/signup', {
       username, email, password
     }) .then((response) => {
-      console.log(response);
+      console.log(response)
+      // navigateTo('/auth/login')
     }).catch((error) => {
       console.log(error);
     })

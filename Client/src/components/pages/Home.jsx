@@ -46,8 +46,9 @@ function Home() {
             </div>
 
             <div className={homecss.postdetails}>
-              <p>{post.title}</p>
+              <h3>{post.title}</h3>
               <p>{post.description}</p>
+              <h4>by: {post.username}</h4>
             </div>
             
           </div>

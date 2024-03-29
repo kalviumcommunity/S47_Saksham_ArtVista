@@ -42,6 +42,7 @@ function Create() {
     }) .then((response) => {
       console.log(response);
       console.log('Post created successfully!');
+      alert('Post created successfully!');
     }) .catch((error) => {
       console.log(error);
       console.log('Post creation failed!');
