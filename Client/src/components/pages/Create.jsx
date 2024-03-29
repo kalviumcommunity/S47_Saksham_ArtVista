@@ -34,7 +34,7 @@ function Create() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    Axios.post('http://localhost:3000/api/posts', {
+    Axios.post(import.meta.env.VITE_CREATEAPI, {
       username: loggedInUser.username,
       image, 
       title, 

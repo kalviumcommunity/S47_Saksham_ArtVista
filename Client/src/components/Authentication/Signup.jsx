@@ -17,7 +17,7 @@ function LoginSignup() {
     e.preventDefault();
 
     // Send a POST request to the server
-    Axios.post('http://localhost:3000/api/signup', {
+    Axios.post(import.meta.env.VITE_USERSIGNUP, {
       username, email, password
     }) .then((response) => {
       console.log(response)

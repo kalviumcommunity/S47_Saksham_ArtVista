@@ -8,7 +8,7 @@ function Editauth() {
   const navigateTo = useNavigate();
 
   const handleLogout = () => {
-    Axios.post('http://localhost:3000/api/logout', {
+    Axios.post(import.meta.env.VITE_USERLOGOUT, {
 
     }).then((response) => {
       console.log(response);
