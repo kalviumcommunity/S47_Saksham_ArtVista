@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import lscss from './loginsignup.module.css'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigateTo = useNavigate();
+  const { loginWithRedirect } = useAuth0();
 
   function submitLogin(e) {
     e.preventDefault();
@@ -76,6 +78,9 @@ function Login() {
             <div>
             <button  onClick={submitLogin}  className={`${lscss.submitbtn}`} type='submit'>Login</button>
             <Link to="/auth/signup"><button className={`${lscss.sidebtn}`}>Not Registered yet ?</button></Link>
+            </div>
+            <div>
+              <button onClick={() => loginWithRedirect()}>Log In using google</button>;
             </div>
         </form>
     </div>
