@@ -4,7 +4,7 @@ const postController = require('../controller/postcontroller');
 
 // working without auth
 router.post('/posts', postController.createPost);
-router.get('/posts/Home', postController.getPostHomeFeed);
+router.get('/posts/home', postController.getPostHomeFeed);
 
 // To work on
 router.get('/posts/:postId', postController.getPostUserFeed);

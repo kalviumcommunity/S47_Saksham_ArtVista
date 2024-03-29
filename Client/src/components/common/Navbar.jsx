@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import navcss from './css/Navbar.module.css'
-import Redirect from './Redirect'
 function Navbar() {
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
   return (
     <>
     <div className={navcss.navbar}>
@@ -14,8 +15,12 @@ function Navbar() {
             {/* <Link className={navcss.links} to="/myprofile"><p>My Profile</p></Link> */}
         </div>
         <div className={navcss.loginsignupdiv}>
-            {/* <Redirect /> */}
+            {/* <Link className={navcss.loginsignup} to="/auth/login">Login</Link> */}
+            {loggedInUser ? (
+            <Link className={navcss.loginsignup} to="/auth/editauth">Profile</Link>
+            ) : (
             <Link className={navcss.loginsignup} to="/auth/login">Login</Link>
+            )}
         </div>
     </div>
     </>

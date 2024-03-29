@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import lscss from './loginsignup.module.css'
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigateTo = useNavigate();
 
   function submitLogin(e) {
     e.preventDefault();
@@ -18,10 +20,13 @@ function Login() {
       .then((response) => {
         console.log(response);
         console.log('Login success');
+        localStorage.setItem('loggedInUser', JSON.stringify({ username }));
+        navigateTo('/');
       })
       .catch((error) => {
         console.log(error);
         console.log('Login failed');
+        alert('The username or password is incorrect');
       });
   }
   

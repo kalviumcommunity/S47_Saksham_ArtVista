@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../common/Navbar';
 // import Footer from '../common/Footer';
 import Createcss from './css/Create.module.css';
@@ -9,14 +9,43 @@ function Create() {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
 
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  // console.log(loggedInUser.username);
+
+  // useEffect(() => {
+  //   const formData = JSON.parse(sessionStorage.getItem('formData'));
+  //   if (formData) {
+  //     setImage(formData.image || '');
+  //     setTitle(formData.title || '');
+  //     setDescription(formData.description || '');
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const formData = { image, title, description };
+  //   sessionStorage.setItem('formData', JSON.stringify(formData));
+  // }, [image, title, description]);
+
+  // useEffect(() => {
+  //   return () => {
+  //     sessionStorage.removeItem('formData');
+  //   };
+  // }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
     Axios.post('http://localhost:3000/api/posts', {
-      image, title, description
+      username: loggedInUser.username,
+      image, 
+      title, 
+      description
     }) .then((response) => {
       console.log(response);
+      console.log('Post created successfully!');
     }) .catch((error) => {
       console.log(error);
+      console.log('Post creation failed!');
+      alert('Post creation failed!');
     })
     // console.log(image, title, description);
   }
