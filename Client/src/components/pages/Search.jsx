@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../common/Navbar'
 import Footer from '../common/Footer'
-import Searchcss from './Search.module.css'
+import Searchcss from './css/Search.module.css'
 
 function Search() {
   return (
@@ -14,27 +14,36 @@ function Search() {
         <div className={`${Searchcss.searchflex}`}>
           <div className={`${Searchcss.searchflextt}`}>
             <p>Search By Title</p>
-            <input type="text" />
+            <input 
+            type="text"
+            className={`${Searchcss.searchinput}`}
+            />
           </div>
-          <div>
+          <div  className={`${Searchcss.searchflextt}`}>
             <p>Search By Author</p>
-            <input type="text" />
+            <input 
+            type="text"
+            className={`${Searchcss.searchinput}`}
+            />
           </div>
-        {/* </div>
 
-
-        <div className={`${Searchcss.searchflex}`}> */}
-          <div>
+          <div  className={`${Searchcss.searchflextt}`}>
             <p>Search By Date</p>
-            <input type="date" />
+            <input 
+            type="date" 
+            className={`${Searchcss.searchinput}`}
+            />
           </div>
           <div  className={`${Searchcss.searchflextt}`}>
             <p>Search By Categories</p>
-            <input type="text" />
+            <input 
+            type="text"
+            className={`${Searchcss.searchinput}`}
+            />
           </div>
         </div>
         
-        <button>Start Searching</button>
+        <button className={`${Searchcss.searchbtn}`}>Start Searching</button>
         </div>        
       </div>
       <Footer />

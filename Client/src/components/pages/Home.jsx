@@ -1,16 +1,30 @@
 import React from 'react'
-import homecss from './Home.module.css'
+import homecss from './css/Home.module.css'
 import Navbar from '../common/Navbar'
 import Footer from '../common/Footer'
 import homedata from './sampleData/Home.json'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function Home() {
 
   const [posts, setPosts] = useState([]);
 
+  // useEffect(() => {
+  //   setPosts(homedata.posts);
+  // }, []);
+
   useEffect(() => {
-    setPosts(homedata.posts);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/posts/home');
+        setPosts(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -19,22 +33,27 @@ function Home() {
     <br /><br /><br /><br /><br />  
     <div className={homecss.container}>
     <div className={homecss.postscont}>
+
         {posts.map(post => (
           <div className={homecss.postinv} key={post.id}>
+
             <div className={homecss.postimagecont}>
               <img 
               src={post.image} 
-              alt={post.title} 
+              alt="post" 
               className={homecss.postimage}
               />
             </div>
+
             <div className={homecss.postdetails}>
-            <p>{post.content}</p>
-            <p>Author: {post.author}</p>
-            <p>Timestamp: {post.timestamp}</p>
+              <h3>{post.title}</h3>
+              <p>{post.description}</p>
+              <h4>by: {post.username}</h4>
             </div>
+            
           </div>
         ))}
+
       </div>
     </div>
     <Footer />

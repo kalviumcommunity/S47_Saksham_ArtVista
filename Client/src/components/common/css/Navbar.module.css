@@ -7,6 +7,7 @@
     padding: 20px;
     position: fixed;
     width: 98%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .linksdiv{
@@ -26,7 +27,7 @@
     transition: 100ms;
 } .links :hover {
     color: red  ;
-    margin: -7.2px;
+    margin: 0px;
     font-size: 25px;
     visibility: visible;
     transition: 100ms;
