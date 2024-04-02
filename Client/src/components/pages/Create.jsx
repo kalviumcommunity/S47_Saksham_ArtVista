@@ -34,7 +34,7 @@ function Create() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    Axios.post('http://localhost:3000/api/posts', {
+    Axios.post(import.meta.env.VITE_CREATEAPI, {
       username: loggedInUser.username,
       image, 
       title, 
@@ -42,6 +42,7 @@ function Create() {
     }) .then((response) => {
       console.log(response);
       console.log('Post created successfully!');
+      alert('Post created successfully!');
     }) .catch((error) => {
       console.log(error);
       console.log('Post creation failed!');

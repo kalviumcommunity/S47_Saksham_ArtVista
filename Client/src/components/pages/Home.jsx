@@ -17,8 +17,9 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/posts/home');
+        const response = await axios.get(import.meta.env.VITE_HOMEAPI);
         setPosts(response.data);
+        console.log(response)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -26,7 +27,6 @@ function Home() {
 
     fetchData();
   }, []);
-
   return (
     <>
     <Navbar />
@@ -46,8 +46,9 @@ function Home() {
             </div>
 
             <div className={homecss.postdetails}>
-              <p>{post.title}</p>
+              <h3>{post.title}</h3>
               <p>{post.description}</p>
+              <h4>by: {post.username}</h4>
             </div>
             
           </div>
