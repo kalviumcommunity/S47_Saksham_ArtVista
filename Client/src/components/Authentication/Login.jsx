@@ -37,7 +37,9 @@ function Login() {
       .then((response) => {
         console.log(response);
         console.log('Login success');
-        localStorage.setItem('loggedInUser', JSON.stringify({ username }));
+        // localStorage.setItem('loggedInUser', JSON.stringify({ username }));
+        const { token } = response.data; 
+        localStorage.setItem('loggedInUser', JSON.stringify({ token, username }));
         navigateTo('/');
       })
       .catch((error) => {
