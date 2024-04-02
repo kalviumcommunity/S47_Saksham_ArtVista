@@ -10,6 +10,11 @@ function Editauth() {
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
 
+  function handleGGLogout() {
+    localStorage.removeItem('loggedInUser'); 
+    logout({ returnTo: window.location.origin });
+  }
+
   const handleLogout = () => {
     Axios.post(import.meta.env.VITE_USERLOGOUT, {
     }).then((response) => {
@@ -55,7 +60,7 @@ function Editauth() {
           </div>
           <div>
             <button onClick={handleLogout}>Logout</button>
-            <button onClick={() => logout({ returnTo: window.location.origin })}>
+            <button onClick={handleGGLogout}>
               Log Out Google
             </button>
           </div>
