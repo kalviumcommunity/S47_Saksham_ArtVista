@@ -3,45 +3,13 @@ import { Link } from 'react-router-dom';
 import lscss from './loginsignup.module.css'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+import Gauth from './gauth';
 
 function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigateTo = useNavigate();
-  const { loginWithRedirect, user, isAuthenticated, getAccessTokenSilently, isLoading  } = useAuth0();
-// Auth0 authentication code
-  function loginWithGoogle() {
-    loginWithRedirect({
-      screen_hint: 'login',
-      connection: 'google-oauth2',
-    });
-  }
-
-  useEffect(() => {
-    if (isAuthenticated && isLoading) {
-      handleRedirectCallback();
-    }
-  }, [isAuthenticated, isLoading, getAccessTokenSilently, navigateTo, user]);
-
-  useEffect(() => {
-    const handleRedirectCallback = async () => {
-      try {
-        await getAccessTokenSilently();
-        console.log("user logged in successfully !", user.email);
-        localStorage.setItem('loggedInUser', JSON.stringify({ username: user.email, token: getAccessTokenSilently() }));
-        navigateTo('/');
-      } catch (error) {
-        console.error('Error during redirect callback:', error.message);
-      }
-    };
-
-    if (!isLoading) {
-      handleRedirectCallback();
-    }
-  }, [getAccessTokenSilently, isLoading]);
-  
+  const navigateTo = useNavigate();  
 
   // direct log in by posting data in mongodb
   function submitLogin(e) {
@@ -113,7 +81,7 @@ function Login() {
             <Link to="/auth/signup"><button className={`${lscss.sidebtn}`}>Not Registered yet ?</button></Link>
             </div>
             <div>
-              <button onClick={() => loginWithGoogle()} >Log In using google ?</button>;
+              <Gauth />
             </div>
         </form>
     </div>

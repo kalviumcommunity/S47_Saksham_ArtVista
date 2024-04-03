@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import lscss from './loginsignup.module.css'
 // import useNavigate from 'react-router-dom'
+import Gauth from './gauth'
 
 
 function LoginSignup() {
@@ -10,8 +11,6 @@ function LoginSignup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const navigateTo = useNavigate();
-  // const [copassword, setCoPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,11 +25,6 @@ function LoginSignup() {
       console.log(error);
     })
   }
-
-  // const handleCoPasswordChange = (e) => {
-  //   setCoPassword(e.target.value);
-  // }
-
 
   return (
     <>
@@ -74,19 +68,11 @@ function LoginSignup() {
               onChange={(e) => setPassword(e.target.value)}/>
             </div>
 
-            {/* <div className={`${lscss.formdiv}`}>
-              <label className={`${lscss.labeltxt}`} htmlFor="password">Confirm Password:</label>
-              <input
-              className={`${lscss.inputbox}`} 
-              type='text' 
-              placeholder='******' 
-              onChange={handleCoPasswordChange}/>
-            </div> */}
-
             <div>
             <button className={`${lscss.submitbtn}`} type='submit'>Sign up</button>
             <Link to="/auth/login"><button className={`${lscss.sidebtn}`}>Already a user ?</button></Link>
             </div>
+            <Gauth />
         </form>
     </div>
     </div>

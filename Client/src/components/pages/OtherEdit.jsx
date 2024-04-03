@@ -7,14 +7,7 @@ const OtherEdit = () => {
 
     const [posts, setPosts] = useState([]);
     const [userId, setUserId] = useState(localStorage.getItem('visit_user') || '');
-    console.log(userId)
-
-    // useEffect(()=>{
-    //     console.log(localStorage.getItem('visit_id'))
-    //     const j = localStorage.getItem('visit_id')
-    //     setUserId(j)
-    //     console.log(userId)
-    // },[])
+    // console.log(userId)
 
     useEffect(() => {
         const fetchData = async () => {
