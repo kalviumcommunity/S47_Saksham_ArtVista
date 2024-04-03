@@ -3,6 +3,9 @@ import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 
+// posts import
+import UserPosts from '../pages/UserPosts'
+
 
 function Editauth() {
 
@@ -18,7 +21,7 @@ function Editauth() {
   const handleLogout = () => {
     Axios.post(import.meta.env.VITE_USERLOGOUT, {
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       navigateTo('/auth/login');
       localStorage.removeItem('loggedInUser');
     }).catch((error) => {
@@ -75,6 +78,7 @@ function Editauth() {
             <button onClick={handleLogout}>Logout</button>
           </div>
       )}
+      <UserPosts />
     </>
   )
 }
