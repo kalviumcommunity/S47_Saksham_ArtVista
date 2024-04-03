@@ -9,6 +9,7 @@ import Search from './components/pages/Search'
 import Login from './components/Authentication/Login'
 import Signup from './components/Authentication/Signup'
 import Editauth from './components/Authentication/Editauth'
+import OtherEdit from './components/pages/OtherEdit'
 // import MyProfile from './components/pages/MyProfile'
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/search" element={<Search />} />
+          <Route path='/other/:id' element={<OtherEdit/>}></Route>
           {/* <Route path="/myprofile" element={<MyProfile />} /> */}
           
           <Route path='/auth/login' element={<Login />} />

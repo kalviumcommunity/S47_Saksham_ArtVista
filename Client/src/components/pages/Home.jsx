@@ -5,6 +5,8 @@ import Footer from '../common/Footer'
 import homedata from './sampleData/Home.json'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 function Home() {
 
@@ -14,11 +16,14 @@ function Home() {
   //   setPosts(homedata.posts);
   // }, []);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/posts/home');
+        const response = await axios.get(import.meta.env.VITE_HOMEAPI);
         setPosts(response.data);
+        // console.log(response)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -26,6 +31,13 @@ function Home() {
 
     fetchData();
   }, []);
+
+
+  const handleUserVisit = (username) => {
+     localStorage.setItem('visit_user',username)
+      navigate(`/other/${username}`)
+  }
+
 
   return (
     <>
@@ -48,7 +60,10 @@ function Home() {
             <div className={homecss.postdetails}>
               <h3>{post.title}</h3>
               <p>{post.description}</p>
-              <h4>by: {post.username}</h4>
+              <button onClick={()=>handleUserVisit(post.username)}>
+                <h4>by:{post.username}</h4>  
+              </button>
+              
             </div>
             
           </div>
