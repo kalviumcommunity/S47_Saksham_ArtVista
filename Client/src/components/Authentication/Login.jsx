@@ -4,15 +4,13 @@ import lscss from './loginsignup.module.css'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-// import Cookies from 'js-cookie';
 
 function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigateTo = useNavigate();
-  const { loginWithRedirect, user, isAuthenticated } = useAuth0();
-  // Cookie.set('userEmail', user.email)
+  const { loginWithRedirect, user, isAuthenticated, getAccessTokenSilently, isLoading  } = useAuth0();
 
   function loginWithGoogle() {
     loginWithRedirect({
@@ -22,10 +20,27 @@ function Login() {
   }
 
   useEffect(() => {
-    if (isAuthenticated && user) {
-      localStorage.setItem('loggedInUser', JSON.stringify({ username: user.email }));
+    if (isAuthenticated && isLoading) {
+      handleRedirectCallback();
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, isLoading, getAccessTokenSilently, navigateTo, user]);
+
+  useEffect(() => {
+    const handleRedirectCallback = async () => {
+      try {
+        await getAccessTokenSilently();
+        console.log("user logged in successfully !", user.email);
+        localStorage.setItem('loggedInUser', JSON.stringify({ username: user.email, token: getAccessTokenSilently() }));
+        navigateTo('/');
+      } catch (error) {
+        console.error('Error during redirect callback:', error.message);
+      }
+    };
+
+    if (!isLoading) {
+      handleRedirectCallback();
+    }
+  }, [getAccessTokenSilently, isLoading]);
   
   function submitLogin(e) {
     e.preventDefault();
@@ -37,7 +52,6 @@ function Login() {
       .then((response) => {
         console.log(response);
         console.log('Login success');
-        // localStorage.setItem('loggedInUser', JSON.stringify({ username }));
         const { token } = response.data; 
         localStorage.setItem('loggedInUser', JSON.stringify({ token, username }));
         navigateTo('/');
@@ -97,7 +111,7 @@ function Login() {
             <Link to="/auth/signup"><button className={`${lscss.sidebtn}`}>Not Registered yet ?</button></Link>
             </div>
             <div>
-              <button onClick={() => loginWithGoogle()}>Log In using google ?</button>;
+              <button onClick={() => loginWithGoogle()} >Log In using google ?</button>;
             </div>
         </form>
     </div>

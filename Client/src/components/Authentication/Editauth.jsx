@@ -27,6 +27,11 @@ function Editauth() {
       alert('Error while logout');
     })
   }
+
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  const userObject = loggedInUser ? JSON.parse(loggedInUser) : null;
+  const username = userObject ? userObject.username : 'Guest';
+
   return (
     // <>Hello User!
     // <div>
@@ -59,14 +64,16 @@ function Editauth() {
             <p>{user.email}</p>
           </div>
           <div>
-            <button onClick={handleLogout}>Logout</button>
             <button onClick={handleGGLogout}>
               Log Out Google
             </button>
           </div>
         </>
       ) : (
-        <p>Please log in to view this page.</p>
+          <div>
+            <p> hello ! {username} !</p>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
       )}
     </>
   )

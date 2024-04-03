@@ -80,3 +80,8 @@ h2 {
     word-wrap: break-word;
     overflow-y: auto;
 }
+
+.terms{
+    color: red;
+    text-emphasis: bold;
+}

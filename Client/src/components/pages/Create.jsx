@@ -3,34 +3,15 @@ import Navbar from '../common/Navbar';
 // import Footer from '../common/Footer';
 import Createcss from './css/Create.module.css';
 import Axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 function Create() {
   const [image, setImage] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
+  const [error, setError] = useState();
 
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-  // console.log(loggedInUser.username);
-
-  // useEffect(() => {
-  //   const formData = JSON.parse(sessionStorage.getItem('formData'));
-  //   if (formData) {
-  //     setImage(formData.image || '');
-  //     setTitle(formData.title || '');
-  //     setDescription(formData.description || '');
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const formData = { image, title, description };
-  //   sessionStorage.setItem('formData', JSON.stringify(formData));
-  // }, [image, title, description]);
-
-  // useEffect(() => {
-  //   return () => {
-  //     sessionStorage.removeItem('formData');
-  //   };
-  // }, []);
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,11 +23,12 @@ function Create() {
     }) .then((response) => {
       console.log(response);
       console.log('Post created successfully!');
-      alert('Post created successfully!');
+      navigate('/');
     }) .catch((error) => {
-      console.log(error);
+      console.log(error.response.data);
+      setError(error.response.data.message);
       console.log('Post creation failed!');
-      alert('Post creation failed!');
+      // alert('Post creation failed!');
     })
     // console.log(image, title, description);
   }
@@ -87,6 +69,7 @@ function Create() {
               />
             </div>
             <button type='submit'>Submit</button>
+            <p className={`${Createcss.terms}`}>{error || "By clicking on Submit, you agree to our terms and conditions" }</p>
           </form>
         </div>
 
