@@ -10,15 +10,29 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigateTo = useNavigate();  
+  const [errors, setErrors] = useState([]);
 
   // direct log in by posting data in mongodb
   function submitLogin(e) {
     e.preventDefault();
 
-    Axios.post(import.meta.env.VITE_USERLOGIN, {
-      username,
-      password,
-    })
+    if (username == '' || password == '') {
+      setErrors(['Username and password are required.'])
+      return;
+    } else if (!username) {
+      setErrors(['Username is required.'])
+      return;
+    } else if (!password) {
+      setErrors(['Password is required.'])
+      return;
+    } else if (password.length < 6) {
+      setErrors(['Password must be at least 6 characters.'])
+      return;
+    } else {
+      Axios.post(import.meta.env.VITE_USERLOGIN, {
+        username,
+        password
+      })
       .then((response) => {
         console.log(response);
         console.log('Login success');
@@ -31,6 +45,23 @@ function Login() {
         console.log('Login failed');
         alert('The username or password is incorrect');
       });
+    }
+    // Axios.post(import.meta.env.VITE_USERLOGIN, {
+    //   username,
+    //   password,
+    // })
+    //   .then((response) => {
+    //     console.log(response);
+    //     console.log('Login success');
+    //     const { token } = response.data; 
+    //     localStorage.setItem('loggedInUser', JSON.stringify({ token, username }));
+    //     navigateTo('/');
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     console.log('Login failed');
+    //     alert('The username or password is incorrect');
+    //   });
   }
   
 
@@ -74,6 +105,10 @@ function Login() {
               placeholder='******'
               onChange={handlePasswordChange}
               />
+            </div>
+
+            <div>
+              {errors || ''}
             </div>
 
             <div>

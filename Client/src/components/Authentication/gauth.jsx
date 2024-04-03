@@ -28,7 +28,7 @@ function gauth() {
         localStorage.setItem('loggedInUser', JSON.stringify({ username: user.email, token: getAccessTokenSilently() }));
         navigateTo('/');
       } catch (error) {
-        console.error('Error during redirect callback:', error.message);
+        // console.error('Error during redirect callback:', error.message);
       }
     };
 
