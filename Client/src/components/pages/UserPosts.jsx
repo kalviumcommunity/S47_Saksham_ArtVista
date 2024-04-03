@@ -62,9 +62,9 @@ const OtherEdit = () => {
                         <h3>{post.title}</h3>
                         <p>{post.description}</p>
                         <div>
-                            <button onClick={()=>handleUserVisit(post._id)}>
-                                <h4>by:{post.username}</h4>  
-                            </button>
+                            {/* <button onClick={()=>handleUserVisit(post._id)}> */}
+                                {/* <h4>by:{post.username}</h4>   */}
+                            {/* </button> */}
                             <div>
                             <button>Edit</button>
                             <button>Delete</button>
