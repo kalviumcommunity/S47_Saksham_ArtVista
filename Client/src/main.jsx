@@ -11,10 +11,10 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
 <Auth0Provider
-    domain="dev-7dq8bf7sdzcims4g.us.auth0.com"
-    clientId="UPLRMtzqXNBNv1cWT1FLVaFyvejteYvc"
+    domain={import.meta.env.VITE_AUTHO_DOMAIN}
+    clientId={import.meta.env.VITE_CLIENT_ID}
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: "http://localhost:5173/auth/login",
     }}
   >
     <App />

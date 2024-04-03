@@ -13,6 +13,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "auth0": "^4.3.1",
+    "auth0-lock": "^12.4.0",
     "axios": "^1.6.8",
     "babel": "^6.23.0",
     "dotenv": "^16.4.5",

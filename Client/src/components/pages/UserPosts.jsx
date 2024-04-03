@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '../common/Navbar'
 import axios from 'axios'
 import homecss from './css/Home.module.css'
 
@@ -15,21 +14,14 @@ const OtherEdit = () => {
         setUserId(userData.username);
         }
     }, []);
-    console.log(userId)
-
-    // useEffect(()=>{
-    //     console.log(localStorage.getItem('visit_id'))
-    //     const j = localStorage.getItem('visit_id')
-    //     setUserId(j)
-    //     console.log(userId)
-    // },[])
+    // console.log(userId)
 
     useEffect(() => {
         const fetchData = async () => {
           try {
             const response = await axios.get(import.meta.env.VITE_HOMEAPI);
             setPosts(response.data);
-            console.log(response)
+            // console.log(response)
           } catch (error) {
             console.error('Error fetching data:', error);
           }

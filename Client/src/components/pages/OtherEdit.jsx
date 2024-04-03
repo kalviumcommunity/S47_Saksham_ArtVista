@@ -21,7 +21,7 @@ const OtherEdit = () => {
           try {
             const response = await axios.get(import.meta.env.VITE_HOMEAPI);
             setPosts(response.data);
-            console.log(response)
+            // console.log(response)
           } catch (error) {
             console.error('Error fetching data:', error);
           }

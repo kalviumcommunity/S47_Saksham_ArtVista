@@ -11,7 +11,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigateTo = useNavigate();
   const { loginWithRedirect, user, isAuthenticated, getAccessTokenSilently, isLoading  } = useAuth0();
-
+// Auth0 authentication code
   function loginWithGoogle() {
     loginWithRedirect({
       screen_hint: 'login',
@@ -42,6 +42,8 @@ function Login() {
     }
   }, [getAccessTokenSilently, isLoading]);
   
+
+  // direct log in by posting data in mongodb
   function submitLogin(e) {
     e.preventDefault();
 
