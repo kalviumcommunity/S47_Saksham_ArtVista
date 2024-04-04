@@ -7,8 +7,16 @@ const OtherEdit = () => {
 
     const [posts, setPosts] = useState([]);
     const [userId, setUserId] = useState(localStorage.getItem('visit_user') || '');
-    // console.log(userId)
-
+    // const [userId, setUserId] = useState('');
+    // useEffect(() => {
+    //   const searchParams = new URLSearchParams(window.location.search);
+    //   const userIdFromUrl = searchParams.get('userId');
+    //   if (userIdFromUrl) {
+    //     setUserId(userIdFromUrl);
+    //   } else {
+    //     console.error('User ID not found in the URL.');
+    //   }
+    // }, [])
     useEffect(() => {
         const fetchData = async () => {
           try {

@@ -37,6 +37,9 @@ function Home() {
      localStorage.setItem('visit_user',username)
       navigate(`/other/${username}`)
   }
+  // const handleUserVisit = (username) => {
+  //   navigate(`/other?userId=${username}`);
+  // };
 
 
   return (

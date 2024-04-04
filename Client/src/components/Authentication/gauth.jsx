@@ -9,7 +9,6 @@ function gauth() {
   const navigateTo = useNavigate();
   function loginWithGoogle() {
     loginWithRedirect({
-      screen_hint: 'login',
       connection: 'google-oauth2',
     });
   }
@@ -23,9 +22,9 @@ function gauth() {
   useEffect(() => {
     const handleRedirectCallback = async () => {
       try {
-        await getAccessTokenSilently();
+        const accessToken = await getAccessTokenSilently();
         console.log("user logged in successfully !", user.email);
-        localStorage.setItem('loggedInUser', JSON.stringify({ username: user.email, token: getAccessTokenSilently() }));
+        localStorage.setItem('loggedInUser', JSON.stringify({ username: user.email, token: accessToken }));
         navigateTo('/');
       } catch (error) {
         // console.error('Error during redirect callback:', error.message);
