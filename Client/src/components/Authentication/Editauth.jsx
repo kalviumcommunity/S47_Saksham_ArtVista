@@ -2,9 +2,12 @@ import React from 'react'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
+import lcss from './css/EditAuth.module.css'
 
 // posts import
 import UserPosts from '../pages/UserPosts'
+// username manual set
+import SetUser from './components/SetUser'
 
 
 function Editauth() {
@@ -48,19 +51,17 @@ function Editauth() {
             <p>{user.email}</p>
           </div>
           <div>
-            <button onClick={handleGGLogout}>
-              Log Out Google
+            <button className={lcss.logout} onClick={handleGGLogout}>
+              Logout 
             </button>
             {/* Set Username functionality to be implemented*/}
-            <button>
-              SetUsername
-            </button>
+            <SetUser/>
           </div>
         </>
       ) : (
           <div>
             <p> hello ! {username} !</p>
-            <button onClick={handleLogout}>Logout</button>
+            <button className={lcss.logout} onClick={handleLogout}>Logout</button>
           </div>
       )}
       <UserPosts />

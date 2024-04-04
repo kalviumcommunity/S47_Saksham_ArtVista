@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../common/Navbar'
 import axios from 'axios'
 import homecss from './css/Home.module.css'
+import ProfileDisplay from '../common/ProfileDisplay'
 
 const OtherEdit = () => {
 
@@ -36,6 +37,7 @@ const OtherEdit = () => {
     <>
         <Navbar/>
         <br /><br /><br /><br /><br /><br />
+        <ProfileDisplay/>
         <div className={homecss.container}>
         <div className={homecss.postscont}>
         {
