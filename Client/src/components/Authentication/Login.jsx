@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import lscss from './loginsignup.module.css'
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Gauth from './gauth';
+import Gauth from './components/gauth';
 
 function Login() {
 
