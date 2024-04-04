@@ -37,7 +37,7 @@ function Login() {
         console.log(response);
         console.log('Login success');
         const { token } = response.data; 
-        localStorage.setItem('loggedInUser', JSON.stringify({ token, username }));
+        localStorage.setItem('loggedInUser', JSON.stringify({ token, username, }));
         navigateTo('/');
       })
       .catch((error) => {
@@ -46,22 +46,6 @@ function Login() {
         alert('The username or password is incorrect');
       });
     }
-    // Axios.post(import.meta.env.VITE_USERLOGIN, {
-    //   username,
-    //   password,
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //     console.log('Login success');
-    //     const { token } = response.data; 
-    //     localStorage.setItem('loggedInUser', JSON.stringify({ token, username }));
-    //     navigateTo('/');
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     console.log('Login failed');
-    //     alert('The username or password is incorrect');
-    //   });
   }
   
 

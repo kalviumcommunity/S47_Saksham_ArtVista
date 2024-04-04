@@ -36,25 +36,6 @@ function Editauth() {
   const username = userObject ? userObject.username : 'Guest';
 
   return (
-    // <>Hello User!
-    // <div>
-    // isAuthenticated && (
-    //   <div>
-    //     <img src={user.picture} alt={user.name} />
-    //     <h2>{user.name}</h2>
-    //     <p>{user.email}</p>
-    //   </div>
-    // )
-    // </div>
-    // <div>
-    //   <button onClick={handleLogout}>Logout</button>
-      
-    //   <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-    //   Log Out Google
-    //   </button>
-    
-    // </div>
-    // </>
     <>
       {isLoading ? (
         <p>Loading...</p>
