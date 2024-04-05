@@ -8,14 +8,7 @@ exports.createPost = async (req, res) => {
         const { error } = validatePost({username ,title, description, image,  });
         if (error) { 
           return res.status(400).json({ message: error.details[0].message });
-        }
-
-        // Check if post already exists
-        // const existingPost = await Post.findOne({ title, description, image });
-        // if (existingPost) {
-        //   return res.status(400).json({ message: 'This post already exists.' });
-        // }
-    
+        }    
         const newPost = await Post.create({ 
             title, 
             description, 

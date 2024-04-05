@@ -54,8 +54,6 @@ function Editauth() {
             <button className={lcss.logout} onClick={handleGGLogout}>
               Logout 
             </button>
-            {/* Set Username functionality to be implemented*/}
-            <SetUser/>
           </div>
         </>
       ) : (

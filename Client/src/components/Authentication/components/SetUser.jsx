@@ -1,13 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
+import Axios from 'axios'
 
 function SetUser() {
+
+  const [username, setUsername] = useState('');
+
+
+
   return (
     <>
     <div>
         setusername
     </div>
     <input type="text" name="" placeholder='myname123' />
-    <button>submit</button>
+    <button onClick={handlesubmit}>submit</button>
     </>
   )
 }
