@@ -123,14 +123,20 @@ exports.setNewUserName = async (req, res) => {
     try {
         const { username, email } = req.body;
         console.log(req.body);
-        const existinguser = await User.findOne({ username });
-        if (existinguser) {
-            return res.status(400).json({ message: 'User associated with this email already exists' });
-        }
         const existingmail = await User.findOne({ email });
         if (existingmail) {
-            const newUser = await User.findOneAndUpdate({ email }, { username });
-            res.status(203).json(newUser);
+            if (username == existingmail.username) {
+                res.status(400).json({message: 'This one is already your username'});
+            } else {
+                const existinguser = await User.findOne({ username });
+                if (existinguser) {
+                    return res.status(400).json({ message: 'User associated with this email already exists' });
+                }
+                else {
+                    const newUser = await User.findOneAndUpdate({ email }, { username });
+                    res.status(202).json(newUser);
+                }
+            }
         } else {
             const newUser = await User.create({
                 username: username,

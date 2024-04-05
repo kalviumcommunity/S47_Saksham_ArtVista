@@ -9,7 +9,7 @@ router.put('/update/:userId', userController.updateUserDetails);
 router.delete('/delete/:userId', userController.deleteUserDetails);
 
 // google setusername route
-router.post('/checkgoogleuser', userController.checkGoogleUser);
-router.post('./setuser', userController.setNewUserName);
+router.post('/checkuser', userController.checkGoogleUser);
+router.post('/setuser', userController.setNewUserName);
 
 module.exports = router;

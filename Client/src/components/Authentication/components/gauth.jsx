@@ -29,7 +29,7 @@ function gauth() {
         // navigateTo('/');
 
         try {
-          const response = await Axios.post(`${import.meta.env.VITE_BACKEND}/checkgoogleuser`, { email: user.email });
+          const response = await Axios.post(`${import.meta.env.VITE_BACKEND}/checkuser`, { email: user.email });
           console.log(response);
           if (response.status === 200) {
             console.log('details matched');
