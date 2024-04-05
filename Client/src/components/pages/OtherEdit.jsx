@@ -2,13 +2,22 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../common/Navbar'
 import axios from 'axios'
 import homecss from './css/Home.module.css'
+import ProfileDisplay from '../common/ProfileDisplay'
 
 const OtherEdit = () => {
 
     const [posts, setPosts] = useState([]);
     const [userId, setUserId] = useState(localStorage.getItem('visit_user') || '');
-    // console.log(userId)
-
+    // const [userId, setUserId] = useState('');
+    // useEffect(() => {
+    //   const searchParams = new URLSearchParams(window.location.search);
+    //   const userIdFromUrl = searchParams.get('userId');
+    //   if (userIdFromUrl) {
+    //     setUserId(userIdFromUrl);
+    //   } else {
+    //     console.error('User ID not found in the URL.');
+    //   }
+    // }, [])
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -28,6 +37,7 @@ const OtherEdit = () => {
     <>
         <Navbar/>
         <br /><br /><br /><br /><br /><br />
+        <ProfileDisplay/>
         <div className={homecss.container}>
         <div className={homecss.postscont}>
         {
