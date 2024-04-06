@@ -38,7 +38,7 @@ const OtherEdit = () => {
         <div className={homecss.postscont}>
         {
             posts
-                .filter((post) => post.username == userId)
+                .filter((post) => post.email == userId)
                 .map((post,index)=>{
                     return(
                         <div className={homecss.postinv} key={post.id}>

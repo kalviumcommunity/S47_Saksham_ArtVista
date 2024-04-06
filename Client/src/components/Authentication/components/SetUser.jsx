@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import scss from './SetUser.module.css';
 
 function SetUser() {
   const [username, setUsername] = useState('');
@@ -55,7 +56,7 @@ function SetUser() {
 
   return (
     <>
-      <form>
+      <form className={scss.form}>
         <div>Set Username</div>
         <div>You have logged in as {email}</div>
         <input

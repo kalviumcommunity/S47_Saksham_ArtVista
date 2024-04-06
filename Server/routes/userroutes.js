@@ -12,6 +12,9 @@ router.post('/checkuser', userController.checkGoogleUser);
 router.post('/setuser', userController.setNewUserName);
 router.get('/useravail', userController.availableUsernames);
 
+// getting username by email for home feed
+router.post('/getpostuser', userController.getPostUser);
+
 // To work on..
 router.put('/update/:userId', userController.updateUserDetails);
 router.delete('/delete/:userId', userController.deleteUserDetails);
