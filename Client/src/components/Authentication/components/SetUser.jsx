@@ -41,11 +41,11 @@ function SetUser() {
 
   const handleSubmit = async () => {
     try {
-      const response = await Axios.post(`${import.meta.env.VITE_BACKEND}/setuser`, { username, email: email });
       localStorage.setItem('Username', username);
-      // setMessage(response.data.message);
-      // setError('');
       navigateTo('/');
+      const response = await Axios.post(`${import.meta.env.VITE_BACKEND}/setuser`, { username, email: email });
+      setMessage(response.data.message);
+      setError('');
     } catch (error) {
       console.error('Error setting username:', error);
       setMessage('');
