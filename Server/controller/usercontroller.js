@@ -148,3 +148,13 @@ exports.setNewUserName = async (req, res) => {
 
     }
 }
+
+exports.availableUsernames = async (req, res) => {
+    try {
+        const usernames = await User.distinct('username');
+        res.status(200).json(usernames);
+      } catch (error) {
+        console.error('Error fetching usernames:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+}

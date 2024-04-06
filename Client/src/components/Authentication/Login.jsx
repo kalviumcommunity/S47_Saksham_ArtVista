@@ -42,6 +42,9 @@ function Login() {
         const decodedToken = jwtDecode(token);
         const email = decodedToken.email;
         localStorage.setItem('loggedInUser', JSON.stringify({ token, username, email}));
+        localStorage.setItem('UserToken', token);
+        localStorage.setItem('UserEmail', email);
+        localStorage.setItem('Username', username);
         navigateTo('/');
       })
       .catch((error) => {

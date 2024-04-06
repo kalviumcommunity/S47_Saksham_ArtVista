@@ -17,6 +17,7 @@ function Editauth() {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   function handleGGLogout() {
+    localStorage.removeItem('Username');
     localStorage.removeItem('loggedInUser'); 
     logout({ returnTo: window.location.origin });
   }
@@ -27,6 +28,9 @@ function Editauth() {
       console.log(response);
       navigateTo('/auth/login');
       localStorage.removeItem('loggedInUser');
+      localStorage.removeItem('Username');
+      localStorage.removeItem('UserToken');
+      localStorage.removeItem('UserEmail');
     }).catch((error) => {
       console.log(error);
       console.log('Logout failed');

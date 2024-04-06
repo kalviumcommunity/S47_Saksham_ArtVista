@@ -10,6 +10,7 @@ router.post('/logout', userController.logout);
 // google setusername route
 router.post('/checkuser', userController.checkGoogleUser);
 router.post('/setuser', userController.setNewUserName);
+router.get('/useravail', userController.availableUsernames);
 
 // To work on..
 router.put('/update/:userId', userController.updateUserDetails);
