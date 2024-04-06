@@ -19,18 +19,20 @@ function Editauth() {
   function handleGGLogout() {
     localStorage.removeItem('Username');
     localStorage.removeItem('loggedInUser'); 
+    localStorage.removeItem('UserToken');
+    localStorage.removeItem('UserEmail');
     logout({ returnTo: window.location.origin });
   }
 
   const handleLogout = () => {
     Axios.post(import.meta.env.VITE_USERLOGOUT, {
     }).then((response) => {
-      console.log(response);
-      navigateTo('/auth/login');
-      localStorage.removeItem('loggedInUser');
-      localStorage.removeItem('Username');
       localStorage.removeItem('UserToken');
       localStorage.removeItem('UserEmail');
+      localStorage.removeItem('loggedInUser');
+      localStorage.removeItem('Username');
+      console.log(response);
+      navigateTo('/auth/login');
     }).catch((error) => {
       console.log(error);
       console.log('Logout failed');
