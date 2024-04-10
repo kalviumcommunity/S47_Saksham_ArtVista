@@ -33,9 +33,9 @@ function Home() {
   }, []);
 
 
-  const handleUserVisit = (username) => {
-     localStorage.setItem('visit_user',username)
-      navigate(`/other/${username}`)
+  const handleUserVisit = (email) => {
+     localStorage.setItem('visit_user',email)
+      navigate(`/other/${email}`)
   }
   // const handleUserVisit = (username) => {
   //   navigate(`/other?userId=${username}`);
@@ -63,8 +63,8 @@ function Home() {
             <div className={homecss.postdetails}>
               <h3>{post.title}</h3>
               <p>{post.description}</p>
-              <button onClick={()=>handleUserVisit(post.username)}>
-                <h4>by:{post.username}</h4>  
+              <button onClick={()=>handleUserVisit(post.email)}>
+                <h4>by:{post.email}</h4>  
               </button>
               
             </div>

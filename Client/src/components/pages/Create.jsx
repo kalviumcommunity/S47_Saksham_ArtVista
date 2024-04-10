@@ -4,13 +4,32 @@ import Navbar from '../common/Navbar';
 import Createcss from './css/Create.module.css';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 function Create() {
   const [image, setImage] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [error, setError] = useState();
 
-  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const UserToken = localStorage.getItem('UserToken');
+  if (!UserToken) {
+    window.location.href = '/auth/login';
+  } else {
+    Axios.post(`${import.meta.env.VITE_BACKEND}/`, {
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${UserToken}` 
+      }
+    })
+    .then(response => {
+      console.log('Success:', response.data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
   const navigate = useNavigate();
 
   function handleSubmit(e) {
