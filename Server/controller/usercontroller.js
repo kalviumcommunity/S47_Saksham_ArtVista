@@ -109,7 +109,9 @@ exports.checkGoogleUser = async (req, res) => {
         }
 
         if (user.username) {
-            res.status(200).json({message: user.username})
+            const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, secretKey, { expiresIn: '1h' });
+            res.status(200).json({message: user.username, token: token});
+
         } else {
             res.status(215).json({message: 'Username in missing for this email'})
         }
@@ -134,7 +136,8 @@ exports.setNewUserName = async (req, res) => {
                 }
                 else {
                     const newUser = await User.findOneAndUpdate({ email }, { username });
-                    res.status(202).json(newUser);
+                    const token = jwt.sign({ id: newUser._id, email: newUser.email, username: newUser.username }, secretKey, { expiresIn: '1h' });
+                    res.status(202).json({user: newUser, token: token});
                 }
             }
         } else {
@@ -142,7 +145,7 @@ exports.setNewUserName = async (req, res) => {
                 username: username,
                 email: email
             })
-            res.status(201).json(newUser);
+            res.status(201).json({user: newUser});
         }
     } catch {
 
@@ -193,6 +196,8 @@ exports.verifyUser = async (req, res) => {
         const user = await User.findById(id);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
+        } else if (user) {
+            return res.status(200).json({ message: 'User verified successfully', user });
         }
         
         res.status(200).json({ message: 'User verified successfully', user });

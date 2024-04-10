@@ -26,7 +26,7 @@ function gauth() {
         const accessToken = await getAccessTokenSilently();
         console.log("user logged in successfully !", user.email);
         localStorage.setItem('loggedInUser', JSON.stringify({ email: user.email, token: accessToken }));
-        localStorage.setItem('UserToken', accessToken);
+        localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('UserEmail', user.email);
         // navigateTo('/');
 
@@ -36,6 +36,7 @@ function gauth() {
           if (response.status === 200) {
             console.log('details matched');
             localStorage.setItem('Username', response.data.message);
+            localStorage.setItem('UserToken', response.data.token);
             navigateTo('/');
           } else if(response.status === 214 || response.status === 215) {
             navigateTo('/auth/config/setuser');

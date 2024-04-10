@@ -23,6 +23,7 @@ function Editauth() {
     localStorage.removeItem('loggedInUser'); 
     localStorage.removeItem('UserToken');
     localStorage.removeItem('UserEmail');
+    localStorage.removeItem('accessToken');
     logout({ returnTo: window.location.origin });
   }
 

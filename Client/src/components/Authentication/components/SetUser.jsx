@@ -46,6 +46,8 @@ function SetUser() {
       navigateTo('/');
       const response = await Axios.post(`${import.meta.env.VITE_BACKEND}/setuser`, { username, email: email });
       setMessage(response.data.message);
+      const token = response.data.token;
+      localStorage.setItem('UserToken', token);
       setError('');
     } catch (error) {
       console.error('Error setting username:', error);

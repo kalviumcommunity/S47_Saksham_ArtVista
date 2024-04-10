@@ -15,7 +15,7 @@ function Create() {
   if (!UserToken) {
     window.location.href = '/auth/login';
   } else {
-    Axios.post(`${import.meta.env.VITE_BACKEND}/`, {
+    Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
     }, {
       headers: {
         'Content-Type': 'application/json',
