@@ -10,32 +10,35 @@ function Create() {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [error, setError] = useState();
-
-  const UserToken = localStorage.getItem('UserToken');
-  if (!UserToken) {
-    window.location.href = '/auth/login';
-  } else {
-    Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${UserToken}` 
-      }
-    })
-    .then(response => {
-      console.log('Success:', response.data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }
+  const [validatedmail, setValidatedmail] = useState({});
+  useEffect(() => {
+    const UserToken = localStorage.getItem('UserToken');
+    if (!UserToken) {
+      window.location.href = '/auth/login';
+    } else {
+      Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${UserToken}` 
+        }
+      })
+      .then(response => {
+        console.log('Success:', response.data.user);
+        setValidatedmail(response.data.user);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  },[]);
 
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
     Axios.post(import.meta.env.VITE_CREATEAPI, {
-      username: loggedInUser.username,
+      email: validatedmail.email,
       image, 
       title, 
       description
@@ -47,9 +50,7 @@ function Create() {
       console.log(error.response.data);
       setError(error.response.data.message);
       console.log('Post creation failed!');
-      // alert('Post creation failed!');
-    })
-    // console.log(image, title, description);
+    });
   }
 
   return (

@@ -1,3 +1,4 @@
+const { required } = require('joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -12,9 +13,9 @@ const postSchema = new Schema({
     image: {
         type: String
     },
-    username: {
+    email: {
         type: String,
-        ref: 'User' 
+        required: true 
     }
 });
 
