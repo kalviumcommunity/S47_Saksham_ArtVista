@@ -11,7 +11,7 @@ const OtherEdit = () => {
         const loggedInUser = localStorage.getItem('loggedInUser');
         if (loggedInUser) {
         const userData = JSON.parse(loggedInUser);
-        setUserId(userData.username);
+        setUserId(userData.email);
         }
     }, []);
     // console.log(userId)
