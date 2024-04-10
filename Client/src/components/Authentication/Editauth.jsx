@@ -6,6 +6,8 @@ import lcss from './css/EditAuth.module.css'
 
 // posts import
 import UserPosts from '../pages/UserPosts'
+// profile pic import
+import ImageUpload from './components/ImageUpload'
 // username manual set
 import SetUser from './components/SetUser'
 
@@ -66,6 +68,7 @@ function Editauth() {
           <div>
             <p> hello ! {username} !</p>
             <button className={lcss.logout} onClick={handleLogout}>Logout</button>
+            <ImageUpload/>
           </div>
       )}
       <UserPosts />

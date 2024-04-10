@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controller/usercontroller');
+const profileimgcontroller = require('../controller/profileimgcontroller');
 
 // local setup routes
 router.post('/signup', userController.signUp);
@@ -17,6 +18,9 @@ router.post('/getpostuser', userController.getPostUser);
 
 // verificaion api
 router.post('/verifyuser', userController.verifyUser);
+
+//profile pic upload
+router.post('/imgupload', profileimgcontroller.uploadProfileImage);
 
 // To work on..
 router.put('/update/:userId', userController.updateUserDetails);
