@@ -1,21 +1,13 @@
-import React from 'react'
-import homecss from './css/Home.module.css'
-import Navbar from '../common/Navbar'
-import Footer from '../common/Footer'
-import homedata from './sampleData/Home.json'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-import {useNavigate} from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../common/Navbar';
+import Footer from '../common/Footer';
+import homecss from './css/Home.module.css';
 
 function Home() {
-
   const [posts, setPosts] = useState([]);
-
-  // useEffect(() => {
-  //   setPosts(homedata.posts);
-  // }, []);
-
+  const [existingUsernames, setExistingUsernames] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +15,6 @@ function Home() {
       try {
         const response = await axios.get(import.meta.env.VITE_HOMEAPI);
         setPosts(response.data);
-        // console.log(response)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -31,52 +22,46 @@ function Home() {
 
     fetchData();
   }, []);
+  const fetchUsernames = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/getpostuser`);
+      setExistingUsernames(response.data.users); 
+    } catch (error) {
+      console.error('Error fetching usernames:', error);
+    }
+  };
+  fetchUsernames();
 
-
-  const handleUserVisit = (username) => {
-     localStorage.setItem('visit_user',username)
-      navigate(`/other/${username}`)
-  }
-  // const handleUserVisit = (username) => {
-  //   navigate(`/other?userId=${username}`);
-  // };
-
+  const handleUserVisit = (email) => {
+    localStorage.setItem('visit_user', email);
+    navigate(`/other/${email}`);
+  };
 
   return (
     <>
-    <Navbar />
-    <br /><br /><br /><br /><br />  
-    <div className={homecss.container}>
-    <div className={homecss.postscont}>
-
-        {posts.map(post => (
-          <div className={homecss.postinv} key={post.id}>
-
-            <div className={homecss.postimagecont}>
-              <img 
-              src={post.image} 
-              alt="post" 
-              className={homecss.postimage}
-              />
+      <Navbar />
+      <br /><br /><br /><br /><br />
+      <div className={homecss.container}>
+        <div className={homecss.postscont}>
+          {posts.map(post => (
+            <div className={homecss.postinv} key={post.id}>
+              <div className={homecss.postimagecont}>
+                <img src={post.image} alt="post" className={homecss.postimage} />
+              </div>
+              <div className={homecss.postdetails}>
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+                <button onClick={() => handleUserVisit(post.email)}>
+                  <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
+                </button>
+              </div>
             </div>
-
-            <div className={homecss.postdetails}>
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <button onClick={()=>handleUserVisit(post.username)}>
-                <h4>by:{post.username}</h4>  
-              </button>
-              
-            </div>
-            
-          </div>
-        ))}
-
+          ))}
+        </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
-  )
+  );
 }
 
 export default Home;

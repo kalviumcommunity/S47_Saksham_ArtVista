@@ -65,6 +65,7 @@ function LoginSignup() {
               className={`${lscss.inputbox}`} 
               type='text' 
               placeholder='******' 
+              required
               onChange={(e) => setPassword(e.target.value)}/>
             </div>
 

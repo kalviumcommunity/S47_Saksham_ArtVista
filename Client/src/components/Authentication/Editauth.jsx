@@ -6,6 +6,8 @@ import lcss from './css/EditAuth.module.css'
 
 // posts import
 import UserPosts from '../pages/UserPosts'
+// profile pic import
+import ImageUpload from './components/ImageUpload'
 // username manual set
 import SetUser from './components/SetUser'
 
@@ -17,16 +19,23 @@ function Editauth() {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   function handleGGLogout() {
+    localStorage.removeItem('Username');
     localStorage.removeItem('loggedInUser'); 
+    localStorage.removeItem('UserToken');
+    localStorage.removeItem('UserEmail');
+    localStorage.removeItem('accessToken');
     logout({ returnTo: window.location.origin });
   }
 
   const handleLogout = () => {
     Axios.post(import.meta.env.VITE_USERLOGOUT, {
     }).then((response) => {
+      localStorage.removeItem('UserToken');
+      localStorage.removeItem('UserEmail');
+      localStorage.removeItem('loggedInUser');
+      localStorage.removeItem('Username');
       console.log(response);
       navigateTo('/auth/login');
-      localStorage.removeItem('loggedInUser');
     }).catch((error) => {
       console.log(error);
       console.log('Logout failed');
@@ -54,14 +63,13 @@ function Editauth() {
             <button className={lcss.logout} onClick={handleGGLogout}>
               Logout 
             </button>
-            {/* Set Username functionality to be implemented*/}
-            <SetUser/>
           </div>
         </>
       ) : (
           <div>
             <p> hello ! {username} !</p>
             <button className={lcss.logout} onClick={handleLogout}>Logout</button>
+            <ImageUpload/>
           </div>
       )}
       <UserPosts />

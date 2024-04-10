@@ -3,24 +3,17 @@ const { validatePost } = require('../validators/postValidator');
 
 exports.createPost = async (req, res) => {
     try {
-        const { username , title, description, image } = req.body;
+        const { email , title, description, image } = req.body;
         console.log(req.body)
-        const { error } = validatePost({username ,title, description, image,  });
+        const { error } = validatePost({email ,title, description, image });
         if (error) { 
           return res.status(400).json({ message: error.details[0].message });
-        }
-
-        // Check if post already exists
-        // const existingPost = await Post.findOne({ title, description, image });
-        // if (existingPost) {
-        //   return res.status(400).json({ message: 'This post already exists.' });
-        // }
-    
+        }    
         const newPost = await Post.create({ 
             title, 
             description, 
             image,
-            username
+            email
         }); 
         res.status(201).json(newPost);
       } catch (error) {

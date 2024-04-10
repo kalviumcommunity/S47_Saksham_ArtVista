@@ -14,7 +14,12 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+    },
+    profileImage: {
+        originalName: String,
+        mimeType: String,
+        filename: String,
+        size: Number
     }
 });
 

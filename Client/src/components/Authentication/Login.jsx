@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
-import lscss from './loginsignup.module.css'
+import { useNavigate, Link } from 'react-router-dom';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+
+//files import
+import lscss from './loginsignup.module.css'
 import Gauth from './components/gauth';
 
 function Login() {
@@ -37,7 +39,12 @@ function Login() {
         console.log(response);
         console.log('Login success');
         const { token } = response.data; 
-        localStorage.setItem('loggedInUser', JSON.stringify({ token, username, }));
+        const decodedToken = jwtDecode(token);
+        const email = decodedToken.email;
+        localStorage.setItem('loggedInUser', JSON.stringify({ token, username, email}));
+        localStorage.setItem('UserToken', token);
+        localStorage.setItem('UserEmail', email);
+        localStorage.setItem('Username', username);
         navigateTo('/');
       })
       .catch((error) => {

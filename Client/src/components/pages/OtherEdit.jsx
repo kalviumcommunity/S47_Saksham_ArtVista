@@ -8,16 +8,6 @@ const OtherEdit = () => {
 
     const [posts, setPosts] = useState([]);
     const [userId, setUserId] = useState(localStorage.getItem('visit_user') || '');
-    // const [userId, setUserId] = useState('');
-    // useEffect(() => {
-    //   const searchParams = new URLSearchParams(window.location.search);
-    //   const userIdFromUrl = searchParams.get('userId');
-    //   if (userIdFromUrl) {
-    //     setUserId(userIdFromUrl);
-    //   } else {
-    //     console.error('User ID not found in the URL.');
-    //   }
-    // }, [])
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -42,7 +32,7 @@ const OtherEdit = () => {
         <div className={homecss.postscont}>
         {
             posts
-                .filter((post) => post.username == userId)
+                .filter((post) => post.email == userId)
                 .map((post,index)=>{
                     return(
                         <div className={homecss.postinv} key={post.id}>
@@ -58,7 +48,7 @@ const OtherEdit = () => {
                         <h3>{post.title}</h3>
                         <p>{post.description}</p>
                         <button onClick={()=>handleUserVisit(post._id)}>
-                            <h4>by:{post.username}</h4>  
+                            <h4>by:{post.email}</h4>  
                         </button>
                         </div>
                     </div>

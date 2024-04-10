@@ -11,7 +11,7 @@ const OtherEdit = () => {
         const loggedInUser = localStorage.getItem('loggedInUser');
         if (loggedInUser) {
         const userData = JSON.parse(loggedInUser);
-        setUserId(userData.username);
+        setUserId(userData.email);
         }
     }, []);
     // console.log(userId)
@@ -21,7 +21,7 @@ const OtherEdit = () => {
           try {
             const response = await axios.get(import.meta.env.VITE_HOMEAPI);
             setPosts(response.data);
-            // console.log(response)
+            // console.log(response.data)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -38,7 +38,7 @@ const OtherEdit = () => {
         <div className={homecss.postscont}>
         {
             posts
-                .filter((post) => post.username == userId)
+                .filter((post) => post.email == userId)
                 .map((post,index)=>{
                     return(
                         <div className={homecss.postinv} key={post.id}>
@@ -54,9 +54,6 @@ const OtherEdit = () => {
                         <h3>{post.title}</h3>
                         <p>{post.description}</p>
                         <div>
-                            {/* <button onClick={()=>handleUserVisit(post._id)}> */}
-                                {/* <h4>by:{post.username}</h4>   */}
-                            {/* </button> */}
                             <div>
                             <button>Edit</button>
                             <button>Delete</button>
