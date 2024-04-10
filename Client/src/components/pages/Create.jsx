@@ -24,14 +24,14 @@ function Create() {
         }
       })
       .then(response => {
-        console.log('Success:', response.data.user);
+        // console.log('Success:', response.data.user);
         setValidatedmail(response.data.user);
       })
       .catch(error => {
         console.error('Error:', error);
       });
     }
-  },[]);
+  });
 
   const navigate = useNavigate();
 

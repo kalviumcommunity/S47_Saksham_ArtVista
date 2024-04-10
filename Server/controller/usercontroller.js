@@ -162,25 +162,43 @@ exports.availableUsernames = async (req, res) => {
       }
 }
 
+// exports.getPostUser = async (req, res) => {
+//     try {
+//       const { email } = req.body;
+//       const givenmail = await User.findOne({ email });
+//       if (givenmail) {
+//         const usernames = givenmail.username
+//         if (usernames) {
+//           res.status(200).json({message: usernames});
+//         } else {
+//           res.status(204).json({ message: 'Please set a username first' });
+//         }
+//       } else if (!givenmail) {
+//         res.status(204).json({ message: 'Please set a username first' });
+//       }
+//     } catch (error) {
+//       console.error('Error processing request:', error);
+//       return res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+
 exports.getPostUser = async (req, res) => {
     try {
-      const { email } = req.body;
-      const givenmail = await User.findOne({ email });
-      if (givenmail) {
-        const usernames = givenmail.username
-        if (usernames) {
-          res.status(200).json({message: usernames});
-        } else {
-          res.status(204).json({ message: 'Please set a username first' });
-        }
-      } else if (!givenmail) {
-        res.status(204).json({ message: 'Please set a username first' });
+      const users = await User.find({}, 'email username');
+      if (users.length > 0) {
+        const userList = users.map(user => ({
+          email: user.email,
+          username: user.username || 'No username set'
+        }));
+        res.status(200).json({ users: userList });
+      } else {
+        res.status(204).json({ message: 'No users found' });
       }
     } catch (error) {
       console.error('Error processing request:', error);
       return res.status(500).json({ message: 'Internal server error' });
     }
-};
+  };  
 
 exports.verifyUser = async (req, res) => {
     try {

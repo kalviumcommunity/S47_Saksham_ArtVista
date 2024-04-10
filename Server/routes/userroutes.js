@@ -14,15 +14,16 @@ router.post('/setuser', userController.setNewUserName);
 router.get('/useravail', userController.availableUsernames);
 
 // getting username by email for home feed
-router.post('/getpostuser', userController.getPostUser);
+router.get('/getpostuser', userController.getPostUser);
 
 // verificaion api
 router.post('/verifyuser', userController.verifyUser);
 
+// // // // To work on..  // // // // 
+
 //profile pic upload
 router.post('/imgupload', profileimgcontroller.uploadProfileImage);
 
-// To work on..
 router.put('/update/:userId', userController.updateUserDetails);
 router.delete('/delete/:userId', userController.deleteUserDetails);
 
