@@ -3,11 +3,16 @@ import Createcss from './css/Create.module.css'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+// import loader
+import Loader from '../common/components/loader';
+
 function Modify() {
   const [image, setImage] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [post, setPost] = useState();
+  const [loading, setLoading] = useState(true);
+
   const { postId } = useParams();
 
   useEffect(() => {
@@ -23,18 +28,24 @@ function Modify() {
         setDescription(response.data.description || '');
         setTitle(response.data.title || '');
         setImage(response.data.image || '');
+        setLoading(false);
       } catch (error) {
         setError('Error fetching post details');
+        setLoading(false);
       }
     };
     fetchPostDetails();
   }, [postId])
 
-  
+
 
   return (
     <>
     <button onClick={() => window.history.back()}>{"back <"}</button>
+    {
+      loading ? (
+        <Loader/>
+      ) : (
     <div className={`${Createcss.container}`}>
         <div className={`${Createcss.formconts}`}>
           {/* <form onSubmit={handleSubmit}> */}
@@ -84,6 +95,8 @@ function Modify() {
           </div>
         </div>
       </div>
+      )
+    }
     </>
   )
 }
