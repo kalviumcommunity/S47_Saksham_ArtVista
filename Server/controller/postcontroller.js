@@ -74,10 +74,9 @@ exports.updatePostDetails = async (req, res) => {
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }
-
     // Extract token from Authorization header
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = authHeader && authHeader.split(' ')[1]; 
     if (!token) {
       return res.status(401).json({ message: 'Missing token' });
     }

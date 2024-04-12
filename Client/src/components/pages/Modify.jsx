@@ -38,7 +38,35 @@ function Modify() {
     fetchPostDetails();
   }, [postId])
 
-
+  const handleSubmit = async (e) => {
+    const cooemail = localStorage.getItem('UserEmail');
+    e.preventDefault();
+    try {
+      const UserToken = localStorage.getItem('UserToken');
+      if (!UserToken) {
+        console.error('Token not found');
+        return;
+      }
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND}/modify/${postId}`,
+        {
+          email: cooemail,
+          title,
+          description,
+          image,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${UserToken}`,
+          },
+        }
+      );
+      console.log('Post updated successfully');
+    } catch (error) {
+      console.error('Error updating post:', error);
+    }
+  };
 
   return (
     <>
@@ -49,7 +77,7 @@ function Modify() {
       ) : (
     <div className={`${Createcss.container}`}>
         <div className={`${Createcss.formconts}`}>
-          {/* <form onSubmit={handleSubmit}> */}
+          <form onSubmit={handleSubmit}>
             <div className={`${Createcss.textareatitle}`}>
               <p htmlFor="title">Title: </p>
               <input
@@ -80,8 +108,8 @@ function Modify() {
               />
             </div>
             <button type='submit'>Submit</button>
-            {/* <p className={`${Createcss.terms}`}>{error || "By clicking on Submit, you agree to our terms and conditions" }</p> */}
-          {/* </form> */}
+            <p className={`${Createcss.terms}`}>{"By clicking on Submit, you agree to our terms and conditions" }</p>
+          </form>
         </div>
 
         <div className={`${Createcss.imgdispdiv}`}>
