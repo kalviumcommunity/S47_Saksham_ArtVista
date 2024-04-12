@@ -5,9 +5,13 @@ import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
 import homecss from './css/Home.module.css';
 
+//loader import
+import Loader from '../common/components/loader';
+
 function Home() {
   const [posts, setPosts] = useState([]);
   const [existingUsernames, setExistingUsernames] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,8 +19,10 @@ function Home() {
       try {
         const response = await axios.get(import.meta.env.VITE_HOMEAPI);
         setPosts(response.data);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setIsLoading(false);
       }
     };
 
@@ -41,24 +47,28 @@ function Home() {
     <>
       <Navbar />
       <br /><br /><br /><br /><br />
-      <div className={homecss.container}>
-        <div className={homecss.postscont}>
-          {posts.map(post => (
-            <div className={homecss.postinv} key={post._id}>
-              <div className={homecss.postimagecont}>
-                <img src={post.image} alt="post" className={homecss.postimage} />
+      {isLoading ? (
+        <Loader /> 
+      ) : (
+        <div className={homecss.container}>
+          <div className={homecss.postscont}>
+            {posts.map(post => (
+              <div className={homecss.postinv} key={post._id}>
+                <div className={homecss.postimagecont}>
+                  <img src={post.image} alt="post" className={homecss.postimage} />
+                </div>
+                <div className={homecss.postdetails}>
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p>
+                  <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || post.email)}>
+                    <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
+                  </button>
+                </div>
               </div>
-              <div className={homecss.postdetails}>
-                <h3>{post.title}</h3>
-                <p>{post.description}</p>
-                <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || post.email)}>
-                  <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <Footer />
     </>
   );

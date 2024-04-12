@@ -5,12 +5,16 @@ import axios from 'axios'
 import homecss from './css/Home.module.css'
 import ProfileDisplay from '../common/ProfileDisplay'
 
+//loader import 
+import Loader from '../common/components/loader'
+
 const OtherEdit = () => {
 
     const [posts, setPosts] = useState([]);
     const { username } = useParams();
     const [existingUsernames, setExistingUsernames] = useState([]);
     const [userEmail, setUserEmail] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     // fetching all usernames from backend
     useEffect(() => {
@@ -43,8 +47,10 @@ const OtherEdit = () => {
           try {
             const response = await axios.get(import.meta.env.VITE_HOMEAPI);
             setPosts(response.data);
+            setIsLoading(false);
           } catch (error) {
             console.error('Error fetching data:', error);
+            setIsLoading(false);
           }
         };
     
@@ -56,36 +62,42 @@ const OtherEdit = () => {
     <>
         <Navbar/>
         <br /><br /><br /><br /><br /><br />
-        <ProfileDisplay/>
-        <div className={homecss.container}>
-        <div className={homecss.postscont}>
         {
-            posts
-                .filter((post) => post.email == userEmail)
-                .map((post,index)=>{
-                    return(
-                        <div className={homecss.postinv} key={post._id}>
-                        <div className={homecss.postimagecont}>
-                        <img 
-                        src={post.image} 
-                        alt="post" 
-                        className={homecss.postimage}
-                        />
+          isLoading ? (
+            <Loader />
+          ) : (
+            <div className={homecss.container}>
+            <ProfileDisplay/>
+            <div className={homecss.postscont}>
+            {
+                posts
+                    .filter((post) => post.email == userEmail)
+                    .map((post,index)=>{
+                        return(
+                            <div className={homecss.postinv} key={post._id}>
+                            <div className={homecss.postimagecont}>
+                            <img 
+                            src={post.image} 
+                            alt="post" 
+                            className={homecss.postimage}
+                            />
+                            </div>
+    
+                            <div className={homecss.postdetails}>
+                            <h3>{post.title}</h3>
+                            <p>{post.description}</p>
+                            <button>
+                                <h4>by:{username}</h4>  
+                            </button>
+                            </div>
                         </div>
-
-                        <div className={homecss.postdetails}>
-                        <h3>{post.title}</h3>
-                        <p>{post.description}</p>
-                        <button>
-                            <h4>by:{username}</h4>  
-                        </button>
-                        </div>
-                    </div>
-                    )
-                })
+                        )
+                    })
+            }
+            </div>
+            </div>
+          )
         }
-        </div>
-        </div>
     </>
   )
 }
