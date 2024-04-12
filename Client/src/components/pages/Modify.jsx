@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Createcss from './css/Create.module.css'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // import loader
 import Loader from '../common/components/loader';
@@ -15,6 +16,7 @@ function Modify() {
   const [validatedmail, setValidatedmail] = useState({});
 
   const { postId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPostDetails = async () => {
@@ -29,6 +31,7 @@ function Modify() {
         setDescription(response.data.description || '');
         setTitle(response.data.title || '');
         setImage(response.data.image || '');
+        setValidatedmail(response.data.email);
         setLoading(false);
       } catch (error) {
         setError('Error fetching post details');
@@ -39,7 +42,6 @@ function Modify() {
   }, [postId])
 
   const handleSubmit = async (e) => {
-    const cooemail = localStorage.getItem('UserEmail');
     e.preventDefault();
     try {
       const UserToken = localStorage.getItem('UserToken');
@@ -50,7 +52,7 @@ function Modify() {
       await axios.put(
         `${import.meta.env.VITE_BACKEND}/modify/${postId}`,
         {
-          email: cooemail,
+          email: validatedmail,
           title,
           description,
           image,
@@ -62,7 +64,9 @@ function Modify() {
           },
         }
       );
+      console.log(post);
       console.log('Post updated successfully');
+      navigate('/auth/editauth');
     } catch (error) {
       console.error('Error updating post:', error);
     }

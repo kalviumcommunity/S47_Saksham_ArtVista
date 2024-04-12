@@ -103,18 +103,28 @@ exports.updatePostDetails = async (req, res) => {
 };
 
 exports.deletePost = async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.postId);
-        if (!post) {
-            return res.status(404).json({ message: "Post not found" });
-        }
-
-        if (post.user.toString() !== req.user._id) {
-            return res.status(403).json({ message: "Unauthorized" });
-        }
-        await post.remove();
-        res.status(200).json({ message: "Post deleted successfully" });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'Authorization token is missing or invalid' });
     }
-}
+
+    const token = authHeader.split(' ')[1];
+    const decoded = jwt.verify(token, secretKey);
+    const { email } = decoded;
+
+    const post = await Post.findById(req.params.postId);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    if (post.email !== email) {
+      return res.status(403).json({ message: 'Unauthorized to delete this post' });
+    }
+
+    await post.deleteOne();
+    return res.status(200).json({ message: 'Post deleted successfully' });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

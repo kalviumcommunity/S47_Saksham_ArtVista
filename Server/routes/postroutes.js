@@ -9,9 +9,9 @@ router.get('/posts/home', postController.getPostHomeFeed);
 // to get and edit one post with id as a unique identifier
 router.get('/modify/:postId', postController.getEditPostDetails);
 router.put('/modify/:postId', postController.updatePostDetails);
+router.delete('/modify/:postId', postController.deletePost);
 
 // To work on
 router.get('/posts/:postId', postController.getPostUserFeed);
-router.delete('/posts/:postId', postController.deletePost);
 
 module.exports = router;

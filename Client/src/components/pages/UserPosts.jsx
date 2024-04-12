@@ -9,7 +9,7 @@ const OtherEdit = () => {
 
     const [posts, setPosts] = useState([]);
     const [userId, setUserId] = useState('');
-    const [editPostId, setEditPostId] = useState(null);
+    const [message, setMessage] = useState(null);
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true);
 
@@ -37,6 +37,27 @@ const OtherEdit = () => {
     
         fetchData();
       }, []);
+
+    const UserToken = localStorage.getItem('UserToken');
+    if (!UserToken) {
+      console.error('Token not found');
+      return;
+    }
+    const handleDelete = async (postId) => {
+      try {
+        const response = await axios.delete(`${import.meta.env.VITE_BACKEND}/modify/${postId}`, {
+          headers: {
+            Authorization: `Bearer ${UserToken}`,
+          },
+        });
+        setMessage(response);
+        console.log(response);
+      } catch (error) {
+        setMessage(error || 'An error occurred');
+        console.error('Error deleting post:', error);
+        
+      }
+    }
 
       const handleEdit = (editPostId) => {
         navigate(`/modify/${editPostId}`);
@@ -72,7 +93,7 @@ const OtherEdit = () => {
                             <div>
                                 <div>
                                 <button onClick={() => handleEdit(post._id)}>Edit</button>
-                                <button>Delete</button>
+                                <button onClick={() => handleDelete(post._id)}>Delete</button>
                                 </div>
                             </div>
                             </div>
