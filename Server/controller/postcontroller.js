@@ -42,6 +42,24 @@ exports.getPostUserFeed = async (req, res) => {
     }
 }
 
+// getting one specific post
+
+exports.getEditPostDetails = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.postId);
+    
+        if (!post) {
+          return res.status(404).json({ message: 'Post not found' });
+        }
+    
+        res.status(200).json(post);
+      } catch (error) {
+        console.error('Error fetching post details:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      }
+}
+
+
 exports.updatePostDetails = async (req, res) => {
     try {
         const { title, description, image } = req.body;

@@ -99,6 +99,8 @@ exports.deleteUserDetails = async (req, res) => {
     }
 };
 
+// google controllers
+
 exports.checkGoogleUser = async (req, res) => {
     try {
         const { email } = req.body;
@@ -120,6 +122,8 @@ exports.checkGoogleUser = async (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+// username management
 
 exports.setNewUserName = async (req, res) => {
     try {
@@ -179,6 +183,8 @@ exports.getPostUser = async (req, res) => {
       return res.status(500).json({ message: 'Internal server error' });
     }
   };  
+
+// user verification
 
 exports.verifyUser = async (req, res) => {
     try {

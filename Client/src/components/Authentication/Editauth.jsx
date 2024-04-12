@@ -64,7 +64,7 @@ function Editauth() {
         console.error('Error:', error);
       });
     }
-  });
+  }, []);
 
   return (
     <>

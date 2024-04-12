@@ -1,12 +1,36 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Createcss from './css/Create.module.css'
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function Modify() {
   const [image, setImage] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
+  const [post, setPost] = useState();
+  const { postId } = useParams();
 
+  useEffect(() => {
+    const fetchPostDetails = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/get/${postId}`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }); 
+        setPost(response.data);
+        // console.log(response.data);
+        setDescription(response.data.description || '');
+        setTitle(response.data.title || '');
+        setImage(response.data.image || '');
+      } catch (error) {
+        setError('Error fetching post details');
+      }
+    };
+    fetchPostDetails();
+  }, [postId])
 
+  
 
   return (
     <>
@@ -18,8 +42,8 @@ function Modify() {
               <p htmlFor="title">Title: </p>
               <input
                 type='text'
-                placeholder='title'
-                // onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
@@ -28,16 +52,17 @@ function Modify() {
               <input
                 type='url'
                 name='image'
-                placeholder='******'
-                // onChange={(e) => setImage(e.target.value)}
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
               />
             </div>
 
             <div className={`${Createcss.textareadesc}`}>
               <p htmlFor="description">Description: </p>
               <textarea
-                placeholder='Describe about your post here'
-                // onChange={(e) => setDescription(e.target.value)}
+                name='description'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className={`${Createcss.textareadesc}`}
                 wrap="soft" 
               />
