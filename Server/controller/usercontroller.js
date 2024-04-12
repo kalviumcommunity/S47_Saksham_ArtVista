@@ -2,9 +2,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/usermodel');
 const bcrypt = require('bcryptjs');
 const { validateUser } = require('../validators/uservalidator');
+const secretKey = require('./config').secretKey;
 
-const crypto = require('crypto');
-const secretKey = crypto.randomBytes(64).toString('hex');
 
 exports.signUp = async (req, res) => {
     try {

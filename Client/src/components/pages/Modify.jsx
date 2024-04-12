@@ -12,13 +12,14 @@ function Modify() {
   const [description, setDescription] = useState();
   const [post, setPost] = useState();
   const [loading, setLoading] = useState(true);
+  const [validatedmail, setValidatedmail] = useState({});
 
   const { postId } = useParams();
 
   useEffect(() => {
     const fetchPostDetails = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/get/${postId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/modify/${postId}`, {
           headers: {
             'Content-Type': 'application/json',
           },
