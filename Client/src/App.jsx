@@ -22,9 +22,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/modify" element={<Modify />} />
+          <Route path="/modify/:postId" element={<Modify />} />
           <Route path="/search" element={<Search />} />
-          <Route path='/other/:id' element={<OtherEdit/>}/>
+          <Route path='/other/:username' element={<OtherEdit/>}/>
           {/* <Route path="/myprofile" element={<MyProfile />} /> */}
           
           <Route path='/auth/login' element={<Login />} />

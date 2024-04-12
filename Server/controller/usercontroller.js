@@ -2,9 +2,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/usermodel');
 const bcrypt = require('bcryptjs');
 const { validateUser } = require('../validators/uservalidator');
+const secretKey = require('./config').secretKey;
 
-const crypto = require('crypto');
-const secretKey = crypto.randomBytes(64).toString('hex');
 
 exports.signUp = async (req, res) => {
     try {
@@ -99,6 +98,8 @@ exports.deleteUserDetails = async (req, res) => {
     }
 };
 
+// google controllers
+
 exports.checkGoogleUser = async (req, res) => {
     try {
         const { email } = req.body;
@@ -120,6 +121,8 @@ exports.checkGoogleUser = async (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+// username management
 
 exports.setNewUserName = async (req, res) => {
     try {
@@ -162,26 +165,6 @@ exports.availableUsernames = async (req, res) => {
       }
 }
 
-// exports.getPostUser = async (req, res) => {
-//     try {
-//       const { email } = req.body;
-//       const givenmail = await User.findOne({ email });
-//       if (givenmail) {
-//         const usernames = givenmail.username
-//         if (usernames) {
-//           res.status(200).json({message: usernames});
-//         } else {
-//           res.status(204).json({ message: 'Please set a username first' });
-//         }
-//       } else if (!givenmail) {
-//         res.status(204).json({ message: 'Please set a username first' });
-//       }
-//     } catch (error) {
-//       console.error('Error processing request:', error);
-//       return res.status(500).json({ message: 'Internal server error' });
-//     }
-// };
-
 exports.getPostUser = async (req, res) => {
     try {
       const users = await User.find({}, 'email username');
@@ -200,6 +183,7 @@ exports.getPostUser = async (req, res) => {
     }
   };  
 
+// user verification
 exports.verifyUser = async (req, res) => {
     try {
         const authHeader = req.headers.authorization;
@@ -209,17 +193,17 @@ exports.verifyUser = async (req, res) => {
         
         const token = authHeader.split(' ')[1];
         const decoded = jwt.verify(token, secretKey, { expiresIn: '1h' });
-        const { id } = decoded;
+        const { email } = decoded;
         
-        const user = await User.findById(id);
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
-        } else if (user) {
+        } else {
             return res.status(200).json({ message: 'User verified successfully', user });
         }
         
-        res.status(200).json({ message: 'User verified successfully', user });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 }
+
