@@ -10,7 +10,8 @@ import UserPosts from '../pages/UserPosts'
 import ImageUpload from './components/ImageUpload'
 // username manual set
 import SetUser from './components/SetUser'
-
+// import loader
+import Loader from '../common/components/loader'
 
 function Editauth() {
 
@@ -50,7 +51,7 @@ function Editauth() {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader/>
       ) : isAuthenticated ? (
         <>
           Hello {user.name}!

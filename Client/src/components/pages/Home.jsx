@@ -44,14 +44,14 @@ function Home() {
       <div className={homecss.container}>
         <div className={homecss.postscont}>
           {posts.map(post => (
-            <div className={homecss.postinv} key={post.id}>
+            <div className={homecss.postinv} key={post._id}>
               <div className={homecss.postimagecont}>
                 <img src={post.image} alt="post" className={homecss.postimage} />
               </div>
               <div className={homecss.postdetails}>
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
-                <button onClick={() => handleUserVisit(post.email)}>
+                <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || post.email)}>
                   <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
                 </button>
               </div>

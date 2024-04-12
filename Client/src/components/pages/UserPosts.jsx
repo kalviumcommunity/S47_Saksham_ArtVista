@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import homecss from './css/Home.module.css'
+import { useNavigate } from 'react-router-dom';
 
 const OtherEdit = () => {
 
     const [posts, setPosts] = useState([]);
     const [userId, setUserId] = useState('');
+    const [editPostId, setEditPostId] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem('loggedInUser');
@@ -29,6 +32,10 @@ const OtherEdit = () => {
     
         fetchData();
       }, []);
+
+      const handleEdit = (editPostId) => {
+        navigate(`/modify/${editPostId}`);
+      }
       
 
   return (
@@ -41,7 +48,7 @@ const OtherEdit = () => {
                 .filter((post) => post.email == userId)
                 .map((post,index)=>{
                     return(
-                        <div className={homecss.postinv} key={post.id}>
+                        <div className={homecss.postinv} key={post._id}>
                         <div className={homecss.postimagecont}>
                         <img 
                         src={post.image} 
@@ -55,7 +62,7 @@ const OtherEdit = () => {
                         <p>{post.description}</p>
                         <div>
                             <div>
-                            <button>Edit</button>
+                            <button onClick={() => handleEdit(post._id)}>Edit</button>
                             <button>Delete</button>
                             </div>
                         </div>
