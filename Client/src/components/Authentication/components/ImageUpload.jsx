@@ -17,14 +17,14 @@ const ImageUploadForm = ({ authToken }) => {
     }
 
 
-    return (
-        <form action='/api/upload' method='POST' enctype='multipart/form-data' >
-            <h1>Profile Image Upload</h1>
-            <input type="file" name='profile' onChange={handleImageChange} />
-            <button onClick={uploadImage}>Upload Image</button>
-            <div>{message}</div>
-        </form>
-    );
+    // return (
+    //     <form action='/api/upload' method='POST' enctype='multipart/form-data' >
+    //         <h1>Profile Image Upload</h1>
+    //         <input type="file" name='profile' onChange={handleImageChange} />
+    //         <button onClick={uploadImage}>Upload Image</button>
+    //         <div>{message}</div>
+    //     </form>
+    // );
 };
 
 export default ImageUploadForm;

@@ -26,7 +26,7 @@ function ProfileDisplay() {
         {user ? (
           <div>
             <p>Account Name: {user.username}</p>
-            <p>Email: {user.email}</p>
+            {/* <p>Email: {user.email}</p> */}
           </div>
         ) : (
           <p>User not found</p>
