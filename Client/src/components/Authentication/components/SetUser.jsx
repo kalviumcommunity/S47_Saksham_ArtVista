@@ -12,6 +12,8 @@ function SetUser() {
 
   const navigateTo = useNavigate();
 
+  const UserName = localStorage.getItem('Username');
+
   useEffect(() => {
     fetchExistingUsernames();
   }, []);
@@ -58,22 +60,33 @@ function SetUser() {
 
   return (
     <>
+    <div className={scss.fullpage}>
+    <button className={scss.Backbtn} onClick={() => navigateTo('/auth/editauth')}>{"< Back"}</button>
+      <div className={scss.formcont}>
       <form className={scss.form}>
-        <div>Set Username</div>
-        <div>You have logged in as {email}</div>
-        <input
-          type="text"
-          placeholder="Enter username"
-          value={username}
-          onChange={handleChange}
-        />
-        {/* {error && <div style={{ color: 'red' }}>{error}</div>}
-        {message && <div style={{ color: 'green' }}>{message}</div>}
-        <button onClick={handleSubmit}>Submit</button> */}
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-        {!error && username && <div style={{ color: 'green' }}>Username available</div>}
-        {!error && username && <button onClick={handleSubmit}>Submit</button>}
+        <div className={scss.title}>Set your Username</div>
+        <div className={scss.msg}><p>You have logged in as</p><pe>{email}</pe></div>
+        {
+          UserName ? 
+          <div className={scss.msg}><p>Your current Username is:</p><pe>{UserName}</pe></div> 
+          : 
+          <div>You have not set your username yet</div>
+        }
+        <div className={scss.inputcont}>
+          <input
+          className={scss.inputuser}
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={handleChange}
+            />
+            {!error && username && <button onClick={handleSubmit}>Use this ?</button>}
+        </div>
+        {error && <div className={scss.message} style={{ color: 'red' }}>{error}</div>}
+        {!error && username && <div className={scss.message} style={{ color: 'green' }}>Username available</div>}
       </form>
+      </div>
+    </div>
     </>
   );
 }

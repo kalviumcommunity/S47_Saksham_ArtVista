@@ -29,6 +29,10 @@ function Editauth() {
 
   const accessToken = localStorage.getItem('accessToken');
 
+  const handleUsernameRedirect = () => {
+    navigateTo('/auth/config/setuser')
+  }
+
   const handleLogout = () => {
     Axios.post(import.meta.env.VITE_USERLOGOUT, {
     }).then((response) => {
@@ -97,6 +101,9 @@ function Editauth() {
         </>
       )
       }
+      <div>
+        <button onClick={handleUsernameRedirect}>Change Your Username</button>
+      </div>
       <UserPosts />
     </>
   )
