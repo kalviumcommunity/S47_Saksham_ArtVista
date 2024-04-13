@@ -76,6 +76,9 @@ function Editauth() {
         <Loader/>
       ) : (
         <>
+        <div>
+          <button className={lcss.Backbtn} onClick={() => navigateTo('/')}>{"< Back"}</button>
+        </div>
           <div>
             <p> hello ! {validated.username} !</p>
             <p>{validated.email}</p>

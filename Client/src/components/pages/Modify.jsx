@@ -74,7 +74,7 @@ function Modify() {
 
   return (
     <>
-    <button onClick={() => window.history.back()}>{"back <"}</button>
+    <button className={`${Createcss.Backbtn}`} onClick={() => window.history.back()}>{"< Back"}</button>
     {
       loading ? (
         <Loader/>

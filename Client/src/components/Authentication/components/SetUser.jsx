@@ -64,13 +64,13 @@ function SetUser() {
     <button className={scss.Backbtn} onClick={() => navigateTo('/auth/editauth')}>{"< Back"}</button>
       <div className={scss.formcont}>
       <form className={scss.form}>
-        <div className={scss.title}>Set your Username</div>
+        <div className={scss.title}>Set your new Username</div>
         <div className={scss.msg}><p>You have logged in as</p><pe>{email}</pe></div>
         {
           UserName ? 
           <div className={scss.msg}><p>Your current Username is:</p><pe>{UserName}</pe></div> 
           : 
-          <div>You have not set your username yet</div>
+          <div className={scss.msg}>Set a new Username to proceed</div>
         }
         <div className={scss.inputcont}>
           <input
