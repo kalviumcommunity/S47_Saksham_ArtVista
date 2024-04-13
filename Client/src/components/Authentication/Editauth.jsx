@@ -76,37 +76,45 @@ function Editauth() {
         <Loader/>
       ) : (
         <>
-        <div>
-          <button className={lcss.Backbtn} onClick={() => navigateTo('/')}>{"< Back"}</button>
-        </div>
+        <div className={lcss.navbarr}>
           <div>
-            <p> hello ! {validated.username} !</p>
-            <p>{validated.email}</p>
+            <button className={lcss.Backbtn} onClick={() => navigateTo('/')}>{"< Back"}</button>
           </div>
+          <div className={lcss.navbarr}> 
+            <button className={lcss.Backbtn} onClick={handleUsernameRedirect}>Change Your Username</button>
+            <div>
+                {
+                  isAuthenticated ? (
+                    <button className={lcss.Backbtn} onClick={handleGGLogout}>
+                      Logout 
+                    </button>
+                  ) : (
+                    <button className={lcss.Backbtn} onClick={handleLogout}>Logout</button>
+                  )
+                }
+            </div>
+          </div>
+        </div>
+          <div className={lcss.procont}>
           {
             accessToken ? (
-              <img src={user.picture} alt={validated.name} /> 
+              <img className={lcss.profilepic} src={user.picture} alt={validated.name} /> 
             ) : (
               <ImageUpload/>
             )
           }
-          <div>
-            {
-              isAuthenticated ? (
-                <button className={lcss.logout} onClick={handleGGLogout}>
-                  Logout 
-                </button>
-              ) : (
-                <button className={lcss.logout} onClick={handleLogout}>Logout</button>
-              )
-            }
+          <div className={lcss.profile}>
+            <pu>Hello {validated.username} !</pu>
+            <pe>{validated.email}</pe>
           </div>
+          </div>
+        <div>
+          
+        </div>
         </>
       )
       }
-      <div>
-        <button onClick={handleUsernameRedirect}>Change Your Username</button>
-      </div>
+      
       <UserPosts />
     </>
   )
