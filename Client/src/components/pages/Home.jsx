@@ -60,7 +60,7 @@ function Home() {
                 <div className={homecss.postdetails}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
-                  <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || post.email)}>
+                  <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || "username")}>
                     <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
                   </button>
                 </div>
