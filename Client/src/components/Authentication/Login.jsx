@@ -31,7 +31,7 @@ function Login() {
       setErrors(['Password must be at least 6 characters.'])
       return;
     } else {
-      Axios.post(import.meta.env.VITE_USERLOGIN, {
+      Axios.post(`${import.meta.env.VITE_BACKEND}/login`, {
         username,
         password
       })
