@@ -34,7 +34,7 @@ function Editauth() {
   }
 
   const handleLogout = () => {
-    Axios.post(import.meta.env.VITE_USERLOGOUT, {
+    Axios.post(`${import.meta.env.VITE_USERLOGOUT}`, {
     }).then((response) => {
       localStorage.removeItem('UserToken');
       localStorage.removeItem('UserEmail');
