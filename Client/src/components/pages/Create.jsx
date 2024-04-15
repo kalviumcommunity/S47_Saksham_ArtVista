@@ -37,7 +37,7 @@ function Create() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    Axios.post(import.meta.env.VITE_CREATEAPI, {
+    Axios.post(`${import.meta.env.VITE_BACKEND}/posts`, {
       email: validatedmail.email,
       image, 
       title, 

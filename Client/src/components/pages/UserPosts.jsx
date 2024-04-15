@@ -25,7 +25,7 @@ const OtherEdit = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(import.meta.env.VITE_HOMEAPI);
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND}/posts/home`);
             setPosts(response.data);
             setLoader(false);
             // console.log(response.data)

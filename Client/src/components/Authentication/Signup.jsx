@@ -16,7 +16,7 @@ function LoginSignup() {
     e.preventDefault();
 
     // Send a POST request to the server
-    Axios.post(import.meta.env.VITE_USERSIGNUP, {
+    Axios.post(`${import.meta.env.VITE_BACKEND}/signup`, {
       username, email, password
     }) .then((response) => {
       console.log(response)

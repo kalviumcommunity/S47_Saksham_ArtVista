@@ -11,7 +11,4 @@ router.get('/modify/:postId', postController.getEditPostDetails);
 router.put('/modify/:postId', postController.updatePostDetails);
 router.delete('/modify/:postId', postController.deletePost);
 
-// To work on
-router.get('/posts/:postId', postController.getPostUserFeed);
-
 module.exports = router;
