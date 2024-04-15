@@ -54,6 +54,7 @@ function Editauth() {
     if (!UserToken) {
       window.location.href = '/auth/login';
     } else {
+      console.log(`${import.meta.env.VITE_BACKEND}/verifyuser`);
       Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
       }, {
         headers: {
