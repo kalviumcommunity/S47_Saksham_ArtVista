@@ -8,21 +8,32 @@ import homecss from './css/Home.module.css';
 //loader import
 import Loader from '../common/components/loader';
 
+// auth0 import for saving cookie
+import handleRedirectCallback from '../Authentication/components/handleCallback';
+import { useAuth0 } from '@auth0/auth0-react';
+
 function Home() {
   const [posts, setPosts] = useState([]);
   const [existingUsernames, setExistingUsernames] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoader, setIsLoader] = useState(true);
   const navigate = useNavigate();
+
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0();
+  React.useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      handleRedirectCallback(user, getAccessTokenSilently, navigate);
+    }
+  }, [isLoading, isAuthenticated, user, getAccessTokenSilently, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND}/posts/home`);
         setPosts(response.data);
-        setIsLoading(false);
+        setIsLoader(false);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setIsLoading(false);
+        setIsLoader(false);
       }
     };
 
@@ -47,7 +58,7 @@ function Home() {
     <>
       <Navbar />
       <br /><br /><br /><br /><br />
-      {isLoading ? (
+      {isLoader ? (
         <Loader /> 
       ) : (
         <div className={homecss.container}>
