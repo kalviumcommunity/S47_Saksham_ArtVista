@@ -115,16 +115,19 @@ function Modify() {
             <p className={`${Createcss.terms}`}>{"By clicking on Submit, you agree to our terms and conditions" }</p>
           </form>
         </div>
-
-        <div className={`${Createcss.imgdispdiv}`}>
-          <img
-            src={image}
-            alt='Img could not be displayed'
-            className={`${Createcss.imgdisplay}`}
-          />
-          <div>
-            <h2>{title}</h2>
-            <p>{description}</p>
+        <div className={`${Createcss.imgconts}`}>
+          <div className={`${Createcss.imgdispdiv}`}>
+            <img
+              src={image}
+              alt='Img could not be displayed'
+              className={`${Createcss.imgdisplay}`}
+            />
+            <div className={`${Createcss.imgtext}`}>
+              <h2>{title}</h2>
+            </div>
+            <div className={`${Createcss.imgtext}`}>
+              <p>{description}</p>
+            </div>
           </div>
         </div>
       </div>

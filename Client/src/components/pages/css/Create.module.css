@@ -11,21 +11,41 @@
 }
 
 .imgdispdiv {
-    margin: 20px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.imgconts{
+    /* margin: 20px; */
     width: 50%;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    height: 500px;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     transform: translate(scale(0.5));
 }
 
+.imgtext h2{
+    margin: 10px;
+    width: 80vh;
+    overflow-wrap: break-word;
+} .imgtext p {
+    margin: 10px;
+    width: 80vh;
+    overflow-wrap: break-word;
+}
+
 .imgdisplay {
-    width: 100%; 
+    width: 100%;
     height: auto;
     border-radius: 10px;
 }
