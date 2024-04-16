@@ -1,0 +1,125 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: 80vh; 
+}
+
+.formconts {
+    margin: 20px;
+    width: 40%;
+}
+
+.imgdispdiv {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.imgconts{
+    /* margin: 20px; */
+    width: 50%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    height: 500px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(scale(0.5));
+}
+
+.imgtext h2{
+    margin: 10px;
+    width: 80vh;
+    overflow-wrap: break-word;
+} .imgtext p {
+    margin: 10px;
+    width: 80vh;
+    overflow-wrap: break-word;
+}
+
+.imgdisplay {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.textareatitle p,
+.imglink p,
+.textareadesc p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.textareatitle input,
+.imglink input,
+.textareadesc textarea {
+    width: calc(100% - 12px);
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+.textareadesc textarea {
+    height: 160px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    resize: vertical;
+}
+
+button[type='submit'] {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type='submit']:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px; 
+}
+
+.imgdispdiv p{
+    word-wrap: break-word;
+    overflow-y: auto;
+}
+
+.terms{
+    color: red;
+    text-emphasis: bold;
+}
+
+.Backbtn {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(71, 71, 71);
+    background-color: rgb(255, 255, 255);
+    transition: 300ms;
+} .Backbtn:hover {
+    /* background-color: red; */
+    color: rgb(255, 0, 0);
+    border: 2px solid black;
+    transition: 500ms;
+    /* box-shadow:1px 1px 5px 5px rgb(68, 68, 68) */
+}

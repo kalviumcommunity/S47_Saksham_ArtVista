@@ -1,0 +1,50 @@
+.logout{
+    margin: 20px;
+    padding: 5px;
+    font-size: 15px;
+    border-color: aliceblue;
+    border-radius: 50px;
+}
+
+.Backbtn {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(71, 71, 71);
+    background-color: rgb(255, 255, 255);
+    transition: 300ms;
+} .Backbtn:hover {
+    /* background-color: red; */
+    color: rgb(255, 0, 0);
+    border: 2px solid black;
+    transition: 500ms;
+    /* box-shadow:1px 1px 5px 5px rgb(68, 68, 68) */
+}
+
+.procont{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.profilepic{
+    border-radius: 50%;
+    border: 4px solid rgb(217, 217, 217);
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+} .profile pu, .profile pe{
+    font-size: 20px;
+    padding: 10px;
+}
+
+.navbarr{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

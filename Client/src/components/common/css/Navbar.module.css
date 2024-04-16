@@ -1,0 +1,72 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    padding: 20px;
+    position: fixed;
+    width: 98%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.linksdiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.links{
+    margin: 10px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    color: black;
+    transition: 100ms;
+} .links :hover {
+    color: red  ;
+    margin: 0px;
+    font-size: 25px;
+    visibility: visible;
+    transition: 100ms;
+}
+
+
+/* .loginsignup {
+    background-color: rgb(2, 2, 2);
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 20px;
+    transition: 250ms;
+} .loginsignupdiv{
+    margin: 10px;
+} .loginsignupdiv :hover {
+    background-color: rgb(255, 0, 0);   
+    padding: 15px;
+    transition: 250ms;
+    margin: -11px;
+    border-radius: 30px;
+    font-size: 18px;
+} */
+
+.Backbtn {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(71, 71, 71);
+    background-color: whitesmoke;
+    transition: 300ms;
+    text-decoration: none;
+} .Backbtn:hover {
+    /* background-color: red; */
+    color: rgb(255, 0, 0);
+    border: 2px solid black;
+    transition: 500ms;
+    /* box-shadow:1px 1px 5px 5px rgb(68, 68, 68) */
+}
