@@ -1,8 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import navcss from './css/Navbar.module.css'
+// auth0 import for saving cookie
+import handleRedirectCallback from '../Authentication/components/handleCallback';
+import { useAuth0 } from '@auth0/auth0-react';
+
 function Navbar() {
-  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const UserToken = localStorage.getItem('UserToken');
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0();
+  const navigateTo = useNavigate();
+  React.useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      handleRedirectCallback(user, getAccessTokenSilently, navigateTo);
+    }
+  }, [isLoading, isAuthenticated, user, getAccessTokenSilently, navigateTo]);
+
 
   return (
     <>
@@ -16,7 +28,7 @@ function Navbar() {
         </div>
         <div>
             {/* <Link className={navcss.loginsignup} to="/auth/login">Login</Link> */}
-            {loggedInUser ? (
+            {UserToken ? (
             <Link className={navcss.Backbtn} to="/auth/editauth">Profile</Link>
             ) : (
             <Link className={navcss.Backbtn} to="/auth/login">Login</Link>
