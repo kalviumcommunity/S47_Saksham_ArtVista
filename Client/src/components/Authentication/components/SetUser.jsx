@@ -8,11 +8,32 @@ function SetUser() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [existingUsernames, setExistingUsernames] = useState([]);
-  const email = localStorage.getItem('UserEmail');
+  const [email, setEmail] = useState(''); 
+  const [UserName, setUserName] = useState('');
+
+  useEffect(() => {
+    const UserToken = localStorage.getItem('UserToken');
+    if (!UserToken) {
+      window.location.href = '/auth/login';
+    } else {
+      Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${UserToken}` 
+        }
+      })
+      .then(response => {
+        setEmail(response.data.user.email);
+        setUserName(response.data.user.username);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  });
 
   const navigateTo = useNavigate();
-
-  const UserName = localStorage.getItem('Username');
 
   useEffect(() => {
     fetchExistingUsernames();

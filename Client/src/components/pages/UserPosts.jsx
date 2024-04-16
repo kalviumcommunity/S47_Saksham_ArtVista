@@ -14,13 +14,26 @@ const OtherEdit = () => {
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (loggedInUser) {
-        const userData = JSON.parse(loggedInUser);
-        setUserId(userData.email);
-        }
-    }, []);
-    // console.log(userId)
+      const UserToken = localStorage.getItem('UserToken');
+      if (!UserToken) {
+        window.location.href = '/auth/login';
+      } else {
+        axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${UserToken}` 
+          }
+        })
+        .then(response => {
+          // console.log('Success:', response.data.user);
+          setUserId(response.data.user.email);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+    });
 
     useEffect(() => {
         const fetchData = async () => {
