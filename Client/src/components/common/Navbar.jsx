@@ -14,12 +14,12 @@ function Navbar() {
             <Link className={navcss.links} to="/create"><p>Create</p></Link>
             {/* <Link className={navcss.links} to="/myprofile"><p>My Profile</p></Link> */}
         </div>
-        <div className={navcss.loginsignupdiv}>
+        <div>
             {/* <Link className={navcss.loginsignup} to="/auth/login">Login</Link> */}
             {loggedInUser ? (
-            <Link className={navcss.loginsignup} to="/auth/editauth">Profile</Link>
+            <Link className={navcss.Backbtn} to="/auth/editauth">Profile</Link>
             ) : (
-            <Link className={navcss.loginsignup} to="/auth/login">Login</Link>
+            <Link className={navcss.Backbtn} to="/auth/login">Login</Link>
             )}
         </div>
     </div>

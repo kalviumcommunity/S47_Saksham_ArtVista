@@ -3,7 +3,7 @@
     grid-template-columns: repeat(3, 1fr);
     padding: 20px;
     border-radius: 20px;
-    width: 90%;  
+    width: 95%;  
 }
 
 .postinv{
@@ -11,6 +11,8 @@
     margin: 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    height: 600px;
 } .postimage{
     width: 100%;
     border-radius: 20px 20px 0px 0px;

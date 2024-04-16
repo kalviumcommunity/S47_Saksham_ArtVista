@@ -14,7 +14,7 @@ root.render(
     domain={import.meta.env.VITE_AUTHO_DOMAIN}
     clientId={import.meta.env.VITE_CLIENT_ID}
     authorizationParams={{
-      redirect_uri: "http://localhost:5173/auth/login",
+      redirect_uri: "https://artvistasq47.netlify.app/auth/login",
     }}
   >
     <App />
