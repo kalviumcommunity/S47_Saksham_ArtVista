@@ -12,10 +12,10 @@ const root = createRoot(document.getElementById('root'));
 root.render(
 <Auth0Provider
     domain={import.meta.env.VITE_AUTHO_DOMAIN}
-{/*     clientId={import.meta.env.VITE_CLIENT_ID}
+    clientId={import.meta.env.VITE_CLIENT_ID}
     authorizationParams={{
       redirect_uri: "https://s47-saksham-capstone-art-vista-v7wm.vercel.app/auth/login",
-    }} */}
+    }}
   >
     <App />
   </Auth0Provider>,
