@@ -12,6 +12,7 @@ import Signup from './components/Authentication/Signup'
 import Editauth from './components/Authentication/Editauth'
 import OtherEdit from './components/pages/OtherEdit'
 import SetUser from './components/Authentication/components/SetUser'
+import SetImage from './components/Authentication/components/SetImage'
 // import MyProfile from './components/pages/MyProfile'
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path='/auth/signup' element={<Signup />} />
           <Route path='/auth/editauth' element={<Editauth />} />
           <Route path='/auth/config/setuser' element={<SetUser />} />
+          <Route path='/auth/config/setimage' element={<SetImage />} />
 
         </Routes>
       </BrowserRouter>

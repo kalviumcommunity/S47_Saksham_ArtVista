@@ -33,6 +33,10 @@ function Editauth() {
     navigateTo('/auth/config/setuser')
   }
 
+  const handleImageRedirect = () => {
+    navigateTo('/auth/config/setimage')
+  }
+
   const handleLogout = () => {
     Axios.post(`${import.meta.env.VITE_USERLOGOUT}`, {
     }).then((response) => {
@@ -81,6 +85,7 @@ function Editauth() {
             <button className={lcss.Backbtn} onClick={() => navigateTo('/')}>{"< Back"}</button>
           </div>
           <div className={lcss.navbarr}> 
+            <button className={lcss.Backbtn} onClick={handleImageRedirect}>Change Profile Picture</button>
             <button className={lcss.Backbtn} onClick={handleUsernameRedirect}>Change Your Username</button>
             <div>
                 {

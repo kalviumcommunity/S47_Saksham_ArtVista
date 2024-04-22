@@ -20,8 +20,9 @@ router.get('/getpostuser', userController.getPostUser);
 router.post('/verifyuser', userController.verifyUser);
 
 
-//profile pic upload
+//profile pic
 router.post('/imgupload', profileimgcontroller.uploadProfileImage);
+router.get('/getimg', profileimgcontroller.getProfileImage);
 
 // // // // To work on..  // // // // 
 router.put('/update/:userId', userController.updateUserDetails);

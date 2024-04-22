@@ -1,39 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import lcss from '../css/EditAuth.module.css';
 
 const ImageUploadForm = () => {
     const [pic, setPic] = useState();
     const UserToken = localStorage.getItem('UserToken');
     const navigate = useNavigate();
+    const [blobUrl, setBlobUrl] = useState();
 
     if (!UserToken) {
         navigate('/auth/login');
     }
 
-    const upload = () => {
-        const formData = new FormData();
-        formData.append('profileImage', pic);
+    useEffect(() => {
+      const UserToken = localStorage.getItem('UserToken');
+      axios.get(`${import.meta.env.VITE_BACKEND}/getimg`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${UserToken}` 
+        },
+        responseType: 'blob'
+      })
+      .then(response => {
+        const blobUrl = URL.createObjectURL(response.data); 
+        setBlobUrl(blobUrl);
+        console.log('Success:', response.data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }, []);
 
-        axios.post(`${import.meta.env.VITE_BACKEND}/imgupload`, formData, {
-            headers: {
-                Authorization: `Bearer ${UserToken}`, 
-            },
-        })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error.response.data);
-        });
-    };
+    useEffect(() => {
+        if (pic) {
+            const imageUrl = URL.createObjectURL(pic);
+            setPreviewUrl(imageUrl);
+        }
+    }, [pic]);
 
     return (
         <>
-            <div>
-                <input type="file" onChange={(e) => setPic(e.target.files[0])} />
-                <button type='button' onClick={upload}>Upload</button>
-            </div>
+        <img className={lcss.profilepic} src={blobUrl} alt={"Profile "} />
         </>
     );
 };
