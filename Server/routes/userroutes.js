@@ -19,11 +19,11 @@ router.get('/getpostuser', userController.getPostUser);
 // verificaion api
 router.post('/verifyuser', userController.verifyUser);
 
-// // // // To work on..  // // // // 
 
 //profile pic upload
 router.post('/imgupload', profileimgcontroller.uploadProfileImage);
 
+// // // // To work on..  // // // // 
 router.put('/update/:userId', userController.updateUserDetails);
 router.delete('/delete/:userId', userController.deleteUserDetails);
 
