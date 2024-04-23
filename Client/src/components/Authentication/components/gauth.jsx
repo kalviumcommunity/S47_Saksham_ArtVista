@@ -21,11 +21,9 @@ function gauth() {
 
   return (
     <>
-      {!isAuthenticated && (
         <button className={gcss.googlebutton} onClick={loginWithGoogle}>
           Continue with Google
         </button>
-      )}
     </>
   );
 }
