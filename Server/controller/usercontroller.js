@@ -111,8 +111,7 @@ exports.checkGoogleUser = async (req, res) => {
             const token = jwt.sign({ id: newUser._id, email: newUser.email}, secretKey);
             res.status(214).json({message: 'Username in missing for this email', token: token});
         }
-
-        if (user.username) {
+        else if (user.username) {
             const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, secretKey);
             res.status(200).json({message: user.username, token: token});
 
