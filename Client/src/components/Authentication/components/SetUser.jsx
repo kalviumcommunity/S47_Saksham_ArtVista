@@ -66,7 +66,7 @@ function SetUser() {
   const handleSubmit = async () => {
     try {
       localStorage.setItem('Username', username);
-      navigateTo('/');
+      navigateTo('/auth/editauth');
       const response = await Axios.post(`${import.meta.env.VITE_BACKEND}/setuser`, { username, email: email });
       setMessage(response.data.message);
       const token = response.data.token;
