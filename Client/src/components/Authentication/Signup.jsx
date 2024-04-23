@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import lscss from './loginsignup.module.css'
-// import useNavigate from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import Gauth from './components/gauth'
 
 
@@ -11,6 +11,7 @@ function LoginSignup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ function LoginSignup() {
       username, email, password
     }) .then((response) => {
       console.log(response)
-      // navigateTo('/auth/login')
+      navigate('/auth/login')
     }).catch((error) => {
       console.log(error);
     })

@@ -14,7 +14,7 @@ function Create() {
   useEffect(() => {
     const UserToken = localStorage.getItem('UserToken');
     if (!UserToken) {
-      window.location.href = '/auth/login';
+      navigate('/auth/login');
     } else {
       Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
       }, {
