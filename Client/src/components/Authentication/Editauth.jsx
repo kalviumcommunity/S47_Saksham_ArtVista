@@ -101,13 +101,7 @@ function Editauth() {
           </div>
         </div>
           <div className={lcss.procont}>
-          {
-            accessToken ? (
-              <img className={lcss.profilepic} src={user.picture} alt={validated.name} /> 
-            ) : (
               <ImageUpload/>
-            )
-          }
           <div className={lcss.profile}>
             <pu>Hello {validated.username} !</pu>
             <pe>{validated.email}</pe>

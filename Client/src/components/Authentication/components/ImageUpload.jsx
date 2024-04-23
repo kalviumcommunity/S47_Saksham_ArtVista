@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import lcss from '../css/EditAuth.module.css';
+import defaultpic from '../imgs/defaultpic.jpg';
 
 const ImageUploadForm = () => {
     const [pic, setPic] = useState();
@@ -25,10 +26,11 @@ const ImageUploadForm = () => {
       .then(response => {
         const blobUrl = URL.createObjectURL(response.data); 
         setBlobUrl(blobUrl);
-        console.log('Success:', response.data);
+        // console.log('Success:', response.data);
       })
       .catch(error => {
         console.error('Error:', error);
+        setBlobUrl(defaultpic);
       });
     }, []);
 

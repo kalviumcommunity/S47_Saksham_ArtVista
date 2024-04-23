@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import scss from './SetImage.module.css';
+import defaultpic from '../imgs/defaultpic.jpg';
 
 const SetImage = () => {
     const [pic, setPic] = useState();
@@ -29,7 +30,7 @@ const SetImage = () => {
             navigate('/auth/editauth');
         })
         .catch((error) => {
-            console.log(error.response.data);
+            // console.log(error.response.data);
         });
     };
 
@@ -46,10 +47,11 @@ const SetImage = () => {
       .then(response => {
         const blobUrl = URL.createObjectURL(response.data); 
         setBlobUrl(blobUrl);
-        console.log('Success:', response.data);
+        // console.log('Success:', response.data);
       })
       .catch(error => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
+        setBlobUrl(defaultpic);
       });
     }, []);
 
