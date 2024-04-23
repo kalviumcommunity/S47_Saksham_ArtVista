@@ -16,7 +16,7 @@ const generateSecretKey = () => {
     return crypto.randomBytes(6).toString('hex');
 };
 const secretKey = generateSecretKey();
-console.log('Secret Key:', secretKey);
+// console.log('Secret Key:', secretKey);
 
 
 // Middleware

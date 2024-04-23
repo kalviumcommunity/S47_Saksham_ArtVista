@@ -20,7 +20,7 @@ exports.signUp = async (req, res) => {
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = await User.create({ username, email, password: hashedPassword });
             res.status(201).json(newUser);
-            const token = jwt.sign({ id: newUser._id }, secretKey, { expiresIn: '30d' });
+            const token = jwt.sign({ id: newUser._id }, secretKey);
         }
 
 
@@ -40,7 +40,7 @@ exports.logIn = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
-        const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, secretKey, { expiresIn: '30d' });
+        const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, secretKey);
         // res.cookie('sessionToken', token, { maxAge: 3600000, httpOnly: true });
         res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
@@ -64,7 +64,7 @@ exports.updateUserDetails = async (req, res) => {
         if (!token) {
             return res.status(401).json({ message: 'Authorization token is missing' });
         }
-        const decoded = jwt.verify(token, secretKey, { expiresIn: '30d' });
+        const decoded = jwt.verify(token, secretKey);
         const userDetails = decoded;
 
         const { username, email, password } = req.body;
@@ -106,15 +106,18 @@ exports.checkGoogleUser = async (req, res) => {
         const user = await User.findOne({ email });
     
         if (!user) {
-            return res.status(214).json({ message: 'User not found' });
+            // return res.status(214).json({ message: 'User not found' });
+            const newUser = await User.create({ email });
+            const token = jwt.sign({ id: newUser._id, email: newUser.email}, secretKey);
+            res.status(214).json({message: 'Username in missing for this email', token: token});
         }
-
-        if (user.username) {
-            const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, secretKey, { expiresIn: '30d' });
+        else if (user.username) {
+            const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, secretKey);
             res.status(200).json({message: user.username, token: token});
 
         } else {
-            res.status(215).json({message: 'Username in missing for this email'})
+            const token = jwt.sign({ id: user._id, email: user.email }, secretKey);
+            res.status(215).json({message: 'Username in missing for this email', token: token});
         }
     } catch (error) {
         console.error('Error checking Google user:', error);
@@ -139,7 +142,7 @@ exports.setNewUserName = async (req, res) => {
                 }
                 else {
                     const newUser = await User.findOneAndUpdate({ email }, { username });
-                    const token = jwt.sign({ id: newUser._id, email: newUser.email, username: newUser.username }, secretKey, { expiresIn: '30d' });
+                    const token = jwt.sign({ id: newUser._id, email: newUser.email, username: newUser.username }, secretKey);
                     res.status(202).json({user: newUser, token: token});
                 }
             }
@@ -192,7 +195,7 @@ exports.verifyUser = async (req, res) => {
         }
         
         const token = authHeader.split(' ')[1];
-        const decoded = jwt.verify(token, secretKey, { expiresIn: '30d' });
+        const decoded = jwt.verify(token, secretKey);
         const { email } = decoded;
         
         const user = await User.findOne({ email });
