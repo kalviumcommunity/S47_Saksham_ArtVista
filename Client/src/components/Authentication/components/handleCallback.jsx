@@ -16,8 +16,9 @@ async function handleRedirectCallback(user, getAccessTokenSilently, navigateTo) 
       localStorage.setItem('UserToken', response.data.token);
       navigateTo('/');
     } else if (response.status === 214 || response.status === 215) {
-      navigateTo('/auth/config/setuser');
+      localStorage.setItem('UserToken', response.data.token);
       console.log('Redirection should happen');
+      navigateTo('/auth/config/setuser');
     }
   } catch (error) {
     console.error('Error during redirect callback:', error.message);

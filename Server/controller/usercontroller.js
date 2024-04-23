@@ -106,7 +106,10 @@ exports.checkGoogleUser = async (req, res) => {
         const user = await User.findOne({ email });
     
         if (!user) {
-            return res.status(214).json({ message: 'User not found' });
+            // return res.status(214).json({ message: 'User not found' });
+            const newUser = await User.create({ email });
+            const token = jwt.sign({ id: newUser._id, email: newUser.email}, secretKey);
+            res.status(214).json({message: 'Username in missing for this email', token: token});
         }
 
         if (user.username) {
@@ -114,7 +117,8 @@ exports.checkGoogleUser = async (req, res) => {
             res.status(200).json({message: user.username, token: token});
 
         } else {
-            res.status(215).json({message: 'Username in missing for this email'})
+            const token = jwt.sign({ id: user._id, email: user.email }, secretKey);
+            res.status(215).json({message: 'Username in missing for this email', token: token});
         }
     } catch (error) {
         console.error('Error checking Google user:', error);
