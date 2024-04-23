@@ -1,11 +1,13 @@
 const multer = require('multer');
 const path = require('path');
 const User = require('../models/usermodel');
+const jwt = require('jsonwebtoken');
+const secretKey = require('./config').secretKey;
 
-// Multer configuration for profile image uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/profile-images');
+        const dest = path.join(__dirname, '..', 'storage', 'profilepic');
+        cb(null, dest);
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -16,7 +18,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single('profileImage');
 
-// Controller function to handle profile image upload
 exports.uploadProfileImage = (req, res) => {
     upload(req, res, async (err) => {
         if (err instanceof multer.MulterError) {
@@ -25,20 +26,17 @@ exports.uploadProfileImage = (req, res) => {
             return res.status(500).json({ message: 'Error uploading profile image', error: err });
         }
 
-        // Profile image uploaded successfully, update user document with image details
-        const { originalname, mimetype, filename, size } = req.file;
-        const profileImage = {
-            originalName: originalname,
-            mimeType: mimetype,
-            filename: filename,
-            size: size
-        };
+        const userToken = req.headers.authorization;
+        if (!userToken) {
+            return res.status(401).json({ message: 'Unauthorized: Missing User Token' });
+        }
 
         try {
-            // Update the user document with the uploaded profile image details
-            const updatedUser = await User.findByIdAndUpdate(
-                req.user._id, // Assuming req.user contains the authenticated user's ID
-                { profileImage },
+            const decodedToken = jwt.verify(userToken, secretKey);
+            const userEmail = decodedToken.email; 
+            const updatedUser = await User.findOneAndUpdate(
+                { email: userEmail },
+                { $set: { profileImage: req.file } },
                 { new: true }
             );
 
