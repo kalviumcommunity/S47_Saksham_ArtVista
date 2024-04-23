@@ -34,6 +34,13 @@ const SetImage = () => {
         });
     };
 
+    useEffect(() => {
+        if (pic) {
+            const imageUrl = URL.createObjectURL(pic);
+            setPreviewUrl(imageUrl);
+        }
+    }, [pic]);
+
 
     useEffect(() => {
       const UserToken = localStorage.getItem('UserToken');
@@ -54,13 +61,6 @@ const SetImage = () => {
         setBlobUrl(defaultpic);
       });
     }, []);
-
-    useEffect(() => {
-        if (pic) {
-            const imageUrl = URL.createObjectURL(pic);
-            setPreviewUrl(imageUrl);
-        }
-    }, [pic]);
 
     return (
         <>

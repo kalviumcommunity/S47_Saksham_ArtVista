@@ -16,6 +16,7 @@
     "auth0-lock": "^12.4.0",
     "axios": "^1.6.8",
     "babel": "^6.23.0",
+    "cropro": "^1.6.0",
     "dotenv": "^16.4.5",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
