@@ -25,71 +25,86 @@ const upload = multer({
 
 exports.uploadProfileImage = (req, res) => {
     upload(req, res, async (err) => {
-        if (err instanceof multer.MulterError) {
-            return res.status(400).json({ message: 'Upload Error', error: err.message });
-        } else if (err) {
-            console.error('Error uploading profile image:', err);
-            return res.status(500).json({ message: 'Upload Error', error: err.message });
+      if (err instanceof multer.MulterError) {
+        return res.status(400).json({ message: 'Upload Error', error: err.message });
+      } else if (err) {
+        console.error('Error uploading profile image:', err);
+        return res.status(500).json({ message: 'Upload Error', error: err.message });
+      }
+  
+      const UserToken = req.headers.authorization?.split(' ')[1];
+      if (!UserToken) {
+        return res.status(401).json({ message: 'Unauthorized: Missing User Token' });
+      }
+  
+      try {
+        const decodedToken = jwt.verify(UserToken, secretKey);
+        const userEmail = decodedToken.email;
+        const existingUser = await User.findOne({ email: userEmail });
+        if (!existingUser) {
+          return res.status(404).json({ message: 'User not found' });
         }
-
-        const userToken = req.headers.authorization?.split(' ')[1];
-        if (!userToken) {
-            return res.status(401).json({ message: 'Unauthorized: Missing User Token' });
+  
+        const existingFilename = existingUser.profileImage.filename;
+        console.log(existingFilename);
+        if (existingFilename) {
+          const imagePath = path.join(__dirname, '..', 'storage', 'profilepic', existingFilename);
+          try {
+            await fs.unlinkSync(imagePath);
+          } catch (error) {
+            console.error('Error deleting existing profile image:', error);
+          }
         }
-
-        try {
-            const decodedToken = jwt.verify(userToken, secretKey);
-            const userEmail = decodedToken.email; 
-            const existingUser = await User.findOne({ email: userEmail });
-            const filename = existingUser.profileImage.filename;
-            const imagePath = path.join(__dirname, '..', 'storage', 'profilepic', filename);
-
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath);
-            }
-
-            const updatedUser = await User.findOneAndUpdate(
-                { email: userEmail },
-                { $set: { profileImage: req.file, profileImagePath: req.file.path } },
-                { new: true }
-            );
-
-            if (!updatedUser) {
-                return res.status(404).json({ message: 'User not found' });
-            }
-
-            return res.status(200).json({ message: 'Profile image uploaded successfully', user: updatedUser });
-        } catch (error) {
-            console.error('Error updating user with profile image:', error);
-            return res.status(500).json({ message: 'Server Error', error: error.message });
+  
+        const newProfileImage = {
+          filename: req.file.filename, 
+          size: req.file.size,
+        };
+  
+        const updatedUser = await User.findOneAndUpdate(
+          { email: userEmail },
+          { $set: { profileImage: newProfileImage } },
+          { new: true }
+        );
+  
+        if (!updatedUser) {
+          return res.status(404).json({ message: 'User not found' });
         }
+  
+        return res.status(200).json({ message: 'Profile image uploaded successfully', user: updatedUser });
+      } catch (error) {
+        console.error('Error updating user with profile image:', error);
+        return res.status(500).json({ message: 'Server Error', error: error.message });
+      }
     });
-};
+  };
 
 exports.getProfileImage = async (req, res) => {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ message: 'Authorization token is missing or invalid' });
     }
-    const userToken = authHeader.split(' ')[1];
+    const UserToken = authHeader.split(' ')[1];
     try {
-        const decodedToken = jwt.verify(userToken, secretKey);
+        const decodedToken = jwt.verify(UserToken, secretKey);
         const userEmail = decodedToken.email; 
     
         const user = await User.findOne({ email: userEmail });
-        const filename = user.profileImage.filename;
-        const imagePath = path.join(__dirname, '..', 'storage', 'profilepic', filename);
-        
-        if (!user || !user.profileImage || !fs.existsSync(imagePath)) {
-            return res.status(404).json({ message: 'Profile picture not found' });
+        if (!user || !user.profileImage) {
+            return res.status(204).json({ message: 'Profile picture not found' });
         }
-        const profileImage = fs.readFileSync(imagePath);
-        const imageMimetype = 'image/png';
+        const imagePath = path.join(__dirname, '..', 'storage', 'profilepic', user.profileImage.filename);
+        
+        if (!fs.existsSync(imagePath)) {
+            return res.status(204).json({ message: 'Profile picture not found' });
+        }
 
+        const profileImage = fs.readFileSync(imagePath);
+        const imageMimetype = 'image/png'; 
         res.contentType(imageMimetype);
         res.send(profileImage);
-      } catch (error) {
+    } catch (error) {
         console.error('Error fetching profile picture:', error);
-        return res.status(500).json({ message: 'Server Error', error: error.message });
-      }
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
 }
