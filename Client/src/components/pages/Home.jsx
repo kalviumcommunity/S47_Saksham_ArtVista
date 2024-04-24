@@ -50,10 +50,13 @@ function Home() {
       if (scrollY <= 150) {
         window.scrollTo({ top: 100, behavior: 'smooth' });
       }
-    }, 1200);
+    }, 2000);
 
     return () => clearTimeout(timer);
   });
+
+  // Conditional rendering
+  const UserToken = localStorage.getItem('UserToken');
 
   return (
     <>
@@ -73,13 +76,37 @@ function Home() {
       <div className={`${css.detailboxes}, ${css.flexbw}`} style={{ opacity: showDivs1 ? 1 : 0 , transition: 'opacity 0.2s'}}>
         <div className={css.getstarted}>
           <h2>Getting Started...</h2>
-          <p>Welcome to Artvista, your vibrant online community for artists and art enthusiasts! Dive into a world where creativity knows no bounds. Whether you're an established artist or just starting your artistic journey, Artvista is your canvas to showcase, connect, and inspire. Join us today and explore a universe of artistry waiting to be discovered!</p>
+          <p>Welcome to Artvista, your colorful online hub for artists and art aficionados! Immerse yourself in a realm where creativity thrives without limits. Whether you're a seasoned artist or embarking on your creative voyage, Artvista is your platform to exhibit, connect, and ignite inspiration. Come join us today and uncover a cosmos of artistic wonders waiting to be explored!</p>
+          {
+            UserToken? (
+              <>
+              <p>Craft your digital presence with style: choose and customize your own profile picture and username!</p>
+              <button onClick={() => navigate('/auth/editauth')}>Get Started</button>
+              </>
+            ) : (
+              <>
+              <p>Craft your digital presence with style: choose your own profile picture and username! Dive deeper by logging in to unlock exclusive features and connect with fellow art enthusiasts.</p>
+              <button onClick={() => navigate('/auth/signup')}>Get Started</button>
+              <button onClick={() => navigate('/auth/login')}>Is this a Veteran ?</button>
+              </>
+            )
+          }
         </div>
         <div className={css.getstarted}>
-          <h2>Want to display...</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat neque, sunt, aut sed placeat necessitatibus, molestiae velit odit voluptatibus dolores ratione. Magni deserunt perspiciatis vitae?
-          </p>
+          <h2>Check this out !</h2>
+          {
+            UserToken? (
+              <>
+              <p>Ready to share your latest masterpiece or spark a conversation about art? The ArtVista is your gateway to sharing your artistic journey with the world. Whether it's showcasing your latest artwork, sharing insights into your creative process, or discussing the latest trends in the art world, Our website is your universal tool to connect, inspire, and collaborate with fellow artists and enthusiasts on Artvista. Join the conversation and let your creativity shine!</p>
+              <button onClick={() => navigate('/create')}>Check Out</button>
+              </>
+            ) : (
+              <>
+              <p>Discover a world of artistic inspiration and creativity by joining our community today! Log in to unlock the 'Create Post' feature and start sharing your artistic journey with others. If you're not logged in yet, click here to explore our vibrant community and discover amazing artworks and discussions. Don't miss out on the opportunity to connect, inspire, and collaborate with fellow artists and art enthusiasts on Artvista. Let's create something incredible together!</p>
+              <button onClick={() => navigate('/explore')}>Discover Now !</button>
+              </>
+            )
+          }
         </div>
       </div>
       <Footer/>
