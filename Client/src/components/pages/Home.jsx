@@ -58,6 +58,11 @@ function Home() {
   // Conditional rendering
   const UserToken = localStorage.getItem('UserToken');
 
+  // Morebox readmore
+  const [showMore, setShowMore] = useState(false);
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  }
   return (
     <>
       <Navbar />
@@ -108,6 +113,27 @@ function Home() {
             )
           }
         </div>
+      </div>
+      <div className={css.flexbw}>
+      <div className={css.morebox}>
+      <h2>What sets our application apart</h2>
+      <div className={css.morepara}>
+        <p>Diverse Artistic Community: At Artvista, we celebrate diversity in artistic expression. Our community includes painters, sculptors, photographers, digital artists, and creators of all kinds, contributing to a rich tapestry of creativity.</p>
+        {
+          showMore ? (
+            <>
+            <p>Inspiration at Your Fingertips: Browse through a vast collection of artworks spanning various genres and styles. Whether you're looking for classical paintings, modern digital art, or experimental sculptures, Artvista is your gallery of inspiration.</p>
+            <p>Engage and Collaborate: Connect with fellow artists and art enthusiasts through discussions, critiques, and collaborations. Share your insights, learn from others, and collaborate on projects that push the boundaries of creativity.</p>
+            <p>Empowering Artists: We believe in empowering artists to showcase their work authentically. Customize your profile, share your portfolio, and gain recognition for your talents within our supportive community.</p>
+            <p>Educational Resources: Access valuable resources, tutorials, and workshops to enhance your skills and knowledge. Learn new techniques, explore emerging trends, and grow as an artist with Artvista's educational offerings.</p>
+            </>
+          ) : null
+        }
+      <a onClick={toggleShowMore} className={css.readButton}>
+        {showMore ? 'Read Less' : 'Read More'}
+      </a>
+      </div>
+    </div>
       </div>
       <Footer/>
     </>

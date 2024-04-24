@@ -71,7 +71,7 @@
 
 /* 2 boxes below logo  */
 .getstarted{
-  width: 40%;
+  width: 45%;
   height: auto;
   margin: 80px 0px 20px 0px;
   background-color: rgb(255, 255, 255);
@@ -81,9 +81,12 @@
 
 
 
-@media screen and (max-width: 608px) {
+@media screen and (max-width: 698px) {
   .flexbw {
     flex-direction: column;
+  }
+  .getstarted {
+    width: 90%;
   }
 }
 
@@ -113,4 +116,45 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.morebox{
+  width: 90%;
+  height: auto;
+  margin: 40px 0px 20px 0px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.morebox .morepara {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.morepara p{
+  text-align: left;
+  padding: 5px 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.morebox h2 {
+  text-align: left;
+  padding: 10px 25px;
+  font-size: 30px;
+  font-weight: 700;
+  color: rgb(72, 72, 72);
+}
+
+.morepara a {
+  text-decoration: none;
+  color: rgb(60, 60, 60);
+  font-weight: 600;
+  font-size: 20px;
 }
