@@ -117,9 +117,7 @@ h2 {
     background-color: rgb(255, 255, 255);
     transition: 300ms;
 } .Backbtn:hover {
-    /* background-color: red; */
     color: rgb(255, 0, 0);
     border: 2px solid black;
     transition: 500ms;
-    /* box-shadow:1px 1px 5px 5px rgb(68, 68, 68) */
 }
