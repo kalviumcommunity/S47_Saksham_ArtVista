@@ -1,0 +1,95 @@
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.welcome {
+  color: grey;
+  text-align: left;
+  margin-left: 16vw;
+  margin-top: 50px;
+}
+  
+.content {
+  text-align: center;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+/* Main logo design  */
+.artvista{
+  font-size: 10vw;
+  animation: changeBackground 3s infinite;
+  background-position: center;
+  background-size: cover;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 0px 10px;
+}
+.art{
+  font-size: 10vw;
+  color: white;
+  padding: 0px 20px;
+  animation: changeBackground 3s infinite;
+  background-position: center;
+  background-size: cover;
+}
+@keyframes changeBackground {
+  0% {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG9RP4BOps7Wo-CkqQk4SBMQBi8IKswSrqIg&');
+  }
+  16.67% {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScVEsZ4ojPssc6SZUXYU_lgSPf1VUo3Q2o5hP92N0QIQ&s');
+  }
+  33.33% {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8RB2tTnqVunvQX4Ax2zw515gNU7XUW1Fhw_p8hvD3Rw&s');
+  }
+  50% {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF9e1btUtbzdoxsK_lODeCBhcp4v__rYUr_OvFizu4yA&s');
+  }
+  66.67% {
+    background-image: url('https://media.istockphoto.com/id/1161593307/photo/alcohol-ink-painting.jpg?s=612x612&w=0&k=20&c=IXWFWHLvmsHv8dzvT1_xXAsUagxl69yaN7owDMMmls4=');
+  }
+  83.33% {
+    background-image: url('https://t4.ftcdn.net/jpg/05/96/88/71/360_F_596887164_XK8gbrIXT2pOYia7Dn3NZdw2ujsmul55.jpg');
+  }
+  100% {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG9RP4BOps7Wo-CkqQk4SBMQBi8IKswSrqIg&');
+  }
+}
+
+ /* universal flex property  */
+.flexbw{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* 2 boxes below logo  */
+.getstarted{
+  width: 40%;
+  height: 600px;
+  margin: 80px 0px 20px 0px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+
+@media screen and (max-width: 608px) {
+  .flexbw {
+    flex-direction: column;
+  }
+}
+
+.getstarted h2 {
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 40px;
+  font-weight: 800;
+}

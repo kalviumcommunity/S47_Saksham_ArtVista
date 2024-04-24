@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+// components import
 import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
-import homecss from './css/Home.module.css';
-
-//loader import
-import Loader from '../common/components/loader';
+import css from './css/Landing.module.css';
 
 // auth0 import for saving cookie
 import handleRedirectCallback from '../Authentication/components/handleCallback';
 import { useAuth0 } from '@auth0/auth0-react';
 
 function Home() {
-  const [posts, setPosts] = useState([]);
-  const [existingUsernames, setExistingUsernames] = useState([]);
   const [isLoader, setIsLoader] = useState(true);
   const navigate = useNavigate();
 
+  //--------------- gauth management ---------//
   const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0();
   React.useEffect(() => {
     if (!isLoading && isAuthenticated) {
@@ -25,62 +23,66 @@ function Home() {
     }
   }, [isLoading, isAuthenticated, user, getAccessTokenSilently, navigate]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/posts/home`);
-        setPosts(response.data);
-        setIsLoader(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setIsLoader(false);
-      }
-    };
+  // ---------- styling code below -----------//
 
-    fetchData();
-  }, []);
-  const fetchUsernames = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/getpostuser`);
-      setExistingUsernames(response.data.users); 
-    } catch (error) {
-      console.error('Error fetching usernames:', error);
+  // Scroll 1
+  const [showDivs1, setShowDivs1] = useState(false);
+  const handleScroll = () => {
+    if (window.scrollY > 80) { 
+      setShowDivs1(true);
+    } else {
+      setShowDivs1(false);
     }
   };
-  fetchUsernames();
 
-  const handleUserVisit = (email) => {
-    localStorage.setItem('visit_user', email);
-    navigate(`/other/${email}`);
-  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Auto Scroll
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const scrollY = window.scrollY;
+      if (scrollY <= 150) {
+        window.scrollTo({ top: 100, behavior: 'smooth' });
+      }
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  });
 
   return (
     <>
       <Navbar />
-      <br /><br /><br /><br /><br />
-      {isLoader ? (
-        <Loader /> 
-      ) : (
-        <div className={homecss.container}>
-          <div className={homecss.postscont}>
-            {posts.map(post => (
-              <div className={homecss.postinv} key={post._id}>
-                <div className={homecss.postimagecont}>
-                  <img src={post.image} alt="post" className={homecss.postimage} />
-                </div>
-                <div className={homecss.postdetails}>
-                  <h3>{post.title}</h3>
-                  <p>{post.description}</p>
-                  <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || post.email)}>
-                    <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
-                  </button>
-                </div>
-              </div>
-            ))}
+      <br /><br /><br /><br /><br /><br />
+      <h1 className={css.welcome} style={{ fontSize: showDivs1 ? "0vw" : "2vw" , transition: 'font-size 0.2s'}}>SG welcomes you to the...</h1>
+      <div className={css.logo}>
+        <div className={css.content}>
+          <div>
+            <div className={css.flexbw}>
+              <h1 className={css.art} style={{ fontSize: showDivs1 ? "8vw" : "13vw" , transition: 'font-size 0.2s'}}>ART</h1>
+              <h1 className={css.artvista}  style={{ fontSize: showDivs1 ? "8vw" : "13vw" , transition: 'font-size 0.2s'}}>VISTA</h1>
+            </div>
           </div>
         </div>
-      )}
-      <Footer />
+      </div>
+      <div className={`${css.detailboxes}, ${css.flexbw}`} style={{ opacity: showDivs1 ? 1 : 0 , transition: 'opacity 0.2s'}}>
+        <div className={css.getstarted}>
+          <h2>Getting Started...</h2>
+          <p>Welcome to Artvista, your vibrant online community for artists and art enthusiasts! Dive into a world where creativity knows no bounds. Whether you're an established artist or just starting your artistic journey, Artvista is your canvas to showcase, connect, and inspire. Join us today and explore a universe of artistry waiting to be discovered!</p>
+        </div>
+        <div className={css.getstarted}>
+          <h2>Want to display...</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat neque, sunt, aut sed placeat necessitatibus, molestiae velit odit voluptatibus dolores ratione. Magni deserunt perspiciatis vitae?
+          </p>
+        </div>
+      </div>
+      <Footer/>
     </>
   );
 }
