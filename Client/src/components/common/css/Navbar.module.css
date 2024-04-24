@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255);
     padding: 20px;
     position: fixed;
     width: 98%;
@@ -69,4 +69,8 @@
     border: 2px solid black;
     transition: 500ms;
     /* box-shadow:1px 1px 5px 5px rgb(68, 68, 68) */
+}
+
+.logo{
+    width: 10vw;
 }
