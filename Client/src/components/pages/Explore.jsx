@@ -28,20 +28,23 @@ function Explore() {
     };
 
     fetchData();
+    const fetchUsernames = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/getpostuser`);
+        setExistingUsernames(response.data.users); 
+      } catch (error) {
+        console.error('Error fetching usernames:', error);
+      }
+    };
+    fetchUsernames();
   }, []);
-  const fetchUsernames = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/getpostuser`);
-      setExistingUsernames(response.data.users); 
-    } catch (error) {
-      console.error('Error fetching usernames:', error);
-    }
-  };
-  fetchUsernames();
 
   const handleUserVisit = (email) => {
     navigate(`/other/${email}`);
   };
+  const handlePostVisit = (postId) => {
+    navigate(`/display/${postId}`);
+  }
 
   return (
     <>
@@ -61,7 +64,10 @@ function Explore() {
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
                   <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || post.email)}>
-                    <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
+                    <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || "username"}</h4>
+                  </button>
+                  <button>
+                    <h4 onClick={() => handlePostVisit(post._id)}>View Post</h4>
                   </button>
                 </div>
               </div>
