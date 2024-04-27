@@ -5,4 +5,4 @@
   
 #### Optional
 
-1.Like Functionality 
+1. Like Functionality 
