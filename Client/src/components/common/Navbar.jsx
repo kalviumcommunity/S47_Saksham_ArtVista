@@ -16,10 +16,8 @@ function Navbar() {
             <Link className={navcss.links} to="/explore"><p>Explore</p></Link>
             <Link className={navcss.links} to="/search"><p>Search</p></Link>
             <Link className={navcss.links} to="/create"><p>Create</p></Link>
-            {/* <Link className={navcss.links} to="/myprofile"><p>My Profile</p></Link> */}
         </div>
         <div>
-            {/* <Link className={navcss.loginsignup} to="/auth/login">Login</Link> */}
             {UserToken ? (
             <Link className={navcss.Backbtn} to="/auth/editauth">Profile</Link>
             ) : (

@@ -1,8 +1,31 @@
 .footer{
     bottom: 0;
     left: 0;
-    background-color: rgb(219, 219, 219);
+    background-color:  white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
     height: 5%;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 60px;
+    margin-top: 150px;
+}
+
+.linksdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.linksdiv a{
+    margin: 7px;
+    color: gray;
+}
+.linksdiv h3{
+    margin: 15px;
+    color: rgb(97, 97, 97);
+    margin-bottom: 20px;
 }
