@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
-import explorecss from './css/Home.module.css';
+import explorecss from './css/Explore.module.css';
 
 //loader import
 import Loader from '../common/components/loader';
@@ -28,25 +28,28 @@ function Explore() {
     };
 
     fetchData();
+    const fetchUsernames = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/getpostuser`);
+        setExistingUsernames(response.data.users); 
+      } catch (error) {
+        console.error('Error fetching usernames:', error);
+      }
+    };
+    fetchUsernames();
   }, []);
-  const fetchUsernames = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/getpostuser`);
-      setExistingUsernames(response.data.users); 
-    } catch (error) {
-      console.error('Error fetching usernames:', error);
-    }
-  };
-  fetchUsernames();
 
   const handleUserVisit = (email) => {
     navigate(`/other/${email}`);
   };
+  const handlePostVisit = (postId) => {
+    navigate(`/display/${postId}`);
+  }
 
   return (
     <>
       <Navbar />
-      <br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br />
       {isLoader ? (
         <Loader /> 
       ) : (
@@ -55,15 +58,18 @@ function Explore() {
             {posts.map(post => (
               <div className={explorecss.postinv} key={post._id}>
                 <div className={explorecss.postimagecont}>
-                  <img src={post.image} alt="post" className={explorecss.postimage} />
+                  <img  onClick={() => handlePostVisit(post._id)} src={post.image} alt="post" className={explorecss.postimage} />
                 </div>
-                <div className={explorecss.postdetails}>
+                {/* <div className={explorecss.postdetails}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
                   <button onClick={() => handleUserVisit(existingUsernames.find(user => user.email === post.email)?.username || post.email)}>
-                    <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || post.email}</h4>
+                    <h4>by: {existingUsernames.find(user => user.email === post.email)?.username || "username"}</h4>
                   </button>
-                </div>
+                  <button>
+                    <h4 onClick={() => handlePostVisit(post._id)}>View Post</h4>
+                  </button>
+                </div> */}
               </div>
             ))}
           </div>

@@ -25,7 +25,7 @@ function Home() {
 
   // ---------- styling code below -----------//
 
-  // Scroll 1
+  // Scroll Animation
   const [showDivs1, setShowDivs1] = useState(false);
   const handleScroll = () => {
     if (window.scrollY > 80) { 

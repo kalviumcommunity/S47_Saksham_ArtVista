@@ -56,7 +56,8 @@ function Editauth() {
   useEffect(() => {
     const UserToken = localStorage.getItem('UserToken');
     if (!UserToken) {
-      window.location.href = '/auth/login';
+      // window.location.href = '/auth/login';
+      navigateTo('/auth/login');
     } else {
       Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {
       }, {
@@ -82,7 +83,7 @@ function Editauth() {
         <>
         <div className={lcss.navbarr}>
           <div>
-            <button className={lcss.Backbtn} onClick={() => navigateTo('/')}>{"< Back"}</button>
+            <button className={lcss.Backbtn} onClick={() => navigateTo("/explore")}>{"< Back"}</button>
           </div>
           <div className={lcss.navbarr}> 
             <button className={lcss.Backbtn} onClick={handleImageRedirect}>Change Profile Picture</button>

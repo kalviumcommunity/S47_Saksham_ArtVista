@@ -21,7 +21,7 @@
 /* Main logo design  */
 .artvista{
   font-size: 10vw;
-  animation: changeBackground 3s infinite;
+  animation: changeBackground 6s infinite;
   background-position: center;
   background-size: cover;
   background-clip: text;
@@ -32,8 +32,9 @@
 .art{
   font-size: 10vw;
   color: white;
+  /* border-radius: 5rem 0px 5rem 0px; */
   padding: 0px 20px;
-  animation: changeBackground 3s infinite;
+  animation: changeBackground 6s infinite;
   background-position: center;
   background-size: cover;
 }

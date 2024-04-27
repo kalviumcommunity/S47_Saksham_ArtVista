@@ -14,6 +14,7 @@ import Editauth from './components/Authentication/Editauth'
 import OtherEdit from './components/pages/OtherEdit'
 import SetUser from './components/Authentication/components/SetUser'
 import SetImage from './components/Authentication/components/SetImage'
+import PostDisplay from './components/pages/components/PostDisplay'
 // import MyProfile from './components/pages/MyProfile'
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/auth/editauth' element={<Editauth />} />
 
           {/* Feature Routes */}
+          <Route path="/display/:postId" element={<PostDisplay />} />
           <Route path="/modify/:postId" element={<Modify />} />
           <Route path='/other/:username' element={<OtherEdit/>}/>
           {/* <Route path="/myprofile" element={<MyProfile />} /> */}

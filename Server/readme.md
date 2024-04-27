@@ -1,6 +1,8 @@
 ### Server Side
 
-Here i will develop the server side of the application
-The user Auth is ready with Browser cookie sessions created and jwt tokens created as well with a logout functionality.
+1. Profile Pictures to display publicly is left to be done.
+2. File upload functionality for posts is also left to be done.
+  
+#### Optional
 
-Needs to work on the post collection now.
+1. Like Functionality 
