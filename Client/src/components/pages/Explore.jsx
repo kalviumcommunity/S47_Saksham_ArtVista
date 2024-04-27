@@ -57,9 +57,7 @@ function Explore() {
           <div className={explorecss.postscont}>
             {posts.map(post => (
               <div className={explorecss.postinv} key={post._id}>
-                <div className={explorecss.postimagecont}>
-                  <img  onClick={() => handlePostVisit(post._id)} src={post.image} alt="post" className={explorecss.postimage} />
-                </div>
+                <img onClick={() => handlePostVisit(post._id)} src={post.image} alt="post" className={explorecss.postimage} />
                 {/* <div className={explorecss.postdetails}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>

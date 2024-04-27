@@ -20,8 +20,8 @@ import PostDisplay from './components/pages/components/PostDisplay'
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
+    <div className='MainAppDarkMode'>
+    <BrowserRouter>
         <Routes>
 
           {/* Navbar Routes */}
@@ -45,7 +45,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 
