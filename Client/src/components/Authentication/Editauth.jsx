@@ -83,7 +83,7 @@ function Editauth() {
         <>
         <div className={lcss.navbarr}>
           <div>
-            <button className={lcss.Backbtn} onClick={() => navigateTo(-1)}>{"< Back"}</button>
+            <button className={lcss.Backbtn} onClick={() => navigateTo("/explore")}>{"< Back"}</button>
           </div>
           <div className={lcss.navbarr}> 
             <button className={lcss.Backbtn} onClick={handleImageRedirect}>Change Profile Picture</button>
