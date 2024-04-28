@@ -78,6 +78,7 @@ function Search() {
                     </div>
                   ))
               }
+              <p style={{marginTop: '50px', color: 'gray'}}>Thats what we found</p>
             </section>
             <section className={css.filteredposts}>
               {
