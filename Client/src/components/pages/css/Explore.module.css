@@ -1,10 +1,10 @@
 .postscont{
     columns: 3;
-    column-gap: 10px;
+    column-gap: 15px;
     border-radius: 20px;
     width: 98%;  
 } .postinv:hover {
-    transform: scale(1.08);
+    transform: scale(1.02);
     transition: 500ms;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     z-index: 2;

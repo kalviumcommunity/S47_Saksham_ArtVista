@@ -108,3 +108,26 @@ exports.getProfileImage = async (req, res) => {
         res.status(500).json({ message: 'Server Error', error: error.message });
     }
 }
+
+exports.getAllImage = async (req, res) => {
+  const { username } = req.body; 
+    try {
+        const user = await User.findOne({ username });
+        if (!user || !user.profileImage) {
+            return res.status(204).json({ message: 'Profile picture not found' });
+        }
+        const imagePath = path.join(__dirname, '..', 'storage', 'profilepic', user.profileImage.filename);
+        
+        if (!fs.existsSync(imagePath)) {
+            return res.status(204).json({ message: 'Profile picture not found' });
+        }
+
+        const profileImage = fs.readFileSync(imagePath);
+        const imageMimetype = 'image/png'; 
+        res.contentType(imageMimetype);
+        res.send(profileImage);
+    } catch (error) {
+        console.error('Error fetching profile picture:', error);
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+};
