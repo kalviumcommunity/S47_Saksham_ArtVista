@@ -20,7 +20,7 @@ import PostDisplay from './components/pages/components/PostDisplay'
 
 function App() {
   return (
-    <div className='MainAppDarkMode'>
+    <div className='App'>
     <BrowserRouter>
         <Routes>
 

@@ -95,11 +95,17 @@ function Create() {
 
         <div className={`${Createcss.imgconts}`}>
           <div className={`${Createcss.imgdispdiv}`}>
-            <img
+            {
+              image?(
+                <img
               src={image}
               alt='Img could not be displayed'
               className={`${Createcss.imgdisplay}`}
             />
+              ) : (
+                <p>no image selected</p>
+              )
+            }
             <div className={`${Createcss.imgtext}`}>
               <h2>{title}</h2>
             </div>

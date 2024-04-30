@@ -104,9 +104,9 @@ const OtherEdit = () => {
                             <h3>{post.title}</h3>
                             <p>{post.description}</p>
                             <div>
-                                <div>
-                                <button onClick={() => handleEdit(post._id)}>Edit</button>
-                                <button onClick={() => handleDelete(post._id)}>Delete</button>
+                                <div className={homecss.btncont}>
+                                <button className={homecss.editbtn} onClick={() => handleEdit(post._id)}>Edit</button>
+                                <button className={homecss.deletebtn} onClick={() => handleDelete(post._id)}>Delete</button>
                                 </div>
                             </div>
                             </div>
