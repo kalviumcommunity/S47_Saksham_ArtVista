@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../common/Navbar'
 import axios from 'axios'
-import homecss from './css/Home.module.css'
+import homecss from './css/Otheredit.module.css'
 import ProfileDisplay from '../common/ProfileDisplay'
 
 //loader import 
@@ -15,6 +15,7 @@ const OtherEdit = () => {
     const [existingUsernames, setExistingUsernames] = useState([]);
     const [userEmail, setUserEmail] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     // fetching all usernames from backend
     useEffect(() => {
@@ -74,21 +75,16 @@ const OtherEdit = () => {
                     .filter((post) => post.email == userEmail)
                     .map((post,index)=>{
                         return(
-                            <div className={homecss.postinv} key={post._id}>
+                          <div onClick={() => navigate(`/display/${post._id}`)} style={{cursor: 'pointer'}} className={homecss.postinv} key={post._id}>
                             <div className={homecss.postimagecont}>
-                            <img 
-                            src={post.image} 
-                            alt="post" 
-                            className={homecss.postimage}
-                            />
+                                <img 
+                                src={post.image} 
+                                alt="post" 
+                                className={homecss.postimage}
+                                />
                             </div>
-    
                             <div className={homecss.postdetails}>
-                            <h3>{post.title}</h3>
-                            <p>{post.description}</p>
-                            <button>
-                                <h4>by:{username}</h4>  
-                            </button>
+                                <h3>{post.title}</h3>
                             </div>
                         </div>
                         )

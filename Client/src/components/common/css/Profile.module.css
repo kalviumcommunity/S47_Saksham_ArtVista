@@ -1,12 +1,22 @@
-.profile{
-    width: 600px;
-    height: 200px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 100px 20px 20px 100px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
 .flex{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+}
+
+.imgpic{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid rgb(228, 228, 228);
+}
+.flex p{
+    font-size: 30px;
+    font-weight: 600;
+    margin: 10px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 10px;
 }

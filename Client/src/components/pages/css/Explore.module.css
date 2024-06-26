@@ -1,0 +1,43 @@
+.postscont{
+    columns: 3;
+    column-gap: 15px;
+    border-radius: 20px;
+    width: 98%;  
+} .postinv:hover {
+    transform: scale(1.02);
+    transition: 500ms;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.postinv{
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0);
+    border-radius: 50%;
+} 
+.postimage{
+    width: 100%;
+    border-radius: 20px;
+    height: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+    
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+@media  screen and (max-width: 1100px) {
+    .postscont{
+        columns: 2;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .postscont{
+        columns: 1;
+    }
+}
+

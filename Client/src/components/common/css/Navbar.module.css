@@ -3,11 +3,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
     padding: 20px;
     position: fixed;
     width: 98%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
 .linksdiv{
@@ -33,25 +35,6 @@
     transition: 100ms;
 }
 
-
-/* .loginsignup {
-    background-color: rgb(2, 2, 2);
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 20px;
-    transition: 250ms;
-} .loginsignupdiv{
-    margin: 10px;
-} .loginsignupdiv :hover {
-    background-color: rgb(255, 0, 0);   
-    padding: 15px;
-    transition: 250ms;
-    margin: -11px;
-    border-radius: 30px;
-    font-size: 18px;
-} */
-
 .Backbtn {
     margin: 20px;
     padding: 10px;
@@ -60,13 +43,14 @@
     font-size: 15px;
     font-weight: bold;
     color: rgb(71, 71, 71);
-    background-color: whitesmoke;
     transition: 300ms;
     text-decoration: none;
 } .Backbtn:hover {
-    /* background-color: red; */
     color: rgb(255, 0, 0);
     border: 2px solid black;
     transition: 500ms;
-    /* box-shadow:1px 1px 5px 5px rgb(68, 68, 68) */
+}
+
+.logo{
+    width: 10vw;
 }

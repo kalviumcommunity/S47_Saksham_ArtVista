@@ -1,96 +1,15 @@
-// import React, { useEffect, useState } from 'react'
-// import Navbar from '../common/Navbar'
-// import Footer from '../common/Footer'
-// import Searchcss from './css/Search.module.css'
-// import axios from 'axios'
-
-// function Search() {
-//   const [posts, setPosts] = useState([]);
-  
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get(import.meta.env.VITE_HOMEAPI);
-//         setPosts(response.data);
-//         // console.log(response)
-//       } catch (error) {
-//         console.error('Error fetching data:', error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <>
-//       <Navbar />
-//       <br /><br /><br /><br /><br />
-//       <div className={`${Searchcss.fullflex}`}>
-//         <div  className={`${Searchcss.container}`}>
-          
-//         <div className={`${Searchcss.searchflex}`}>
-//           <div className={`${Searchcss.searchflextt}`}>
-//             <p>Search By Title</p>
-//             <input 
-//             type="text"
-//             className={`${Searchcss.searchinput}`}
-//             />
-//           </div>
-//           <div  className={`${Searchcss.searchflextt}`}>
-//             <p>Search By Author</p>
-//             <input 
-//             type="text"
-//             className={`${Searchcss.searchinput}`}
-//             />
-//           </div>
-
-//           <div  className={`${Searchcss.searchflextt}`}>
-//             <p>Search By Date</p>
-//             <input 
-//             type="date" 
-//             className={`${Searchcss.searchinput}`}
-//             />
-//           </div>
-//           <div  className={`${Searchcss.searchflextt}`}>
-//             <p>Search By Categories</p>
-//             <input 
-//             type="text"
-//             className={`${Searchcss.searchinput}`}
-//             />
-//           </div>
-//         </div>
-        
-//         <button className={`${Searchcss.searchbtn}`}>Start Searching</button>
-//         </div>        
-//       </div>
-
-//       <br /><br /><br />
-
-//       <div className={`${Searchcss.fullflex}`}>
-//         {posts.map((post) => (
-//           <div className={`${Searchcss.p}`} key={post._id}>
-//             <h2>{post.title}</h2>
-//             <img src={post.image} alt="" />
-//           </div>
-//         ))}
-//       </div>
-//       <Footer />
-//     </>
-//   )
-// }
-
-// export default Search
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
-import Searchcss from './css/Search.module.css';
+import css from './css/Search.module.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Search() {
   const [posts, setPosts] = useState([]);
   const [searchTitle, setSearchTitle] = useState('');
-  const [searchAuthor, setSearchAuthor] = useState('');
+  const [existingUsernames, setExistingUsernames] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,74 +23,83 @@ function Search() {
 
     fetchData();
   }, []);
+  useEffect(() => {
+    const fetchUsernames = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/getpostuser`);
+        setExistingUsernames(response.data.users); 
+      } catch (error) {
+        console.error('Error fetching usernames:', error);
+      }
+    };
+    fetchUsernames();
+  }, [])
 
-// Filtering posts based on search criteria
   const filteredPosts = posts.filter(post => {
     const title = post.title && typeof post.title === 'string' ? post.title.toLowerCase() : '';
-    const author = post.author && typeof post.author === 'string' ? post.author.toLowerCase() : '';
-
-    return title.includes(searchTitle.toLowerCase()) && author.includes(searchAuthor.toLowerCase());
+    return title.includes(searchTitle.toLowerCase());
   });
 
+  const filteredusers = existingUsernames.filter(user => {
+    return user.username.toLowerCase().includes(searchTitle.toLowerCase());
+  });
+  
+
+  const handleUserVisit = (username) => {
+    navigate(`/other/${username}`);
+  }
+
+  const handlePostVisit = (postId) => {
+    navigate(`/display/${postId}`);
+  }
 
   return (
     <>
-      <Navbar />
-      <br /><br /><br /><br /><br />
-      <div className={`${Searchcss.fullflex}`}>
-        <div className={`${Searchcss.container}`}>
-          
-          <div className={`${Searchcss.searchflex}`}>
-            <div className={`${Searchcss.searchflextt}`}>
-              <p>Search By Title</p>
-              <input 
-                type="text"
-                className={`${Searchcss.searchinput}`}
-                value={searchTitle}
-                onChange={e => setSearchTitle(e.target.value)}
-              />
+    <Navbar />
+    <br /><br /><br /><br /><br />
+      <div className={css.container}>
+        <div className={css.searchbar}>
+          <input
+            type='text'
+            placeholder='Search...'
+            value={searchTitle}
+            onChange={(e) => setSearchTitle(e.target.value)}
+          />
+        </div>
+        {
+          searchTitle? (
+            <div className={css.flexcont}>
+            <section className={css.usernames}>
+              <h3>Users Found</h3>
+              {
+                  filteredusers.map((user) => (
+                    <div className={css.username} key={user.username}>
+                    <p onClick={() => handleUserVisit(user.username)}>{user.username}</p>
+                    </div>
+                  ))
+              }
+              <p style={{marginTop: '50px', color: 'gray'}}>Thats what we found</p>
+            </section>
+            <section className={css.filteredposts}>
+              {
+                filteredPosts.map((post) => (
+                  <div onClick={() => handlePostVisit(post._id)} className={css.post} key={post._id}>
+                    <img src={post.image} alt="" />
+                    <div className={css.postinfo}>
+                      <p>{post.title}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </section>
             </div>
-            <div className={`${Searchcss.searchflextt}`}>
-              <p>Search By Author</p>
-              <input 
-                type="text"
-                className={`${Searchcss.searchinput}`}
-                value={searchAuthor}
-                onChange={e => setSearchAuthor(e.target.value)}
-              />
-            </div>
-            <div  className={`${Searchcss.searchflextt}`}>
-             <p>Search By Date</p>
-             <input 
-            type="date" 
-            className={`${Searchcss.searchinput}`}
-            />
-          </div>
-          <div  className={`${Searchcss.searchflextt}`}>
-            <p>Search By Categories</p>
-            <input 
-            type="text"
-            className={`${Searchcss.searchinput}`}
-            />
-          </div>
-          </div>
-          
-          <button className={`${Searchcss.searchbtn}`}>Start Searching</button>
-        </div>        
+          ) : (
+            <>
+            <p className={css.inputshow}>Please input in search box</p>
+            </>
+          )
+        }
       </div>
-
-      <br /><br /><br />
-
-      <div className={`${Searchcss.fullflex}`}>
-        {filteredPosts.map((post) => (
-          <div className={`${Searchcss.posts}`} key={post._id}>
-            <h2>{post.title}</h2>
-            <p>Author: {post.author}</p>
-            <img src={post.image} alt="" />
-          </div>
-        ))}
-      </div>
-
       <Footer />
     </>
   );
