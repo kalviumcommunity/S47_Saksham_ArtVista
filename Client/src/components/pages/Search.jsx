@@ -53,6 +53,18 @@ function Search() {
     navigate(`/display/${postId}`);
   }
 
+  const shuffle = (array) => {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  };
+
+  const reversedfilteredposts = shuffle([...filteredPosts]);
   return (
     <>
     <Navbar />
@@ -82,7 +94,7 @@ function Search() {
             </section>
             <section className={css.filteredposts}>
               {
-                filteredPosts.map((post) => (
+                reversedfilteredposts.map((post) => (
                   <div onClick={() => handlePostVisit(post._id)} className={css.post} key={post._id}>
                     <img src={post.image} alt="" />
                     <div className={css.postinfo}>

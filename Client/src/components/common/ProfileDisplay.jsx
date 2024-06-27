@@ -52,7 +52,7 @@ function ProfileDisplay() {
       <div className={pcss.profile}>
         {user ? (
           <div className={pcss.flex}>
-            <img className={pcss.imgpic} src={pics} alt="" />
+            <img className={pcss.imgpic} src={pics? pics : defaultpic} alt="" />
             <p>{user.username}</p>
           </div>
         ) : (

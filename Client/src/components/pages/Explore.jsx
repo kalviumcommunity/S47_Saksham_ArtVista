@@ -46,6 +46,19 @@ function Explore() {
     navigate(`/display/${postId}`);
   }
 
+  const shuffle = (array) => {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  };
+
+  const reversedposts = shuffle([...posts]);
+  
   return (
     <>
       <Navbar />
@@ -55,7 +68,7 @@ function Explore() {
       ) : (
         <div className={explorecss.container}>
           <div className={explorecss.postscont}>
-            {posts.map(post => (
+            {reversedposts.map(post => (
               <div className={explorecss.postinv} key={post._id} style={{cursor: 'pointer'}}>
                 <img onClick={() => handlePostVisit(post._id)} src={post.image} alt="post" className={explorecss.postimage} />
                 {/* <div className={explorecss.postdetails}>

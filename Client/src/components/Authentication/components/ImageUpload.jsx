@@ -43,7 +43,7 @@ const ImageUploadForm = () => {
 
     return (
         <>
-        <img className={lcss.profilepic} src={blobUrl} alt={"Profile "} />
+        <img className={lcss.profilepic} src={blobUrl? blobUrl : defaultpic} alt={"Profile "} />
         </>
     );
 };

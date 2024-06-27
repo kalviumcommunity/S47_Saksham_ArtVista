@@ -5,9 +5,9 @@
     justify-content: space-between;
     background-color: rgb(255, 255, 255, 0.9);
     backdrop-filter: blur(4px);
-    padding: 20px;
+    padding: 20px 0px;
     position: fixed;
-    width: 98%;
+    width: 100%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
@@ -27,13 +27,7 @@
     font-weight: 600;
     color: black;
     transition: 100ms;
-} .links :hover {
-    color: red  ;
-    margin: 0px;
-    font-size: 25px;
-    visibility: visible;
-    transition: 100ms;
-}
+} 
 
 .Backbtn {
     margin: 20px;
@@ -53,4 +47,44 @@
 
 .logo{
     width: 10vw;
+    margin: 10px;
+}
+@media screen and (min-width: 500px) {
+    .links :hover {
+        color: red  ;
+        margin: 0px;
+        font-size: 25px;
+        visibility: visible;
+        transition: 100ms;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .links{
+        font-size: 18px;
+        margin: 3px 3px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .linksdiv{
+        display: block;
+    }
+    .logo{
+        display: none;
+    }
+    .links{
+        font-size: 15px;
+        margin: 0px;
+        padding: 0px;
+    }
+    .links :hover {
+        color: red  ;
+        font-size: 15px;
+        visibility: visible;
+        transition: 100ms;
+    }
+    .navbar{
+        padding: 0px;
+    }
 }

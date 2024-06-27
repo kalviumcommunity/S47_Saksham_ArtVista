@@ -58,7 +58,7 @@ const OtherEdit = () => {
         fetchData();
       }, []);
       
-
+      const reversedposts = [...posts].reverse();
   return (
     <>
         <Navbar/>
@@ -71,7 +71,7 @@ const OtherEdit = () => {
             <ProfileDisplay/>
             <div className={homecss.postscont}>
             {
-                posts
+                reversedposts
                     .filter((post) => post.email == userEmail)
                     .map((post,index)=>{
                         return(
@@ -94,6 +94,7 @@ const OtherEdit = () => {
             </div>
           )
         }
+        <br /><br /><br />
     </>
   )
 }
