@@ -47,9 +47,13 @@ function Create() {
       console.log('Post created successfully!');
       navigate('/');
     }) .catch((error) => {
-      console.log(error.response.data);
-      setError(error.response.data.message);
-      console.log('Post creation failed!');
+      if (error.response) {
+        console.log(error.response.data);
+        setError(error.response.data.message);
+        console.log('Post creation failed!');
+      } else {
+        console.log('Error:', error);
+      }
     });
   }
 
