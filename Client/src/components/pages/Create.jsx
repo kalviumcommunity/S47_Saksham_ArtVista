@@ -11,6 +11,7 @@ function Create() {
   const [description, setDescription] = useState();
   const [error, setError] = useState();
   const [validatedmail, setValidatedmail] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const UserToken = localStorage.getItem('UserToken');
     if (!UserToken) {
@@ -31,9 +32,8 @@ function Create() {
         console.error('Error:', error);
       });
     }
-  });
+  } , [navigate]);
 
-  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
