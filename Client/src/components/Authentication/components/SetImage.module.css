@@ -1,4 +1,4 @@
-/* .Backbtn {
+.Backbtn {
     margin: 20px;
     padding: 10px;
     border: 2px solid red;
@@ -40,61 +40,6 @@
 .inputlabel {
     display: inline-block;
     padding: 10px 20px;
-    border: 2px solid #333;
-    background-color: #fff;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.inputlabel:hover {
-    background-color: #333;
-    color: #fff;
-    border-color: #333;
-} */
-
-.Backbtn {
-    margin: 20.1px;
-    padding: 10.1px;
-    border: 2px solid red;
-    border-radius: 20px;
-    font-size: 15px;
-    font-weight: bold;
-    color: rgb(71, 71, 71);
-    background-color: rgb(255, 255, 255);
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.Backbtn:hover {
-    background-color: rgb(255, 0, 0);
-    color: white;
-    border-color: black;
-}
-
-.CompareCont {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 100.1px;
-}
-
-.CompareCont img {
-    width: 300.1px;
-    height: 300.1px;
-    border-radius: 50%;
-    margin: 20.1px;
-    object-fit: contain;
-    border: 4px solid rgb(217, 217, 217);
-}
-
-.inputfile{
-    display: none;
-}
-
-.inputlabel {
-    display: inline-block;
-    padding: 10.1px 20.1px;
     border: 2px solid #ff0000;
     background-color: #fff;
     color: #333;
@@ -107,4 +52,10 @@
     background-color: #ff0000;
     color: #fff;
     border-color: #ffffff;
+}
+
+@media screen and (max-width: 800px) {
+    .CompareCont {
+        flex-direction: column-reverse;
+    }
 }

@@ -53,6 +53,7 @@ function Search() {
     navigate(`/display/${postId}`);
   }
 
+  const reversedfilteredposts = [...filteredPosts].reverse();
   return (
     <>
     <Navbar />
@@ -82,7 +83,7 @@ function Search() {
             </section>
             <section className={css.filteredposts}>
               {
-                filteredPosts.map((post) => (
+                reversedfilteredposts.map((post) => (
                   <div onClick={() => handlePostVisit(post._id)} className={css.post} key={post._id}>
                     <img src={post.image} alt="" />
                     <div className={css.postinfo}>
