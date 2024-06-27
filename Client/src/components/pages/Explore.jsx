@@ -46,6 +46,8 @@ function Explore() {
     navigate(`/display/${postId}`);
   }
 
+  const reversedposts = [...posts].reverse();
+  
   return (
     <>
       <Navbar />
@@ -55,7 +57,7 @@ function Explore() {
       ) : (
         <div className={explorecss.container}>
           <div className={explorecss.postscont}>
-            {posts.map(post => (
+            {reversedposts.map(post => (
               <div className={explorecss.postinv} key={post._id} style={{cursor: 'pointer'}}>
                 <img onClick={() => handlePostVisit(post._id)} src={post.image} alt="post" className={explorecss.postimage} />
                 {/* <div className={explorecss.postdetails}>

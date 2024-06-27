@@ -35,21 +35,20 @@ const OtherEdit = () => {
       }
     });
 
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/posts/home`);
+        setPosts(response.data);
+        setLoader(false);
+        // console.log(response.data)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoader(false);
+      }
+    };
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(`${import.meta.env.VITE_BACKEND}/posts/home`);
-            setPosts(response.data);
-            setLoader(false);
-            // console.log(response.data)
-          } catch (error) {
-            console.error('Error fetching data:', error);
-            setLoader(false);
-          }
-        };
-    
         fetchData();
-      }, []);
+    }, []);
 
     const UserToken = localStorage.getItem('UserToken');
     if (!UserToken) {
@@ -64,6 +63,8 @@ const OtherEdit = () => {
           },
         });
         setMessage(response);
+        setLoader(true);
+        fetchData();
         console.log(response);
       } catch (error) {
         setMessage(error || 'An error occurred');
@@ -76,7 +77,7 @@ const OtherEdit = () => {
         navigate(`/modify/${editPostId}`);
       }
       
-
+      const reversedposts = [...posts].reverse();
   return (
     <>
         <br /><br /><br /><br /><br /><br />
@@ -87,7 +88,7 @@ const OtherEdit = () => {
             ) : (
               <div className={homecss.postscont}>
             {
-                posts
+                reversedposts
                     .filter((post) => post.email == userId)
                     .map((post,index)=>{
                         return(

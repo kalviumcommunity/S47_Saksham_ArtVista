@@ -2,9 +2,6 @@
     columns: 3;
     column-gap: 15px;
     break-inside: avoid;
-    /* padding: 20px;
-    border-radius: 20px;
-    width: 95%;   */
 }
 
 .postinv{
@@ -24,30 +21,22 @@
     margin: 10px;
 }
 
-/* .container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-} */
 @media  screen and (max-width: 1100px) {
     .postscont{
-        /* display: grid;
-        grid-template-columns: repeat(2, 1fr); */
         padding: 20px;
+        columns: 2;
+        column-gap: 15px;
         border-radius: 20px;
-        width: 80%;  
     }
     
 }
 
 @media screen and (max-width: 768px) {
     .postscont{
-        /* display: grid;
-        grid-template-columns: repeat(1, 1fr); */
         padding: 20px;
         border-radius: 20px;
-        width: 70%;  
+        columns: 1;
+        column-gap: 15px;
     }
     
 }

@@ -2,7 +2,7 @@
     columns: 3;
     column-gap: 15px;
     border-radius: 20px;
-    width: 98%;  
+    margin: 18px;
 } .postinv:hover {
     transform: scale(1.02);
     transition: 500ms;
@@ -29,13 +29,14 @@
     align-items: center;
     justify-content: space-between;
 }
-@media  screen and (max-width: 1100px) {
+
+@media  screen and (max-width: 900px) {
     .postscont{
         columns: 2;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 450px) {
     .postscont{
         columns: 1;
     }
