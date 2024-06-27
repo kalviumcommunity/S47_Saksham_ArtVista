@@ -11,6 +11,7 @@ function Create() {
   const [description, setDescription] = useState();
   const [error, setError] = useState();
   const [validatedmail, setValidatedmail] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const UserToken = localStorage.getItem('UserToken');
     if (!UserToken) {
@@ -31,9 +32,8 @@ function Create() {
         console.error('Error:', error);
       });
     }
-  });
+  } , [navigate]);
 
-  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -47,9 +47,13 @@ function Create() {
       console.log('Post created successfully!');
       navigate('/');
     }) .catch((error) => {
-      console.log(error.response.data);
-      setError(error.response.data.message);
-      console.log('Post creation failed!');
+      if (error.response) {
+        console.log(error.response.data);
+        setError(error.response.data.message);
+        console.log('Post creation failed!');
+      } else {
+        console.log('Error:', error);
+      }
     });
   }
 

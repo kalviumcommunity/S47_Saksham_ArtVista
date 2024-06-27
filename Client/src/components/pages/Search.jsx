@@ -64,7 +64,7 @@ function Search() {
     return array;
   };
 
-  const reversedfilteredposts = shuffle([...filteredPosts]);
+  const shuffledfilteredposts = shuffle([...filteredPosts]);
   return (
     <>
     <Navbar />
@@ -94,7 +94,7 @@ function Search() {
             </section>
             <section className={css.filteredposts}>
               {
-                reversedfilteredposts.map((post) => (
+                shuffledfilteredposts.map((post) => (
                   <div onClick={() => handlePostVisit(post._id)} className={css.post} key={post._id}>
                     <img src={post.image} alt="" />
                     <div className={css.postinfo}>
