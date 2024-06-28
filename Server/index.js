@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const userRoutes = require('./routes/userroutes');
 const postRoutes = require('./routes/postroutes');
+const airoutes = require('./routes/airoutes');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
 
@@ -38,6 +39,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 app.use('/api', userRoutes);
 app.use('/api', postRoutes);
+app.use('/api', airoutes);
 
 
 // Server

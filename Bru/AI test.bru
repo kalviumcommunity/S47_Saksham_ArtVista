@@ -1,0 +1,22 @@
+meta {
+  name: AI test
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:3000/api/generate
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "prompt": "Tell me a story about a brave knight."
+  }
+  
+}
