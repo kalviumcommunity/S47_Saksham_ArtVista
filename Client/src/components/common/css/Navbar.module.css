@@ -59,7 +59,7 @@
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     .links{
         font-size: 18px;
         margin: 3px 3px;

@@ -15,6 +15,7 @@ function Navbar() {
             <Link className={navcss.links} to="/"><p>Home</p></Link>
             <Link className={navcss.links} to="/explore"><p>Explore</p></Link>
             <Link className={navcss.links} to="/search"><p>Search</p></Link>
+            <Link className={navcss.links} to="/ai/generate"><p>Generate</p></Link>
             <Link className={navcss.links} to="/create"><p>Create</p></Link>
         </div>
         <div>
