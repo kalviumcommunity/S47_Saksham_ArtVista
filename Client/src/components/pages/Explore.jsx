@@ -57,18 +57,20 @@ function Explore() {
     return array;
   };
 
-  const reversedposts = shuffle([...posts]);
+  const shuffledposts = shuffle([...posts]);
   
   return (
     <>
       <Navbar />
       <br /><br /><br /><br /><br /><br />
       {isLoader ? (
-        <Loader /> 
+        <div data-testid='loader'>
+          <Loader /> 
+        </div>
       ) : (
         <div className={explorecss.container}>
           <div className={explorecss.postscont}>
-            {reversedposts.map(post => (
+            {shuffledposts.map(post => (
               <div className={explorecss.postinv} key={post._id} style={{cursor: 'pointer'}}>
                 <img onClick={() => handlePostVisit(post._id)} src={post.image} alt="post" className={explorecss.postimage} />
                 {/* <div className={explorecss.postdetails}>

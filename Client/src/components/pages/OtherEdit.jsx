@@ -33,12 +33,14 @@ const OtherEdit = () => {
 
     // getting email assoiated t the username in my url
     useEffect(() => {
-      const user = existingUsernames.find(user => user.username === username);
-      if (user) {
-          setUserEmail(user.email);
-          // console.log(user.email);
-      } else {
-          setUserEmail('Email not found');
+      if (existingUsernames) {
+        const user = existingUsernames.find(user => user.username === username);
+        if (user) {
+            setUserEmail(user.email);
+            // console.log(user.email);
+        } else {
+            setUserEmail('');
+        }
       }
     }, [existingUsernames, username]);
 
