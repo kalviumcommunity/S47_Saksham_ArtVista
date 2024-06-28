@@ -3,7 +3,7 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
@@ -16,7 +16,7 @@
     padding: 10px;
     /* border: 1px solid #ccc; */
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
   }
   
   .chatmessage {
@@ -24,9 +24,11 @@
     margin-bottom: 10px;
     border-radius: 8px;
     font-weight: 500;
-    text-align: center;
-    /* border: 1px solid gray; */
-    background-color: rgb(255, 242, 242);
+    /* text-align: center; */
+    border: solid rgb(185, 185, 185);
+    border-radius: 0px;
+    border-width: 0px 0px 1px 0px;
+    background-color: rgb(255, 255, 255);
   }
   
   textarea {
@@ -61,14 +63,24 @@
     justify-content: center;
   }
 
-  .chatwindow h2{
-    font-size: 50px;
-    color: gray;
-    font-weight: 600;
-  }
+.title{
+    font-size: 40px;
+    font-weight: 700;
+    margin: 10px;
+    color: rgb(48, 48, 48);
+    text-align: center;
+    padding: 10px;
+    border-width: 0px 0px 3px 0px;
+    border-radius: 40%;
+    border-style: solid;
+    border-color: rgb(255, 0, 0);
+}
 
-  .chatwindow p {
+.subtitle{
     font-size: 20px;
-    color: gray;
-    font-weight: 600;
-  }
+    font-weight: 500;
+    margin: 10px;
+    color: rgb(48, 48, 48);
+    text-align: center;
+    padding: 10px;
+}
