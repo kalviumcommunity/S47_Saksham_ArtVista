@@ -1,5 +1,6 @@
 const express = require('express');
 const { generateContent } = require('../controller/aicontroller');
+const { generateDescription } = require('../controller/langcontroller');
 
 const router = express.Router();
 
@@ -12,5 +13,7 @@ router.post('/generate', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.post('/lang', generateDescription);
 
 module.exports = router;
