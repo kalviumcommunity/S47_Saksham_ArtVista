@@ -7,11 +7,14 @@ import { useNavigate } from 'react-router-dom';
 
 function Create() {
   const [image, setImage] = useState();
+  const [imgfile, setImgfile] = useState(null);
+  const [preview, setPreview] = useState('');
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [error, setError] = useState();
   const [validatedmail, setValidatedmail] = useState({});
   const navigate = useNavigate();
+
   useEffect(() => {
     const UserToken = localStorage.getItem('UserToken');
     if (!UserToken) {
@@ -34,6 +37,30 @@ function Create() {
     }
   } , [navigate]);
 
+  useEffect(() => {
+    if (imgfile) {
+      const objectUrl = URL.createObjectURL(imgfile);
+      setPreview(objectUrl);
+      return () => URL.revokeObjectURL(objectUrl);
+    }
+  }, [imgfile]);
+  
+  const handleGenerateDescription = async () => {
+    console.log(title, description);
+    try {
+      const response = await Axios.post(
+        `${import.meta.env.VITE_BACKEND}/lang`,
+        { 
+          title: title,
+          description: description
+         }
+      );
+      setDescription(response.data.content);
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to generate description');
+    }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -57,13 +84,20 @@ function Create() {
     });
   }
 
+  const handleRemoveFile = () => {
+    setPreview('');
+    setImage('');
+    setImgfile(null);
+  };
+  
+
   return (
     <>
       <Navbar />
       <br /><br /><br /><br /><br />
       <div className={`${Createcss.container}`}>
         <div className={`${Createcss.formconts}`}>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className={`${Createcss.textareatitle}`}>
               <p htmlFor="title">Title: </p>
               <input
@@ -80,7 +114,27 @@ function Create() {
                 name='image'
                 placeholder='******'
                 onChange={(e) => setImage(e.target.value)}
+                value={image}
+                disabled={!!imgfile}
               />
+              <input
+                type='file'
+                name='imgfile'
+                accept='image/*'
+                placeholder='******'
+                onChange={(e) => {
+                  console.log('Selected file:', e.target.files[0]);
+                  setImgfile(e.target.files[0]);
+                }}
+                disabled={!!image}
+              />
+              {
+                imgfile || preview || image ? (
+                  <button type='button' onClick={handleRemoveFile}>Remove</button>
+                ) : (
+                  <></>
+                )
+              }
             </div>
 
             <div className={`${Createcss.textareadesc}`}>
@@ -90,26 +144,42 @@ function Create() {
                 onChange={(e) => setDescription(e.target.value)}
                 className={`${Createcss.textareadesc}`}
                 wrap="soft" 
+                value={description}
               />
             </div>
-            <button type='submit'>Submit</button>
+            <button type='submit' onClick={handleSubmit}>Submit</button>
+            {
+              title && description?(
+                <button type='button' onClick={handleGenerateDescription} >Improve</button>
+              ):(
+                // <button disabled>Generate Description</button>
+                <></>
+              )
+            }
             <p className={`${Createcss.terms}`}>{error || "By clicking on Submit, you agree to our terms and conditions" }</p>
           </form>
         </div>
 
         <div className={`${Createcss.imgconts}`}>
           <div className={`${Createcss.imgdispdiv}`}>
-            {
-              image?(
-                <img
-              src={image}
-              alt='Img could not be displayed'
-              className={`${Createcss.imgdisplay}`}
-            />
-              ) : (
-                <p>no image selected</p>
-              )
-            }
+          {
+            imgfile ? (
+              <img
+                src={preview}
+                alt='Img could not be displayed'
+                className={`${Createcss.imgdisplay}`}
+             />
+          ) : (
+            image ? (
+              <img
+                src={image}
+                alt='Img could not be displayed'
+                className={`${Createcss.imgdisplay}`}
+              />
+            ) : (
+              <p>no image selected</p>
+            )
+          )}
             <div className={`${Createcss.imgtext}`}>
               <h2>{title}</h2>
             </div>
