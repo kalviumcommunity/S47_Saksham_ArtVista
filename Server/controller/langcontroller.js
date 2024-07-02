@@ -4,12 +4,16 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const modelName = "gemini-pro-vision";
+const modelName = "gemini-1.5-flash";
 
 const generateDescription = async (req, res) => {
-  const { image } = req.body;
-  if (!image) {
-    return res.status(400).send("Missing text or image URL");
+  const { title, description } = req.body;
+  if (!title) {
+    return res.status(400).send("Missing title");
+  }
+
+  if (!description) {
+    return res.status(400).send("Missing description");
   }
 
   const apiKey = process.env.API_KEY;
@@ -23,29 +27,20 @@ const generateDescription = async (req, res) => {
     apiKey,
   });
 
+  const prompt = `Improve the description in 200 words, dont use bold italic or line breaks keep is simple para. Title: ${title}. Description: ${description}`;
+
   const input = [
-    new HumanMessage({ 
-      content: [
-        {
-          type: "text",
-          text: "Describe the image in 300 words",
-        },
-        {
-          type: "image_url",
-          image_url: image,
-        },
-      ],
-    }),
+    new HumanMessage({ content: prompt })
   ];
 
   try {
     const response = await vision.invoke(input);
-    
-    console.log(response);
-    
-    res.json({ response });
+    const content = response.content;
+    // Assuming response has a text property
+    res.json({ content });
+    // console.log("Description generated successfully:", response);
   } catch (error) {
-    console.error(error);
+    console.error("Error generating description:", error);
     res.status(500).send("Error generating description");
   }
 };

@@ -46,12 +46,16 @@ function Create() {
   }, [imgfile]);
   
   const handleGenerateDescription = async () => {
+    console.log(title, description);
     try {
       const response = await Axios.post(
         `${import.meta.env.VITE_BACKEND}/lang`,
-        { imgfile }
+        { 
+          title: title,
+          description: description
+         }
       );
-      setDescription(response.data.description);
+      setDescription(response.data.content);
     } catch (error) {
       console.error('Error:', error);
       setError('Failed to generate description');
@@ -140,12 +144,13 @@ function Create() {
                 onChange={(e) => setDescription(e.target.value)}
                 className={`${Createcss.textareadesc}`}
                 wrap="soft" 
+                value={description}
               />
             </div>
             <button type='submit' onClick={handleSubmit}>Submit</button>
             {
-              imgfile?(
-                <button type='button' onClick={handleGenerateDescription} >Generate Description</button>
+              title?(
+                <button type='button' onClick={handleGenerateDescription} >Improve</button>
               ):(
                 // <button disabled>Generate Description</button>
                 <></>
