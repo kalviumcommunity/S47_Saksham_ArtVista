@@ -149,7 +149,7 @@ function Create() {
             </div>
             <button type='submit' onClick={handleSubmit}>Submit</button>
             {
-              title?(
+              title && description?(
                 <button type='button' onClick={handleGenerateDescription} >Improve</button>
               ):(
                 // <button disabled>Generate Description</button>
