@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const postSchema = Joi.object({
-    email: Joi.string(),
+    email: Joi.string().required(),
     title: Joi.string().required(),
     description: Joi.string(),
     image: Joi.string().required()

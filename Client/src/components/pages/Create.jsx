@@ -62,18 +62,48 @@ function Create() {
     }
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    Axios.post(`${import.meta.env.VITE_BACKEND}/posts`, {
-      email: validatedmail.email,
-      image, 
-      title, 
-      description
-    }) .then((response) => {
-      console.log(response);
+  
+    try {
+      if (!image && !imgfile) {
+        setError('Please upload an image.');
+        return; 
+      }
+  
+      let imageUrl = image;
+  
+      if (imgfile) {
+        const data = new FormData();
+        data.append('file', imgfile);
+        data.append('upload_preset', 'artvista');
+        data.append('cloud_name', 'dz4ycvkkw');
+        
+        const cloudinaryResponse = await Axios.post('https://api.cloudinary.com/v1_1/dz4ycvkkw/image/upload', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        });
+  
+        imageUrl = cloudinaryResponse.data.url;
+        setImage(imageUrl);
+      }
+  
+      const backendResponse = await Axios.post(`${import.meta.env.VITE_BACKEND}/posts`, {
+        email: validatedmail.email,
+        title: title,
+        description: description,
+        image: imageUrl
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+  
+      console.log(backendResponse);
       console.log('Post created successfully!');
       navigate('/');
-    }) .catch((error) => {
+    } catch (error) {
       if (error.response) {
         console.log(error.response.data);
         setError(error.response.data.message);
@@ -81,9 +111,9 @@ function Create() {
       } else {
         console.log('Error:', error);
       }
-    });
+    }
   }
-
+  
   const handleRemoveFile = () => {
     setPreview('');
     setImage('');
