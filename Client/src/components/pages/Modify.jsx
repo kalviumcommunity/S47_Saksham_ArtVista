@@ -3,6 +3,7 @@ import Createcss from './css/Create.module.css'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // import loader
 import Loader from '../common/components/loader';
@@ -44,7 +45,7 @@ function Modify() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const UserToken = localStorage.getItem('UserToken');
+      const UserToken = Cookies.get('auth');
       if (!UserToken) {
         console.error('Token not found');
         return;

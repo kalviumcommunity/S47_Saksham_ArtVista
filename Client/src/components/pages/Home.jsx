@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // components import
 import Navbar from '../common/Navbar';
@@ -56,7 +57,7 @@ function Home() {
   });
 
   // Conditional rendering
-  const UserToken = localStorage.getItem('UserToken');
+  const UserToken = Cookies.get('auth');
 
   // Morebox readmore
   const [showMore, setShowMore] = useState(false);

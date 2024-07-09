@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import scss from './SetUser.module.css';
+import Cookies from 'js-cookie';
 
 function SetUser() {
   const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ function SetUser() {
   const [UserName, setUserName] = useState('');
 
   useEffect(() => {
-    const UserToken = localStorage.getItem('UserToken');
+    const UserToken = Cookies.get('auth');
     if (!UserToken) {
       window.location.href = '/auth/login';
     } else {
@@ -65,12 +66,12 @@ function SetUser() {
 
   const handleSubmit = async () => {
     try {
-      localStorage.setItem('Username', username);
+      Cookies.set('av-username', username);
       navigateTo('/auth/editauth');
       const response = await Axios.post(`${import.meta.env.VITE_BACKEND}/setuser`, { username, email: email });
       setMessage(response.data.message);
       const token = response.data.token;
-      localStorage.setItem('UserToken', token);
+      Cookies.set('auth', token);
       setError('');
     } catch (error) {
       console.error('Error setting username:', error);

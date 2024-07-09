@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import homecss from './css/Home.module.css'
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 //loader 
 import Loader from '../common/components/loader'
@@ -14,7 +15,7 @@ const OtherEdit = () => {
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
-      const UserToken = localStorage.getItem('UserToken');
+      const UserToken = Cookies.get('auth');
       if (!UserToken) {
         window.location.href = '/auth/login';
       } else {
@@ -50,7 +51,7 @@ const OtherEdit = () => {
         fetchData();
     }, []);
 
-    const UserToken = localStorage.getItem('UserToken');
+    const UserToken = Cookies.get('auth');
     if (!UserToken) {
       console.error('Token not found');
       return;

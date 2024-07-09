@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import navcss from './css/Navbar.module.css'
-
+import Cookies from 'js-cookie'
 import logo from './images/logo2.png'
 
 function Navbar() {
-  const UserToken = localStorage.getItem('UserToken');
+  const UserToken = Cookies.get('auth');
 
   return (
     <>

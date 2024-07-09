@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import Axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 //files import
 import lscss from './loginsignup.module.css'
@@ -39,12 +39,7 @@ function Login() {
         console.log(response);
         console.log('Login success');
         const { token } = response.data; 
-        const decodedToken = jwtDecode(token);
-        const email = decodedToken.email;
-        localStorage.setItem('loggedInUser', JSON.stringify({ token, username, email}));
-        localStorage.setItem('UserToken', token);
-        localStorage.setItem('UserEmail', email);
-        localStorage.setItem('Username', username);
+        Cookies.set('auth', token);        
         navigateTo('/');
       })
       .catch((error) => {

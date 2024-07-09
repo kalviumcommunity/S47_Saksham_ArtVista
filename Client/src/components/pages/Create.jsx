@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import Navbar from '../common/Navbar';
 // import Footer from '../common/Footer';
 import Createcss from './css/Create.module.css';
@@ -16,7 +17,7 @@ function Create() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const UserToken = localStorage.getItem('UserToken');
+    const UserToken = Cookies.get('auth');
     if (!UserToken) {
       navigate('/auth/login');
     } else {
@@ -103,6 +104,7 @@ function Create() {
       console.log(backendResponse);
       console.log('Post created successfully!');
       navigate('/');
+      sessionStorage.clear();
     } catch (error) {
       if (error.response) {
         console.log(error.response.data);
@@ -119,7 +121,33 @@ function Create() {
     setImage('');
     setImgfile(null);
   };
-  
+
+  useEffect(() => {
+    const storedTitle = sessionStorage.getItem('title');
+    const storedDescription = sessionStorage.getItem('description');
+    const storedImage = sessionStorage.getItem('image');
+    if (storedTitle) {
+      setTitle(storedTitle);
+    } else {
+      setTitle('');
+    }
+    if (storedDescription) {
+      setDescription(storedDescription);
+    } else {
+      setDescription('');
+    }
+    if (storedImage) {
+      setImage(storedImage);
+    } else {
+      setImage('');
+    }
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem('title', title);
+    sessionStorage.setItem('description', description);
+    sessionStorage.setItem('image', image);
+  }, [title, description, image]);
 
   return (
     <>
@@ -134,6 +162,7 @@ function Create() {
                 type='text'
                 placeholder='title'
                 onChange={(e) => setTitle(e.target.value)}
+                value={title}
               />
             </div>
 

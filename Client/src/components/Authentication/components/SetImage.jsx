@@ -3,10 +3,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import scss from './SetImage.module.css';
 import defaultpic from '../imgs/defaultpic.jpg';
+import Cookies from 'js-cookie';
 
 const SetImage = () => {
     const [pic, setPic] = useState();
-    const UserToken = localStorage.getItem('UserToken');
+    const UserToken = Cookies.get('auth');
     const navigate = useNavigate();
     const [previewUrl, setPreviewUrl] = useState();
     const [blobUrl, setBlobUrl] = useState();
@@ -43,7 +44,7 @@ const SetImage = () => {
 
 
     useEffect(() => {
-      const UserToken = localStorage.getItem('UserToken');
+      const UserToken = Cookies.get('auth');
       axios.get(`${import.meta.env.VITE_BACKEND}/getimg`, {
         headers: {
           'Content-Type': 'application/json',

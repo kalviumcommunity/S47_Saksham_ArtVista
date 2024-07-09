@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
+import Cookies from 'js-cookie'
 import lcss from './css/EditAuth.module.css'
 
 // posts import
@@ -19,15 +20,11 @@ function Editauth() {
   const { user, isAuthenticated, isLoading, logout } = useAuth0();
 
   function handleGGLogout() {
-    localStorage.removeItem('Username');
-    localStorage.removeItem('loggedInUser'); 
     localStorage.removeItem('UserToken');
-    localStorage.removeItem('UserEmail');
-    localStorage.removeItem('accessToken');
+    Cookies.remove('auth');
     logout({ post_logout_redirect_uri: window.location.origin });
   }
 
-  const accessToken = localStorage.getItem('accessToken');
 
   const handleUsernameRedirect = () => {
     navigateTo('/auth/config/setuser')
@@ -40,10 +37,7 @@ function Editauth() {
   const handleLogout = () => {
     Axios.post(`${import.meta.env.VITE_USERLOGOUT}`, {
     }).then((response) => {
-      localStorage.removeItem('UserToken');
-      localStorage.removeItem('UserEmail');
-      localStorage.removeItem('loggedInUser');
-      localStorage.removeItem('Username');
+      Cookies.remove('auth');
       console.log(response);
       navigateTo('/auth/login');
     }).catch((error) => {
@@ -54,9 +48,8 @@ function Editauth() {
   }
   const [validated, setValidated] = useState({});
   useEffect(() => {
-    const UserToken = localStorage.getItem('UserToken');
+    const UserToken = Cookies.get('auth');
     if (!UserToken) {
-      // window.location.href = '/auth/login';
       navigateTo('/auth/login');
     } else {
       Axios.post(`${import.meta.env.VITE_BACKEND}/verifyuser`, {

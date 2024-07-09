@@ -3,10 +3,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import lcss from '../css/EditAuth.module.css';
 import defaultpic from '../imgs/defaultpic.jpg';
+import Cookies from 'js-cookie';
 
 const ImageUploadForm = () => {
     const [pic, setPic] = useState();
-    const UserToken = localStorage.getItem('UserToken');
+    const UserToken = Cookies.get('auth');
     const navigate = useNavigate();
     const [blobUrl, setBlobUrl] = useState();
 
@@ -15,7 +16,7 @@ const ImageUploadForm = () => {
     }
 
     useEffect(() => {
-      const UserToken = localStorage.getItem('UserToken');
+      const UserToken = Cookies.get('auth');
       axios.get(`${import.meta.env.VITE_BACKEND}/getimg`, {
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +27,6 @@ const ImageUploadForm = () => {
       .then(response => {
         const blobUrl = URL.createObjectURL(response.data); 
         setBlobUrl(blobUrl);
-        // console.log('Success:', response.data);
       })
       .catch(error => {
         console.error('Error:', error);

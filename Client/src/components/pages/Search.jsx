@@ -107,6 +107,7 @@ function Search() {
             </div>
           ) : (
             <>
+            <br /><br /><br />
             <p className={css.inputshow}>Please input in search box</p>
             </>
           )
