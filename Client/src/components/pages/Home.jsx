@@ -8,21 +8,9 @@ import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
 import css from './css/Landing.module.css';
 
-// auth0 import for saving cookie
-import handleRedirectCallback from '../Authentication/components/handleCallback';
-import { useAuth0 } from '@auth0/auth0-react';
-
 function Home() {
   const [isLoader, setIsLoader] = useState(true);
   const navigate = useNavigate();
-
-  //--------------- gauth management ---------//
-  const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0();
-  React.useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      handleRedirectCallback(user, getAccessTokenSilently, navigate);
-    }
-  }, [isLoading, isAuthenticated, user, getAccessTokenSilently, navigate]);
 
   // ---------- styling code below -----------//
 
