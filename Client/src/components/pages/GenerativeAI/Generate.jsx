@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../common/Navbar';
 import css from './Generate.module.css';
 import ReactMarkdown from 'react-markdown';
+import Cookies from 'js-cookie';
 
 function Generate() {
   const [prompt, setPrompt] = useState('');
@@ -11,20 +12,24 @@ function Generate() {
   const navigate = useNavigate();
 
   const handleGenerateContent = async () => {
-    if (prompt.trim() === '') return;
+    const UserToken = Cookies.get('auth');
+    if (!UserToken) {
+      setMessages([...messages, { sender: 'ai', text: "Please login to generate content" }]);
+    } else {
+        if (prompt.trim() === '') return;
 
-    setMessages([...messages, { sender: 'user', text: prompt }]);
-
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/generate`, { prompt });
-      const aiResponse = response.data.content;
-
-      setMessages([...messages, { sender: 'user', text: prompt }, { sender: 'ai', text: aiResponse }]);
-    } catch (error) {
-      console.error('Error generating content:', error);
+        setMessages([...messages, { sender: 'user', text: prompt }]);
+    
+        try {
+          const response = await axios.post(`${import.meta.env.VITE_BACKEND}/generate`, { prompt });
+          const aiResponse = response.data.content;
+    
+          setMessages([...messages, { sender: 'user', text: prompt }, { sender: 'ai', text: aiResponse }]);
+        } catch (error) {
+          console.error('Error generating content:', error);
+        }
+        setPrompt('');
     }
-
-    setPrompt('');
   };
 
   return (
@@ -53,11 +58,12 @@ function Generate() {
       </div>
       <div className={css.textinput}>
         <textarea
+          className={css.textinputfield}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Enter your prompt here..."
         />
-        <button onClick={handleGenerateContent}>Send</button>
+        <button className={css.sendbutton} onClick={handleGenerateContent}>Send</button>
       </div>
     </div>
     </>

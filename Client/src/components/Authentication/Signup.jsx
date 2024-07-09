@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import lscss from './loginsignup.module.css'
 import {useNavigate} from 'react-router-dom'
-import Gauth from './components/gauth'
 
 
 function LoginSignup() {
@@ -74,7 +73,7 @@ function LoginSignup() {
             <button className={`${lscss.submitbtn}`} type='submit'>Sign up</button>
             <Link to="/auth/login"><button className={`${lscss.sidebtn}`}>Already a user ?</button></Link>
             </div>
-            <Gauth />
+            {/* <Gauth /> */}
         </form>
     </div>
     </div>

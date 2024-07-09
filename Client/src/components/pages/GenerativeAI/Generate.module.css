@@ -31,7 +31,7 @@
     background-color: rgb(255, 255, 255);
   }
   
-  textarea {
+  .textinputfield {
     width: 100%;
     padding: 8px;
     margin: 10px;
@@ -39,7 +39,7 @@
     border-radius: 8px;
   }
   
-  button {
+  .sendbutton {
     padding: 10px;
     color: red;
     font-weight: 500;
@@ -50,7 +50,7 @@
     border: 2px solid black;
   }
   
-  button:hover {
+  .sendbutton:hover {
     border-color: red;
     transition: 200ms;
     color: #000000;

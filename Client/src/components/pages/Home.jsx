@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // components import
 import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
 import css from './css/Landing.module.css';
 
-// auth0 import for saving cookie
-import handleRedirectCallback from '../Authentication/components/handleCallback';
-import { useAuth0 } from '@auth0/auth0-react';
-
 function Home() {
   const [isLoader, setIsLoader] = useState(true);
   const navigate = useNavigate();
-
-  //--------------- gauth management ---------//
-  const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0();
-  React.useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      handleRedirectCallback(user, getAccessTokenSilently, navigate);
-    }
-  }, [isLoading, isAuthenticated, user, getAccessTokenSilently, navigate]);
 
   // ---------- styling code below -----------//
 
@@ -56,7 +45,7 @@ function Home() {
   });
 
   // Conditional rendering
-  const UserToken = localStorage.getItem('UserToken');
+  const UserToken = Cookies.get('auth');
 
   // Morebox readmore
   const [showMore, setShowMore] = useState(false);
@@ -78,7 +67,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className={`${css.detailboxes}, ${css.flexbw}`} style={{ opacity: showDivs1 ? 1 : 0 , transition: 'opacity 0.2s'}}>
+      <div className={`${css.detailboxes}, ${css.flexbw}`} style={{ marginTop: showDivs1 ? '0px' : '150px' , transition: 'margin-top 0.2s'}}>
         <div className={css.getstarted}>
           <h2>Getting Started...</h2>
           <p>Welcome to Artvista, your colorful online hub for artists and art aficionados! Immerse yourself in a realm where creativity thrives without limits. Whether you're a seasoned artist or embarking on your creative voyage, Artvista is your platform to exhibit, connect, and ignite inspiration. Come join us today and uncover a cosmos of artistic wonders waiting to be explored!</p>
