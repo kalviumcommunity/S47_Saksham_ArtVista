@@ -5,7 +5,10 @@ import Cookies from 'js-cookie';
 
 //files import
 import lscss from './loginsignup.module.css'
-import Gauth from './components/gauth';
+
+//new auth google
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
 
@@ -58,6 +61,44 @@ function Login() {
     setPassword(e.target.value)
   }
 
+  function googleloginhandler(credentialResponse) {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
+      const email = decoded.email;
+      return Axios.post(`${import.meta.env.VITE_BACKEND}/checkuser`, { email })
+        .then((response) => {
+          console.log('Backend response:', response);
+  
+          if (response.status === 200) {
+            console.log('Details matched');
+            const token = response.data.token;
+  
+            Cookies.set('auth', token);
+            navigateTo('/');
+            return; 
+          } else if (response.status === 214 || response.status === 215) {
+            Cookies.set('auth', response.data.token);
+            console.log('Redirection should happen');
+            navigateTo('/auth/config/setuser'); 
+            return; 
+          } else {
+
+            console.error('Unexpected backend response:', response.status, response.data);
+            throw new Error('An error occurred during login. Please try again.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error during login:', error.message);
+          alert('Login failed due to an error. Please try again.');
+        });
+    } catch (error) {
+      console.error('Error during Google login:', error.message);
+      alert('Login failed due to an error. Please try again.');
+    }
+  }
+  
+  
+
   return (
     <>
     <div className={`${lscss.fullpage}`}>
@@ -102,7 +143,16 @@ function Login() {
             <Link to="/auth/signup"><button className={`${lscss.sidebtn}`}>Not Registered yet ?</button></Link>
             </div>
             <div>
-              <Gauth />
+              <GoogleLogin
+                onSuccess={credentialResponse => {
+                  googleloginhandler(credentialResponse);
+                  Cookies.set('av-authtype', 'true');
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+                useOneTap
+              />;
             </div>
         </form>
     </div>

@@ -1,0 +1,17 @@
+meta {
+  name: Test google login
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3000/api/checkuser
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email":"sparkysaksham.dev@gmail.com"
+  }
+}

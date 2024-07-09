@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useAuth0 } from "@auth0/auth0-react";
 import Cookies from 'js-cookie'
 import lcss from './css/EditAuth.module.css'
+import { googleLogout } from '@react-oauth/google'
 
 // posts import
 import UserPosts from '../pages/UserPosts'
@@ -17,14 +17,15 @@ import Loader from '../common/components/loader'
 function Editauth() {
 
   const navigateTo = useNavigate();
-  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+  const [isLoading, setIsLoading] = useState(false);
+  const isAuthenticated = Cookies.get('av-authtype');
 
   function handleGGLogout() {
-    localStorage.removeItem('UserToken');
     Cookies.remove('auth');
-    logout({ post_logout_redirect_uri: window.location.origin });
+    Cookies.remove('av-authtype');
+    googleLogout();
+    navigateTo('/auth/login');
   }
-
 
   const handleUsernameRedirect = () => {
     navigateTo('/auth/config/setuser')

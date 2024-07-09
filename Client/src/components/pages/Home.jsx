@@ -79,7 +79,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className={`${css.detailboxes}, ${css.flexbw}`} style={{ opacity: showDivs1 ? 1 : 0 , transition: 'opacity 0.2s'}}>
+      <div className={`${css.detailboxes}, ${css.flexbw}`} style={{ marginTop: showDivs1 ? '0px' : '150px' , transition: 'margin-top 0.2s'}}>
         <div className={css.getstarted}>
           <h2>Getting Started...</h2>
           <p>Welcome to Artvista, your colorful online hub for artists and art aficionados! Immerse yourself in a realm where creativity thrives without limits. Whether you're a seasoned artist or embarking on your creative voyage, Artvista is your platform to exhibit, connect, and ignite inspiration. Come join us today and uncover a cosmos of artistic wonders waiting to be explored!</p>
