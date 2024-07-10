@@ -16,7 +16,7 @@ function Footer() {
               <a href="https://www.linkedin.com/in/saksham-gupta-87a1a427b/">Linkedin</a>
           </div>
         </div>
-        <p>Copyright &copy; 2023</p>
+        <p>Capstone Project 1</p>
       </div>
       <div className={css.linksdiv}>
         <h3>Explore Our Website</h3>
