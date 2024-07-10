@@ -43,7 +43,7 @@
     border-radius: 10px;
     transform: scale(1.2);
 } .submitbtn :hover{
-    background-color: red;
+    background-color: gray;
 }
 
 .sidebtn{
@@ -61,7 +61,7 @@
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
-    border: 2px solid rgb(108, 108, 108);
+    border: 2px solid rgb(178, 178, 178);
     width: 200px
 }
 

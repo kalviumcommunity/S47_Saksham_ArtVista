@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-
+import Footer from '../common/Footer';
 //files import
 import lscss from './loginsignup.module.css'
 
@@ -158,6 +158,7 @@ function Login() {
     </div>
     </div>
     </div>
+    <Footer/>
     </>
   )
 }
