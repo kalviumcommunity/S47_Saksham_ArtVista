@@ -167,7 +167,7 @@ function Create() {
                 value={image}
                 disabled={!!imgfile}
               />
-              <input
+              {/* <input
                 type='file'
                 name='imgfile'
                 accept='image/*'
@@ -180,11 +180,42 @@ function Create() {
               />
               {
                 imgfile || preview || image ? (
-                  <button type='button' onClick={handleRemoveFile}>Remove</button>
+                  <button type='button' className={Createcss.Backbtn} onClick={handleRemoveFile}>Remove</button>
                 ) : (
                   <></>
                 )
-              }
+              } */}
+              <div>
+                <input
+                  type="file"
+                  id="imgfile"
+                  name="imgfile"
+                  accept="image/*"
+                  onChange={(e) => {
+                    console.log('Selected file:', e.target.files[0]);
+                    setImgfile(e.target.files[0]);
+                  }}
+                  disabled={!!image}
+                  style={{ position: 'absolute', left: '-9999px' }}
+                  aria-hidden="true" 
+                />
+                <button
+                  type="button"
+                  disabled={!!image}
+                  onClick={() => document.getElementById('imgfile').click()}
+                  className={Createcss.Backbtn}
+                  style={{ opacity: !!image ? 0.5 : 1, cursor: !!image ? 'not-allowed' : 'pointer' }}
+                >
+                  Upload Image
+                </button>
+                {
+                  imgfile || preview || image ? (
+                    <button type='button' className={Createcss.Backbtn} onClick={handleRemoveFile}>Remove</button>
+                  ) : (
+                    <></>
+                  )
+                }
+              </div>
             </div>
 
             <div className={`${Createcss.textareadesc}`}>
@@ -197,10 +228,10 @@ function Create() {
                 value={description}
               />
             </div>
-            <button type='submit' onClick={handleSubmit}>Submit</button>
+            <button className={Createcss.btnsubmit} type='submit' onClick={handleSubmit}>Submit</button>
             {
               title && description ? (
-                <button type='button' onClick={handleGenerateDescription} >Improve</button>
+                <button className={Createcss.Backbtn} type='button' onClick={handleGenerateDescription} >Improve</button>
               ) : (
                 <></>
               )

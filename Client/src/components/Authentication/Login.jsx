@@ -112,7 +112,7 @@ function Login() {
         <p>Not already registered ? <Link to="/auth/signup">Signup</Link></p>
       </div>
     <div className={`${lscss.signup}`}>
-        <h2>Login</h2>
+        <h2>LOGIN</h2>
         <form className={`${lscss.form}`} action="">
             <div className={`${lscss.formdiv}`}>
               <label className={`${lscss.labeltxt}`} htmlFor="username">Username:</label>
