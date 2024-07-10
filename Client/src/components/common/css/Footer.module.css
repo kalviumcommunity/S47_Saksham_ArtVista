@@ -1,6 +1,5 @@
 .footer{
     bottom: 0;
-    left: 0;
     background-color:  white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
@@ -9,23 +8,50 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
     margin-top: 150px;
 }
 
 .linksdiv{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-around;
 }
 
 .linksdiv a{
     margin: 7px;
-    color: gray;
+    color: rgb(68, 68, 68);
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+} .linksdiv a:hover{
+    color: red;
 }
 .linksdiv h3{
-    margin: 15px;
-    color: rgb(97, 97, 97);
+    margin: 10px;
+    padding: 8px;
+    color: rgb(37, 37, 37);
     margin-bottom: 20px;
+    border: 0px solid red;
+    border-width: 0px 0px 4px 0px;
+    font-size: 22px;
+}
+
+.linksdiv p{
+    margin: 10px;
+    color: rgb(68, 68, 68);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.linkss{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.linkss img{
+    width: 30px;
 }
