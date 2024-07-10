@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import lscss from './loginsignup.module.css'
 import {useNavigate} from 'react-router-dom'
-
+import Footer from '../common/Footer';
 
 function LoginSignup() {
 
@@ -39,7 +39,7 @@ function LoginSignup() {
         <p>Already have an account? <Link to="/auth/login">Login</Link></p>
       </div>
     <div className={`${lscss.signup}`}>
-        <h2>SignUp</h2>
+        <h2>SIGNUP</h2>
         <form className={`${lscss.form}`} onSubmit={handleSubmit}>
             <div className={`${lscss.formdiv}`}>
               <label className={`${lscss.labeltxt}`} htmlFor="username">Username:</label>
@@ -73,11 +73,12 @@ function LoginSignup() {
             <button className={`${lscss.submitbtn}`} type='submit'>Sign up</button>
             <Link to="/auth/login"><button className={`${lscss.sidebtn}`}>Already a user ?</button></Link>
             </div>
-            {/* <Gauth /> */}
+            <p>Please read our <Link to="/auth/Signup">Privacy Policy</Link></p>
         </form>
     </div>
     </div>
     </div>
+    <Footer/>
     </>
   )
 }

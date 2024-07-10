@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom'
 function Footer() {
   return (
     <div className={css.footer}>
-      <div>
-        {/* <img src={github} alt="img" /> */}
-        <p>Created By</p>
-        <p>Saksham Gupta</p>
-        <a href="https://github.com/sckchcm-g">My Github link</a>
+      <div className={css.linksdiv}>
+        <p>Created By : Saksham Gupta</p>
+        <div className={css.linkss}>
+          <div onClick={() => window.open('https://github.com/sckchcm-g', '_blank')} className={css.linkss}>
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" />
+            <a href="https://github.com/sckchcm-g">Github</a>
+          </div>
+          <div onClick={() => window.open('https://www.linkedin.com/in/saksham-gupta-87a1a427b/', '_blank')} className={css.linkss}>
+              <img src="http://res.cloudinary.com/dz4ycvkkw/image/upload/v1720600547/f37glu3asilxr8nwpipv.png" alt="" />
+              <a href="https://www.linkedin.com/in/saksham-gupta-87a1a427b/">Linkedin</a>
+          </div>
+        </div>
+        <p>Copyright &copy; 2023</p>
       </div>
       <div className={css.linksdiv}>
         <h3>Explore Our Website</h3>

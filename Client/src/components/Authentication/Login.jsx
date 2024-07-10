@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-
+import Footer from '../common/Footer';
 //files import
 import lscss from './loginsignup.module.css'
 
@@ -112,7 +112,7 @@ function Login() {
         <p>Not already registered ? <Link to="/auth/signup">Signup</Link></p>
       </div>
     <div className={`${lscss.signup}`}>
-        <h2>Login</h2>
+        <h2>LOGIN</h2>
         <form className={`${lscss.form}`} action="">
             <div className={`${lscss.formdiv}`}>
               <label className={`${lscss.labeltxt}`} htmlFor="username">Username:</label>
@@ -158,6 +158,7 @@ function Login() {
     </div>
     </div>
     </div>
+    <Footer/>
     </>
   )
 }
