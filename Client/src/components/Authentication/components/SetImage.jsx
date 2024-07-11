@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import scss from './SetImage.module.css';
 import defaultpic from '../imgs/defaultpic.jpg';
 import Cookies from 'js-cookie';
+import Navbar from '../../common/Navbar';
+import Footer from '../../common/Footer';
 
 const SetImage = () => {
     const [pic, setPic] = useState();
@@ -65,6 +67,8 @@ const SetImage = () => {
 
     return (
         <>
+        <Navbar />
+        <br /><br /><br /><br /><br />
         <button className={scss.Backbtn} onClick={() => navigate(-1)}>{"< Back"}</button>
         <div className={scss.CompareCont}>
             <img  src={blobUrl} alt={"Profile"} />
@@ -76,6 +80,8 @@ const SetImage = () => {
             </div>
             <img src={previewUrl} alt={"Preview"} />
         </div>
+        <br /><br /><br /><br /><br />
+        <Footer />
         </>
     );
 };
